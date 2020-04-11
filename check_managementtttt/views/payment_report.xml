@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- QWeb Reports -->
+
+
+        <report
+            id="action_report_payment_receipt"
+            model="normal.payments"
+            string="Payment check Receipt"
+            report_type="qweb-pdf"
+            name="check_managementtttt.report_receipt_cash_checck"
+            file="check_managementtttt.report_receipt_cash_checck"
+            menu="True"
+        />
+
+    </data>
+</odoo>

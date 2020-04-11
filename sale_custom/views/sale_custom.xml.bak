@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+ 
+ 
+<record id="sale_custom_order" model="ir.ui.view">
+		<field name="name">sale_custom_order</field>
+		<field name="model">sale.order</field>
+		<field name="inherit_id" ref="sale.view_order_form" />
+		<field name="arch" type="xml">
+		<header>
+		  <button name="action_cancel_order"  type="object" string="Cancel" attrs="{'invisible':[('state','=',('cancel'))]}"/>
+		  </header>
+		   <xpath expr="//field[@name='validity_date']" position="replace">
+		                       <field name="order_date" string="Order Date"/>
+                               <field  name="date_valid" string="Validity Days" attrs="{'readonly':[('state','=',('cancel','sale'))]}"/>
+							   <field name="validity_date" string="Validity Date" attrs="{'readonly':True}"/>
+							   <field name="discount_list"  attrs="{'readonly':False}" groups="sales_team.group_sale_manager,sales_team.group_sale_salesman_all_leads"/>
+							    
+							  
+
+							  
+                </xpath>
+                
+                
+			 <!--<xpath expr="//field[@name='payment_term_id']" position="attributes">
+			        <attribute name="groups">sales_team.group_sale_manager</attribute> 
+			</xpath> -->
+			 
+			 <xpath expr="//button[@name='action_confirm'][1]" position="attributes">
+   
+                        <attribute name="groups">sales_team.group_sale_manager,sales_team.group_sale_salesman_all_leads</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_confirm'][2]" position="attributes">
+   
+                <attribute name="groups">sales_team.group_sale_manager,sales_team.group_sale_salesman_all_leads</attribute>
+            </xpath>
+			<xpath expr="//button[@name='action_cancel']" position="attributes">
+   
+                <attribute name="invisible">True</attribute>
+            </xpath>
+			<xpath expr="//button[@name='action_draft']" position="attributes">
+   
+                <attribute name="invisible">True</attribute>
+            </xpath>
+			  
+             
+		    
+            <xpath expr="//page[@name='other_information']" position="attributes">
+                     <attribute name="invisible">1</attribute> 
+            </xpath>
+            <!--<xpath expr="//notebook/page/field[@name='order_line']/tree/field[@name='name']" position="attributes">
+                          <attribute name="invisible">1</attribute> 
+            </xpath>-->
+
+				 
+			    <xpath expr="//notebook/page/field[@name='order_line']/tree/field[@name='name']" position="attributes">
+                         <attribute name="invisible">1</attribute> 
+                </xpath>
+            <xpath expr="//notebook/page/field[@name='order_line']/tree/field[@name='price_subtotal']" position="before">
+						<field name="discount2"/>
+            </xpath>
+            
+			 <xpath expr="//notebook/page[2]" position="attributes">
+			    <attribute name="invisible">1</attribute> 
+            </xpath>
+             
+		    <!--<xpath expr="//button[@name='266'][1]" position="attributes">
+   
+                        <attribute name="groups">sales_team.group_sale_manager,sales_team.group_sale_salesman_all_leads</attribute>
+            </xpath>
+            <xpath expr="//button[@name='266'][2]" position="attributes">
+   
+                <attribute name="groups">sales_team.group_sale_manager,sales_team.group_sale_salesman_all_leads</attribute>
+            </xpath>-->
+			<xpath expr="//button[@name='print_quotation'][1]" position="attributes">
+   
+                        <attribute name="groups">sales_team.group_sale_manager,sales_team.group_sale_salesman_all_leads</attribute>
+            </xpath>
+            <xpath expr="//button[@name='print_quotation'][2]" position="attributes">
+   
+                <attribute name="groups">sales_team.group_sale_manager,sales_team.group_sale_salesman_all_leads</attribute>
+            </xpath>
+            <xpath expr="//control/create[3]" position="attributes">
+   
+                <attribute name="invisible">1</attribute> 
+            </xpath>
+			<xpath expr="//control/create[4]" position="attributes">
+   
+                <attribute name="invisible">1</attribute> 
+            </xpath>
+			
+		</field>
+	</record>
+    <record id="sale_custom_order_filter" model="ir.ui.view">
+		<field name="name">sale_custom_order_filter</field>
+		<field name="model">sale.order</field>
+		<field name="inherit_id" ref="sale.view_sales_order_filter" />
+		<field name="arch" type="xml">
+		    <xpath expr="//filter[@name='salesperson']"  position="replace">
+            <filter string="SalesRep" name="SelesRep" domain="[]" context="{'group_by':'user_id'}"/>
+        </xpath>
+		
+            
+		</field>
+    </record>
+	 
+   
+ <record id="cancel_sales_orders" model="ir.actions.act_window">
+<field name="type">ir.actions.act_window</field>
+<field name="name">Cancel order sale</field>
+<field name="res_model">sale.order.cancelled</field>
+<field name="view_mode">tree,form</field>
+ 
+</record>
+ 
+
+	<record id="cancel_custom_order_from" model="ir.ui.view">
+		<field name="name">cancel_custom_order</field>
+		<field name="model">sale.order.cancelled</field>
+	   
+		<field name="arch" type="xml">
+		  <form create="0">
+		  <group>
+		   <field name="reason"/>
+		   <field name="comment_cancel" placeholder="Commment"/>
+		   <!--<field name="cancelled_order"/>-->
+		    </group>
+			 
+			<footer> <button name="write" type="object" string="Save" class="btn-primary"/> 
+			<button name="cancel" string="Cancel" special="cancel" class="oe_link" /> </footer>
+                       
+		  </form>
+		</field>
+	</record>
+
+     <record id="sale_custom_order_treee" model="ir.ui.view">
+		<field name="name">sale_custom_order_tree</field>
+		<field name="model">sale.order</field>
+		<field name="inherit_id" ref="sale.view_order_tree" />
+		<field name="arch" type="xml">
+		 <xpath expr="//field[@name='user_id']" position="attributes">
+		            
+					  <attribute name="string">Sale Rep</attribute>  
+                </xpath>
+
+				 
+		</field>
+
+		</record> 
+
+
+
+		<record id="sale_custom_order_qoutition" model="ir.ui.view">
+		<field name="name">sale_custom_order_qoutition</field>
+		<field name="model">sale.order</field>
+		<field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding" />
+		<field name="arch" type="xml">
+		 <xpath expr="//field[@name='user_id']" position="attributes">
+		            
+					  <attribute name="string">Sale Rep</attribute>  
+                </xpath>
+				 
+		</field>
+
+		</record> 
+
+ 
+    <template id="qoutation_report_custom" inherit_id="sale.report_saleorder_document">
+	   <xpath expr="//div[@id='informations']" position="replace">
+	       <div t-if="doc.client_order_ref" class="col-auto mw-100 mb-2">
+                    <strong>Your Reference:</strong>
+                    <p class="m-0" t-field="doc.client_order_ref"/>
+                </div>
+                <div t-if="doc.confirmation_date and doc.state not in ['draft','sent']" class="col-auto mw-100 mb-2">
+                    <strong>Date Ordered:</strong>
+                    <p class="m-0" t-field="doc.confirmation_date"/>
+                </div>
+                <div t-if="doc.date_order and doc.state in ['draft','sent']" class="col-auto mw-100 mb-2">
+                    <strong>Quotation Date:</strong>
+                    <p class="m-0" t-field="doc.date_order"/>
+                </div>
+                <div t-if="doc.user_id.name" class="col-auto mw-100 mb-2">
+                    <strong>SalesRep:</strong>
+                    <p class="m-0" t-field="doc.user_id"/>
+                </div>
+                <div name="payment_term" t-if="doc.payment_term_id" class="col-auto mw-100 mb-2">
+                    <strong>Payment Terms:</strong>
+                    <p class="m-0" t-field="doc.payment_term_id"/>
+                </div>
+                <div t-if="doc.validity_date and doc.state in ['draft', 'sent']" class="col-auto mw-100 mb-2">
+                    <strong>Expiration Date:</strong>
+                    <p class="m-0" t-field="doc.validity_date"/>
+                </div>
+	   </xpath>
+    </template>
+
+
+	 <record id="view_sale_order_after_confrimation" model="ir.ui.view">
+            <field name="name">view_sale_order_after_confrimation</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form" />
+            <field name="groups_id" eval="[(6,0, [ref('sales_team.group_sale_salesman')])]" />
+            <field name="arch" type="xml">                
+                <xpath expr="//field[@name='order_line']" position="attributes">
+                    <attribute name="attrs">{'readonly': [('state', '=', ( 'sale'))]}</attribute> </xpath>
+					<xpath expr="//field[@name='order_date']" position="attributes">
+                    <attribute name="attrs">{'readonly': [('state', '=', ( 'sale'))]}</attribute> </xpath> 
+					<xpath expr="//field[@name='date_valid']" position="attributes">
+                    <attribute name="attrs">{'readonly': [('state', '=', ( 'sale'))]}</attribute> </xpath> 
+					<xpath expr="//field[@name='payment_term_id']" position="attributes">
+                    <attribute name="attrs">{'readonly': True}</attribute> </xpath> 
+					<xpath expr="//field[@name='partner_id']" position="attributes">
+					 <attribute name="options">{'no_create_edit': True, 'no_create':True, 'no_open':True}</attribute>
+					</xpath>
+					<xpath expr="//notebook/page/field[@name='order_line']/tree/field[@name='price_unit']" position="attributes">
+                          <attribute name="attrs">{'readonly': True}</attribute> </xpath>
+             
+					
+            </field>
+</record>
+<record id="view_sale_order_manager" model="ir.ui.view">
+            <field name="name">view_sale_order_manager</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form" />
+            <field name="groups_id" eval="[(6,0, [ref('sales_team.group_sale_salesman_all_leads')])]" />
+            <field name="arch" type="xml">                
+               <xpath expr="//field[@name='pricelist_id']" position="attributes">
+   
+                        <attribute name="attrs">{'readonly': False}</attribute>
+                </xpath>
+					<xpath expr="//notebook/page/field[@name='order_line']/tree/field[@name='price_unit']" position="attributes">
+                          <attribute name="attrs">{'readonly': False}</attribute> </xpath>
+         
+					
+            </field>
+</record>
+<record id="view_sale_order_sale_manager" model="ir.ui.view">
+            <field name="name">view_sale_order_sale_manager</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form" />
+            <field name="groups_id" eval="[(6,0, [ref('sales_team.group_sale_manager')])]" />
+            <field name="arch" type="xml">                
+               
+					<xpath expr="//field[@name='payment_term_id']" position="attributes">
+                    <attribute name="attrs">{'readonly': False}</attribute> </xpath>
+					
+            </field>
+</record>
+     <record model='ir.actions.report' id='sale.action_report_saleorder'>
+				 <field name="groups_id" eval="[(4,ref('sales_team.group_sale_salesman_all_leads')),(4,ref('sales_team.group_sale_manager'))]"/>
+    </record>
+
+	 
+ 
+
+
+	 <record id="remove_create_invoice_sale_rep" model="ir.ui.view">
+            <field name="name">remove_create_invoice_sale_rep</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale_management.sale_order_view_form" />
+             <field name="groups_id" eval="[(6,0, [ref('sales_team.group_sale_salesman')])]" />
+            <field name="arch" type="xml">       
+			    
+			     <xpath expr="//field[@name='pricelist_id']" position="attributes">
+   
+                        <attribute name="attrs">{'readonly': True}</attribute>
+                </xpath>
+                 <xpath expr="//button[@name='%(sale.action_view_sale_advance_payment_inv)d'][1]" position="attributes">
+   
+                        <attribute name="groups">sales_team.group_sale_manager</attribute>
+                </xpath>
+				<xpath expr="//button[@name='%(sale.action_view_sale_advance_payment_inv)d'][2]" position="attributes">
+   
+                        <attribute name="groups">sales_team.group_sale_manager</attribute>
+                </xpath>
+				<xpath expr="//button[@name='action_view_invoice']" position="attributes">
+   
+                        <attribute name="groups">sales_team.group_sale_manager</attribute>
+                </xpath>
+					
+            </field>
+</record>
+ 
+ 
+  <record id="sale.action_view_sale_advance_payment_inv" model="ir.actions.act_window">
+   <field name="groups_id" eval="[(4,ref('sales_team.group_sale_manager')),(3,ref('sales_team.group_sale_salesman'))]"/>
+   </record>
+    <record model='ir.ui.menu' id='sale.sales_team_config'>
+				 <field name="groups_id" eval="[(4,ref('sales_team.group_sale_salesman_all_leads'))]"/>
+    </record>
+	 <record model='ir.ui.menu' id='sale.menu_sale_config'>
+				 <field name="groups_id" eval="[(4,ref('sales_team.group_sale_salesman_all_leads'))]"/>
+    </record>
+	<record model='ir.ui.menu' id='sale.menu_sale_report'>
+				 <field name="groups_id" eval="[(4,ref('sales_team.group_sale_salesman_all_leads'))]"/>
+    </record>
+	
+		</odoo>

@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+tt_access_accountant_payment,tt.access.accountant.payment.cycle,model_normal_payments,account.group_account_manager,1,1,1,1
+tt_access_accountant_check,tt.access.accountant.check.cycle,model_check_management,account.group_account_manager,1,1,1,1
+access_createmove,access_createmove,model_create_moves,account.group_account_invoice,1,1,1,0
+access_payment_check,access_payment_check,model_native_payments_check_create,account.group_account_invoice,1,1,1,1
+
+access_check_management,access_check_management,model_check_management,account.group_account_invoice,1,1,1,0
+acces_approve_checklines,acces_approve_checklines,model_appove_check_lines,account.group_account_invoice,1,1,1,0
+access_merge_check,access_merge_check,model_split_merge_check,account.group_account_invoice,1,1,1,0

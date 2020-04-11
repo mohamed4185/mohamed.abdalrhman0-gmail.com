@@ -1,0 +1,232 @@
+<openerp>
+    <data>
+        <!--payment strategy form-->
+        <record id="realestate_payment_form" model="ir.ui.view">
+            <field name="name">realestate.payment.strategy</field>
+            <field name="model">realestate.payment.strategy</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <!-- Smart Buttons -->
+                        <div class="oe_button_box">
+                            <button name="update_total_percentage" string="Update Total Percentage" type="object"
+                                    class="oe_highlight oe_edit_only"/>
+                        </div>
+                        <div class="oe_button_box" name="button_box">
+                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                            <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                        </button>
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_inline" string="Title"/>
+                            <h1>
+                                <field name="name" placeholder="Payment Strategy Title"/>
+                                <field name="flag" invisible="1"/>
+                                <field name="flag_2" invisible="1"/>
+                                <field name="reservation_id" invisible="1"/>
+                            </h1>
+                        </div>
+
+                        <group col="4" groups="realestate.group_saleteammanager_realestate">
+                            <label for="percentage" class="oe_inline" string="Discount/ Increase Percentage"/>
+                            <div style="display: inline;">
+                                <field name="percentage" class="oe_inline" />
+                                <p class="text-success" style="display: inline;">%</p>
+                            </div>
+                            <label for="discount_amount" class="oe_inline" string="Discount Amount" invisible="1"/>
+                            <div style="display: inline;">
+                                <field name="discount_amount" class="oe_inline" invisible="1"/>
+                                <p class="text-success" style="display: inline;">EGP</p>
+                            </div>
+                        </group>
+
+
+                        <group colspan="4">
+                            <field name="unit_additional_price" readonly="1" />
+                            <field name="temporary" string="temporary" invisible="1"/>
+                            <field name="check_line" string="check_line" invisible="1"/>
+                        </group>
+                        <field name="reservation_id" invisible="1"/>
+                        <group class="oe_subtotal_footer oe_right">
+                            <field name="total_unit_price" widget="monetary" readonly="1" />
+                            <field name="sum_installments" widget="monetary" string="Calculated"/>
+                            <div class="oe_subtotal_footer_separator oe_inline">
+                                <label for="sum_reaming"/>
+                            </div>
+                            <field name="sum_reaming"  nolabel="1" class="oe_subtotal_footer_separator" widget="monetary"/>
+                        </group>
+                        <field name="reservation_id" invisible="1"/>
+                        <group>
+                            <separator string="Description" colspan="4"/>
+                            <field name="description" colspan="4" placeholder="add description here..."
+                                   nolabel="1"/>
+                        </group>
+                        <field name="flag" invisible="1"/>
+                        <field name="sum_reaming" invisible="1"/>
+                        <notebook>
+                            <page string="Payment Strategy Details" attrs="{'invisible' : [('flag', '=',False)]}">
+                                <group>
+                                    <field name="payment_details_ids" nolabel="1"
+                                           context="{'default_payment_id':id,'rem_amount':sum_reaming}"/>
+                                </group>
+                                <group class="oe_subtotal_footer oe_right" colspan="4">
+                                    <label for="total_percentage" class="oe_inline" string="Total percentage (%)"/>
+                                    <div style="display: inline;">
+                                        <field name="total_percentage" class="oe_inline" readonly="True"/>
+                                    </div>
+                                </group>
+                                <field name="notes" class="oe_inline" placeholder="Define your terms and conditions ..."/>
+
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!--payment strategy Tree-->
+        <record id="realestate_payment_tree" model="ir.ui.view">
+            <field name="name">realestate.payment.strategy</field>
+            <field name="model">realestate.payment.strategy</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="name"/>
+                    <field name="unit_additional_price"/>
+                    <field name="reservation_id"/>
+                    <field name="percentage" widget="field.percentage"/>
+
+                    <field name="description"/>
+
+                </tree>
+            </field>
+        </record>
+
+
+        <!--payment strategy lines form-->
+        <record id="realestate_payment_lines_form" model="ir.ui.view">
+            <field name="name">realestate.payment.lines</field>
+            <field name="model">realestate.payment.lines</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group col="4">
+                            <field name="name"/>
+                            <field name="payment_id" readonly="1"/>
+                        </group>
+                        <group col="4">
+                            <field name="amount" class="oe_inline"/>
+                            <field name="total_price_unit"/>
+                            <label for="percentage" class="oe_inline" string="Percentage"/>
+                            <div style="display: inline;">
+                                <field name="percentage" class="oe_inline"/>
+                                <p class="text-success" style="display: inline;">%</p>
+                            </div>
+                            <field name="installment_amount_per_type"/>
+
+
+                            <field name="type"/>
+
+
+                            <field name="occurrence" attrs="{'readonly' : [('type', 'in', ['reservation','contracting'])]}"/>
+                            <field name="sum_reaming" invisible="1"/>
+
+
+                        </group>
+                        <group string="Interval Between Installment">
+                        	<group>
+                            <field name="interval_radio_button" widget="radio" nolabel="1" colspan="4"
+                                   options="{'horizontal': true}"/>
+							</group><newline/>
+							<group colspan='6' col='4'>
+                            <field name="days"
+                                   attrs="{'readonly':[('interval_radio_button', '=', 'period')],'required':[('interval_radio_button', '=', 'days')]}"/>
+                            <field name="period"
+                                   attrs="{'readonly' : ['|',('interval_radio_button', '=', 'days'),
+                                   ('type', 'in', ['reservation','contracting'])],
+                                   'required':[('interval_radio_button', '=', 'period')]}"/>
+                            </group>
+                        </group>
+                        <!--attrs="{'invisible' : [('type', '!=', 'regular')]}"-->
+                        <group string="First Installment Date">
+                        	<group>
+                            <field name="f_date_radio_button" widget="radio" nolabel="1" colspan="4"
+                                   options="{'horizontal': true}"/>
+                            </group>
+                            <group colspan='6' col='2' attrs="{'invisible' : [('f_date_radio_button', '=', 'relative')]}">
+                            <field name="absolute_inst_date"
+                                   attrs="{'invisible' : [('f_date_radio_button', '=', 'relative')],'required' : [('f_date_radio_button', '=', 'absolute')]}"/>
+                            </group>
+                            <!--<field name="absolute_day"-->
+                                   <!--attrs="{'invisible' : [('f_date_radio_button', '=', 'relative')],'required' : [('f_date_radio_button', '=', 'absolute'),('type', '=', 'regular')]}"-->
+                                   <!--placeholder="1-31"/>-->
+                            <!--<field name="relative_months"-->
+                                   <!--attrs="{'invisible' : [('f_date_radio_button', '=', 'absolute')],'required' : [('f_date_radio_button', '=', 'relative'),('type', '=', 'regular')]}"-->
+                                   <!--placeholder="1-12"/>-->
+                            <group colspan='6' col='4' attrs="{'invisible' : [('f_date_radio_button', '=', 'absolute')]}">
+                            <field name="contract_date"
+                                   attrs="{'invisible' : [('f_date_radio_button', '=', 'absolute')],'required' : [('f_date_radio_button', '=', 'relative')]}"/>
+                            <!--<field name="relative_day"-->
+                                   <!--attrs="{'invisible' : [('f_date_radio_button', '=', 'absolute')],'required' : [('f_date_radio_button', '=', 'relative'),('type', '=', 'regular')]}"-->
+                                   <!--placeholder="1-31"/>-->
+                            <field name="first_ins_date"
+                                   attrs="{'invisible' : [('f_date_radio_button', '=', 'absolute')],'required' : [('f_date_radio_button', '=', 'relative')]}"/>
+                             </group>
+                        </group>
+                    </sheet>
+
+                </form>
+            </field>
+        </record>
+
+
+        <record id="realestate_payment_lines_tree" model="ir.ui.view">
+            <field name="name">realestate.payment.lines</field>
+            <field name="model">realestate.payment.lines</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="name"/>
+                    <field name="percentage" sum="Percentage Total"/>
+                    <field name="amount" sum="Percentage Total"/>
+                    <field name="type"/>
+                    <field name="payment_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="realestate_payment_lines_search" model="ir.ui.view">
+            <field name="name">realestate.payment.lines.search</field>
+            <field name="model">realestate.payment.lines</field>
+            <field name="arch" type="xml">
+                <search string="">
+                    <field name="name"/>
+                    <field name="percentage"/>
+                    <field name="payment_id"/>
+                </search>
+            </field>
+        </record>
+
+
+        <act_window id='realestate_payment_action' res_model='realestate.payment.strategy'
+                    name='Payment Strategy' view_mode='tree,form'  domain="[('unit_additional_price','=',0.0)]"
+                    target='current'/>
+
+        <act_window id='realestate_payment_special_action' res_model='realestate.payment.strategy'
+                    name='Payment Strategy' view_mode='tree,form'  domain="[('unit_additional_price','!=',0.0)]"
+                    target='current'/>
+
+
+        <act_window id='realestate_payment_lines_action' res_model='realestate.payment.lines'
+                    name='Payment Strategy Detail' view_mode='tree,form'
+                    target='current'/>
+
+        <menuitem name="Sales management" id="realestate_payment" parent="realestate_menu_root" sequence="7"/>
+
+
+
+    </data>
+</openerp>

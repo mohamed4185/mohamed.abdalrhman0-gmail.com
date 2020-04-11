@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<odoo>
+<record id="action_sales_collection_vs_sales_report" model="ir.actions.act_window">
+<field name="type">ir.actions.act_window</field>
+<field name="name">Sales Collection Vs Sales Report</field>
+<field name="res_model">sale.collection.vs.sales</field>
+<field name="view_mode">form</field>
+ 
+</record>
+
+ <menuitem id="menu_sales_collection_Vs_sales"
+ name=" Payment Collection  Report"
+ parent="account.menu_finance_reports"
+ action="action_sales_collection_vs_sales_report"
+ />
+
+
+</odoo>

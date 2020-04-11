@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<odoo>
+<record id="action_credit_analysis_report" model="ir.actions.act_window">
+<field name="type">ir.actions.act_window</field>
+<field name="name">Credit Analysis Report</field>
+<field name="res_model">credit.analysis.report</field>
+<field name="view_mode">form</field>
+ 
+</record>
+
+ <menuitem id="menu_credit_analysis"
+ name=" Credit Analysis Report"
+ parent="account.menu_finance_reports"
+ action="action_credit_analysis_report"
+ />
+
+
+</odoo>

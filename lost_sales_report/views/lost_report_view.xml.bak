@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<odoo>
+
+	<record id="lost_sale_report_form" model="ir.ui.view">
+		<field name="name">lost_sale_report</field>
+		<field name="model">lost.sale</field>
+		<field name="arch" type="xml">
+			<form edit="false">
+				<field name="name" invisible="1"/>
+				<sheet>
+					<div class="oe_title">
+						<h1>Lost Sales Report</h1>
+					</div>
+					<br/>
+					<group>
+						<group>
+							<field name="Date_from"/>
+							<field name="cancel_reason"/>
+						</group>
+						<group>
+							<field name="Date_to"/>
+							<field name="user_id"/>
+						</group>
+					</group>
+					<button string="search" type="object" name="search_report"/>
+				</sheet>
+			</form>
+		</field>
+	</record>
+	<record id="lost_sale_report_tree" model="ir.ui.view">
+		<field name="name">lost_sale_report_tree</field>
+		<field name="model">sale.order</field>
+		<field name="arch" type="xml">
+			<tree create="false">
+
+				<field name="name" string="Quotation Number"/>
+				<field name="create_date" string="Quotation Date"/>
+				<field name="partner_id"/>
+				<field name="user_id" string="Sale Rep"/>
+			 
+				<field name="amount_total"/>
+				<field name="reason" string="Cancelation Reason"/>
+				<field name="comment_cancel" string="Cancelation Comment"/>
+			</tree>
+		</field>
+	</record>
+
+</odoo>

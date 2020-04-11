@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<record model="ir.actions.act_window" id="action_sales_order_discount">
+    <field name="name">New Discount</field>
+    <field name="res_model">sales.discount</field>
+    <field name="view_mode">tree,form</field>
+   
+</record>
+
+<menuitem id="sale_discount_menu_list" name="Discount List" action="action_sales_discount" parent="sale.menu_sale_config"/>
+
+
+
+</odoo>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+<record id="inherited_product_view" model="ir.ui.view">
+			<field name="name">inherited_product_view</field>
+			<field name="model">product.template</field>
+			<field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+			
+			  <xpath expr="//field[@name='type']" position="before">
+
+						 
+						   <field name="code_product" string="Product Code" />
+						 
+             </xpath>
+                  <xpath expr="//label[@for='standard_price']" position="attributes">
+                    <attribute name="groups">sales_team.group_sale_manager</attribute>
+                 </xpath>
+                 <xpath expr="//field[@name='standard_price']" position="attributes">
+                    <attribute name="groups">sales_team.group_sale_manager</attribute>
+                 </xpath>
+				
+			   
+			 </field>
+</record>
+
+<record id="remove_button_update_qty_in_product" model="ir.ui.view">
+			<field name="name">remove_button_update_qty_in_product</field>
+			<field name="model">product.template</field>
+            <field name="inherit_id" ref="stock.product_template_form_view_procurement_button"/>
+            <field name="arch" type="xml">
+			 
+				 <xpath expr="//button[@name='action_update_quantity_on_hand']" position="attributes">
+   
+                        <attribute name="groups">sales_team.group_sale_manager</attribute>
+                </xpath>
+			   
+			 </field>
+</record>
+<record id="remove_button_update_qty_in_product_other_view" model="ir.ui.view">
+			<field name="name">remove_button_update_qty_in_product_other_view</field>
+			<field name="model">product.product</field>
+            <field name="inherit_id" ref="stock.product_form_view_procurement_button"/>
+            <field name="arch" type="xml">
+			 
+				 
+				<xpath expr="//button[@name='%(stock.action_stock_level_forecast_report_product)d']" position="attributes">
+   
+                        <attribute name="groups">sales_team.group_sale_manager</attribute>
+                </xpath>
+				<xpath expr="//button[@name='%(stock.product_open_quants)d']" position="attributes">
+   
+                        <attribute name="groups">sales_team.group_sale_manager</attribute>
+                </xpath>
+				
+				<xpath expr="//button[@name='action_update_quantity_on_hand']" position="attributes">
+   
+                        <attribute name="groups">sales_team.group_sale_manager</attribute>
+                </xpath>
+			   
+			 </field>
+</record>
+ 
+
+<record id="sales_count_removed" model="ir.ui.view">
+			<field name="name">sales_count_removed</field>
+			<field name="model">product.product</field>
+            <field name="inherit_id" ref="sale.product_form_view_sale_order_button"/>
+            <field name="arch" type="xml">
+			 
+				<xpath expr="//button[@name='action_view_sales']" position="attributes">
+   
+                        <attribute name="groups">sales_team.group_sale_manager</attribute>
+                </xpath>
+				 
+			   
+			 </field>
+</record>
+ 
+ 
+ <record id="remove_forecast_holding" model="ir.ui.view">
+			<field name="name">remove_forecast_holding</field>
+			<field name="model">product.template</field>
+			<field name="inherit_id" ref="stock.product_template_form_view_procurement_button"/>
+			
+		 
+            <field name="arch" type="xml">
+				  <xpath expr="//button[@name='%(stock.action_stock_level_forecast_report_template)d']" position="attributes">
+   
+                        <attribute name="groups">sales_team.group_sale_manager</attribute>
+                </xpath>
+				<xpath expr="//button[@name='action_open_quants']" position="attributes">
+   
+                        <attribute name="groups">sales_team.group_sale_manager</attribute>
+                </xpath>
+				 
+			  
+			 </field>
+</record>
+  
+
+ <record id="inherited_product_view_button" model="ir.ui.view">
+			<field name="name">inherited_product_view_button</field>
+			<field name="model">product.template</field>
+			<field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+			
+			    
+			   <xpath expr="//field[@name='uom_name']" position="attributes">
+                     <attribute name="invisible">True</attribute>
+                 </xpath>
+				  
+				 
+			  
+			 </field>
+</record>
+
+<record id="remove_on_hand_quantity_from_kanban_view" model="ir.ui.view">
+			<field name="name">remove_on_hand_quantity_from_kanban_view</field>
+			<field name="model">product.template</field>
+			<field name="inherit_id" ref="stock.product_template_kanban_stock_view"/>
+            <field name="arch" type="xml">
+			
+			   <!--<xpath expr="//field[@name='qty_available']" position="attributes">
+                     <attribute name="groups">sales_team.group_sale_manager</attribute>
+                 </xpath>
+			   <xpath expr="//field[@name='qty_available']" position="attributes">
+                     <attribute name="groups">sales_team.group_sale_manager</attribute>
+                 </xpath>-->
+				 <xpath expr="//ul" position="attributes">
+                     <attribute name="groups">sales_team.group_sale_manager</attribute>
+                 </xpath>
+				  
+				 
+			  
+			 </field>
+</record>
+   <record model='ir.actions.report' id='product.report_product_template_label'>
+				 <field name="groups_id" eval="[(4,ref('sales_team.group_sale_salesman_all_leads')),(4,ref('sales_team.group_sale_manager'))]"/>
+    </record>
+	 <record model='ir.actions.report' id='stock.action_report_stock_rule'>
+				 <field name="groups_id" eval="[(4,ref('sales_team.group_sale_salesman_all_leads')),(4,ref('sales_team.group_sale_manager'))]"/>
+    </record>
+ 
+</odoo>
+ 

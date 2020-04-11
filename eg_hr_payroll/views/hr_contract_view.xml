@@ -1,0 +1,110 @@
+<odoo>
+    <data>
+        <record id="view_other_alw_form" model="ir.ui.view">
+            <field name="name">view.other.alw.form</field>
+            <field name="model">hr.other_alw</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="amount"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="view_other_alw_tree" model="ir.ui.view">
+            <field name="name">view.other.alw.tree</field>
+            <field name="model">hr.other_alw</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="amount"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_action_other_alw" model="ir.actions.act_window">
+            <field name="name">Employee Allowances</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.other_alw</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p>
+                <p>
+                    <!-- More details about what a user can do with this object will be OK -->
+                </p>
+            </field>
+        </record>
+
+
+        <menuitem
+                action="view_action_other_alw"
+                id="menu_hr_alw"
+                parent="hr.menu_human_resources_configuration"
+                sequence="100"
+                groups="hr.group_hr_manager"/>
+
+    </data>
+    <data>
+        <record id="hr_contract_form_egypt_inherit" model="ir.ui.view">
+            <field name="name">hr.contract.view.form.egypt.inherit</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page[@name='information']" position="after">
+                    <page name="insurance_info" string="Insurance Information">
+                        <group>
+                            <group>
+                                <field name="sin_exist"/>
+                                <field name="sin_no" attrs="{'invisible':[('sin_exist','=', False)]}"/>
+                                <field name="sin_date" attrs="{'invisible':[('sin_exist','=', False)]}"/>
+                                <field name="sin_end_date"
+                                       attrs="{'invisible':[('sin_exist','=', False)]}"/>
+                            </group>
+                            <group>
+                                <!--<field name="experience"/>-->
+                                <field name="mi_exist"/>
+                                <field name="mi_no" attrs="{'invisible':[('mi_exist','=', False)]}"/>
+                                <field name="mi_date" attrs="{'invisible':[('mi_exist','=', False)]}"/>
+                            </group>
+                        </group>
+                    </page>
+                   <page name="salary_items" string="Salary Items" groups="hr.group_hr_manager">
+                        <group>
+                            <group string="Insurance Items">
+                                <field name="basic_salary"/>
+                                <field name="variable_salary"/>
+                            </group>
+                            <group string="Allowances">
+                                <field name="allowances"/>
+                                <field name="prev_raise"/>
+                            </group>
+
+                        </group>
+                        <group string="Other Allowances">
+                            <field name="other_alw_ids" nolabel="1">
+                                <tree string="Ohter allowances" editable="bottom">
+                                    <field name="alw_id" widget="selection"/>
+                                    <field name="code"/>
+                                    <field name="amount"/>
+                                </tree>
+                            </field>
+                        </group>
+
+                    </page>
+                </xpath>
+
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

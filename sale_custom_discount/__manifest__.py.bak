@@ -1,0 +1,18 @@
+{
+    'name': "sale Custimization Discount",
+    'summary': """sale Discount""",
+    'author': 'BBL',
+    'website': '',
+    'category': 'Sale Custimization',
+    'version': '12.0.1.0.8',
+    'depends': ['base','sale','account','sale_stock','sale_management','sales_team','sales_regions','cst_attributes'],
+    'data': ['views/sale_custom.xml','views/invoice_custom_view.xml','views/sale_dicount_menu.xml','views/sale_dicount_view.xml','secuirty/ir.model.access.csv','secuirty/user_group_rights.xml'],
+    'demo': [
+    ],
+    'qweb': [
+        
+    ],
+    'auto-install':True,
+	'Sequence':102
+     
+}

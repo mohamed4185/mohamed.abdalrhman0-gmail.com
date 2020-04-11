@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<record id="invoice_discount" model="ir.ui.view">
+		<field name="name">invoice_discount</field>
+		<field name="model">account.invoice</field>
+		<field name="priority" eval="10"/>
+		<field name="inherit_id" ref="account.invoice_form"/>
+		<field name="arch" type="xml">
+		    <xpath expr="//field[@name='journal_id']" position="after">
+		                       
+							   <field name="discount"/>
+                </xpath>
+
+
+				  <xpath expr="//notebook/page/field[@name='invoice_line_ids']/tree/field[@name='price_subtotal']" position="before">
+						<field name="discount2"/>
+            </xpath>
+		</field>
+	</record>
+	<!--<record id="discount_account_config" model="ir.ui.view">
+            <field name="name">discount_account_config</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="account.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+             <xpath expr="//div[@id='setup']" position="inside">
+			            <div class="o_setting_right_pane">
+                          <label for="discount_account_id"/>
+						<field   name="discount_account_id"/>
+						</div>
+            </xpath>
+			</field>
+    </record>-->
+	<record id="remove_discount_invoice_line" model="ir.ui.view">
+            <field name="name">remove_discount_invoice_line</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+             <xpath expr="//notebook/page/field[@name='invoice_line_ids']/tree/field[@name='discount']" position="attributes">
+                         <attribute name="invisible">1</attribute> 
+                </xpath>
+			</field>
+    </record>
+	</odoo>

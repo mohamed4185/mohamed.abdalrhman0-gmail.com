@@ -1,0 +1,22 @@
+<odoo>
+    <!-- Case Teams Salesteams dashboard view -->
+  <record id="sale_team_inherited" model="ir.ui.view">
+		<field name="name">sale_team_inherited</field>
+		<field name="model">crm.team</field>
+		<field name="inherit_id" ref="sales_team.crm_team_view_form" />
+		<field name="arch" type="xml">
+		 <xpath expr="//field[@name='member_ids']" position="replace">
+                          <field name="member_ids" widget="many2many">
+						      <tree>
+							    <field name="name"/>
+								<field name="login" string="E mail"/>
+								<field name="login_date"/>
+							  </tree>
+
+						  </field>
+            </xpath>
+           
+        </field>
+    </record>
+
+</odoo>

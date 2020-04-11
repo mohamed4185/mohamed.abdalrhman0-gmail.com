@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<template id="report_sale_visit_count_print_data">
+   
+                      
+						  <tr>
+                           <td>
+						   <span t-field="o.year_date" style="padding:5px; text-overflow: ellipsis;"/>
+						   </td>
+                            <td>
+						   <span t-field="o.name" style="padding:5px; text-overflow: ellipsis;"/>
+						   </td>
+						   <td>
+						   <span t-field="o.planned_count" style="padding:5px; text-overflow: ellipsis;"/>
+						   </td>
+						   <td>
+						   <span t-field="o.complete_count" style="padding:5px; text-overflow: ellipsis;"/>
+						   </td>
+						   <td>
+						   <span t-field="o.cancel_count" style="padding:5px; text-overflow: ellipsis;"/>
+						   </td>
+						   
+						  </tr>
+					  
+					 
+  
+                 
+         
+    
+</template>
+
+<!-- Translatable template -->
+ 
+
+<template id="report_sales_visit_count_document">
+        
+          <t t-call="web.html_container">
+		 <t t-call="web.external_layout">
+		       		     
+
+                <div class="page">
+
+				    <h2 style="text-align:center;color:grey">Sale Visit Count Report</h2>
+                      
+					<table class="table table-sm" style="width:100%;text-align:center;padding-left:20px;padding-right:20px">
+					<tr style="color:blue">
+							<th>Year</th>
+							 
+							<th>sale Rep</th>
+							<th>Planned Visit</th>
+							<th>Completed Visit</th>
+							<th>Canceled Vist</th>
+							
+						  </tr>
+                    <t t-foreach="docs" t-as="o">
+                        
+                        <t t-call="Sales_Rep_Visits_Count_Report.report_sale_visit_count_print_data">
+                            <t t-set="o" t-value="o"/>
+                        </t>
+                    </t>
+					</table>
+					 
+                </div>
+				 
+            </t>
+			</t>
+    </template>
+	
+        
+</odoo>

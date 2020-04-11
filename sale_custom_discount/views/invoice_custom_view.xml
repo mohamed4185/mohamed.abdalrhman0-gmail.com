@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<record id="account_invoice_discount" model="ir.ui.view">
+		<field name="name">invoice_discount</field>
+		<field name="model">account.invoice</field>
+		<field name="priority" eval="10"/>
+		<field name="inherit_id" ref="account.invoice_form"/>
+		<field name="arch" type="xml">
+		
+		<xpath expr="//button[@name='action_invoice_open']" position="attributes">
+   
+                       <attribute name="groups">account.group_account_user</attribute>
+                </xpath>
+		    <xpath expr="//field[@name='journal_id']" position="after">
+		                       
+							   <field name="discount"/>
+							   
+                </xpath>
+				<xpath expr="//field[@name='user_id']" position="after">
+		                       
+							   <field name="type_invoice" widget="radio" attrs="{'readonly':[('state','!=','draft')]}"/>
+							   
+                </xpath>
+
+
+				  <xpath expr="//notebook/page/field[@name='invoice_line_ids']/tree/field[@name='price_subtotal']" position="before">
+						<field name="discount2"/>
+						<field name="foc_type" />
+						<field name="foc_discount"/>
+            </xpath>
+			<!--<xpath expr="//notebook/page/field[@name='invoice_line_ids']/tree/field[@name='price_unit']" position="attributes">
+                     <attribute name="readonly">1</attribute> </xpath>-->
+			 
+            <xpath expr="//notebook/page/field[@name='invoice_line_ids']" position="inside">
+						<form>
+ 
+                         <group>
+						      <group>
+							     <field name="product_id"/>
+								 <field name="discount2" attrs="{'invisible':[('discount_change','=',False)]}"/>
+						      <field name="discount_change" />
+							  <field name="foc_type" widget="radio"/>
+						<field name="foc_discount" attrs="{'invisible':[('foc_type','=',False)]}"/></group><group>
+						  <field name="quantity"/>
+                                    
+                                    
+                                    
+                                    <field name="price_unit"/>
+                                  
+							  </group>
+
+						 </group>
+
+
+                           
+
+
+
+
+						</form>
+
+            </xpath>
+			 
+			<xpath expr="//notebook/page//field[@name='amount_untaxed']"  position="after">
+			  <field name="global_discount" attrs="{'readonly':[('state','!=','draft')],'invisible':[('state','!=','draft')]}"/>
+			</xpath>
+			<xpath expr="//notebook/page//field[@name='amount_total']"  position="after">
+			  <field name="global_discount" attrs="{'readonly':[('state','!=','draft')],'invisible':[('state','=','draft')]}"/>
+			</xpath>
+			<xpath expr="//notebook/page/field[@name='invoice_line_ids']"  position="after">
+			    <group class="left" attrs="{'readonly':[('state','!=','draft')]}">
+                              <group><field name="discount_type" widget="radio"   attrs="{'readonly':[('state','!=','draft')]}"/></group>
+                               <group><field name="precentge_value" attrs="{'readonly':['|',('state','!=','draft'),('discount_type','=','Amount')]}"/>
+                               <field name="amount_value" attrs="{'readonly':['|',('state','!=','draft'),('discount_type','=','Precentage')]}"/></group>
+                               
+                            </group>
+			</xpath>
+
+		</field>
+	</record>
+	<!--<record id="discount_account_config" model="ir.ui.view">
+            <field name="name">discount_account_config</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="account.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+             <xpath expr="//div[@id='setup']" position="inside">
+			            <div class="o_setting_right_pane">
+                          <label for="discount_account_id"/>
+						<field   name="discount_account_id"/>
+						</div>
+            </xpath>
+			</field>
+    </record>-->
+	<!--<record id="remove_discount_invoice_line" model="ir.ui.view">
+            <field name="name">remove_discount_invoice_line</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+             <xpath expr="//notebook/page/field[@name='invoice_line_ids']/tree/field[@name='discount']" position="attributes">
+                         <attribute name="invisible">1</attribute> 
+                </xpath>
+			</field>
+    </record>-->
+
+	 <record id="res_config_settings_view_form_discount" model="ir.ui.view">
+            <field name="name">res_config_settings_view_form_discount</field>
+            <field name="model">res.config.settings</field>
+             
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+			 <xpath expr="//div[hasclass('settings')]" position="inside">
+			  <div class="col-12 col-lg-6 o_setting_box" attrs="{'invisible': [('chart_template_id','=',False), ('module_account_accountant','=',False)]}">
+                    <div class="o_setting_left_pane"/>
+                    <div class="o_setting_right_pane">
+                       
+                        <div class="content-group">
+                            <div class="row mt16">
+                                <label for="discount_account" class="col-lg-3 o_light_label"/>
+                                <field name="discount_account"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+			     
+                        
+                </xpath>
+			</field>
+    </record>
+	<record id="account_invoice_discount_tree" model="ir.ui.view">
+		<field name="name">invoice_discount</field>
+		<field name="model">account.invoice</field>
+		<field name="priority" eval="10"/>
+		 <field name="type">tree</field>
+		<field name="inherit_id" ref="account.invoice_tree"/>
+		<field name="arch" type="xml">
+		     <xpath expr="//field[@name='number']" position="after">
+		                       
+							   <field name="serial_invoice"/>
+							   <field name="serial_statment"/>
+							   
+                </xpath>
+				<xpath expr="//field[@name='state']" position="after">
+		                       
+							   <field name="comment"/>
+							   
+							   
+                </xpath>
+
+		</field>
+    </record>
+	</odoo>

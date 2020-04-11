@@ -1,0 +1,215 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* bank_cheques
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0e+e-20190103\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-11-13 13:01+0000\n"
+"PO-Revision-Date: 2019-11-13 13:01+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: bank_cheques
+#: model_terms:ir.ui.view,arch_db:bank_cheques.bank_cheques_report
+msgid "<b>لا يــوجــد بيانـــــــات</b>"
+msgstr ""
+
+#. module: bank_cheques
+#: selection:bank.cheques,state:0
+msgid "Approved"
+msgstr "معتـــــمدة"
+
+#. module: bank_cheques
+#: model:ir.model.fields,field_description:bank_cheques.field_bank_cheques__bank
+msgid "Bank"
+msgstr "البنك"
+
+#. module: bank_cheques
+#: model_terms:ir.ui.view,arch_db:bank_cheques.wiz_bank_cheques_view
+msgid "Bank Checks"
+msgstr "شيكات بنك"
+
+#. module: bank_cheques
+#: model:ir.ui.menu,name:bank_cheques.menu_bank_cheques
+msgid "Bank Cheques"
+msgstr "شيكات بنك"
+
+#. module: bank_cheques
+#: model:ir.actions.act_window,name:bank_cheques.action_bank_cheques_view_wizard
+msgid "Bank Cheques Report"
+msgstr "بيان ِشيكات بنك"
+
+#. module: bank_cheques
+#: model_terms:ir.ui.view,arch_db:bank_cheques.wiz_bank_cheques_view
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. module: bank_cheques
+#: selection:bank.cheques,state:0
+msgid "Canceled"
+msgstr "ملـــغه"
+
+#. module: bank_cheques
+#: model:ir.model.fields,field_description:bank_cheques.field_bank_cheques__create_uid
+msgid "Created by"
+msgstr "أنشئ بواسطة"
+
+#. module: bank_cheques
+#: model:ir.model.fields,field_description:bank_cheques.field_bank_cheques__create_date
+msgid "Created on"
+msgstr "أنشئ في"
+
+#. module: bank_cheques
+#: selection:bank.cheques,state:0
+msgid "Cs_return"
+msgstr "مرتجع للعميل"
+
+#. module: bank_cheques
+#: selection:bank.cheques,state:0
+msgid "Debited"
+msgstr "المــدينــه"
+
+#. module: bank_cheques
+#: selection:bank.cheques,state:0
+msgid "Depoisted"
+msgstr "تحت التحصيل"
+
+#. module: bank_cheques
+#: model:ir.model.fields,field_description:bank_cheques.field_bank_cheques__display_name
+#: model:ir.model.fields,field_description:bank_cheques.field_report_bank_cheques_bank_cheques_report__display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: bank_cheques
+#: model:ir.model.fields,field_description:bank_cheques.field_bank_cheques__date_to
+msgid "End Date "
+msgstr "تاريخ الانتهاء"
+
+#. module: bank_cheques
+#: selection:bank.cheques,state:0
+msgid "Handed"
+msgstr "الصـــادره"
+
+#. module: bank_cheques
+#: selection:bank.cheques,state:0
+msgid "Holding"
+msgstr "الخزنه"
+
+#. module: bank_cheques
+#: model:ir.model.fields,field_description:bank_cheques.field_bank_cheques__id
+#: model:ir.model.fields,field_description:bank_cheques.field_report_bank_cheques_bank_cheques_report__id
+msgid "ID"
+msgstr "المعرف"
+
+#. module: bank_cheques
+#: model:ir.model.fields,field_description:bank_cheques.field_bank_cheques____last_update
+#: model:ir.model.fields,field_description:bank_cheques.field_report_bank_cheques_bank_cheques_report____last_update
+msgid "Last Modified on"
+msgstr "آخر تعديل في"
+
+#. module: bank_cheques
+#: model:ir.model.fields,field_description:bank_cheques.field_bank_cheques__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: bank_cheques
+#: model:ir.model.fields,field_description:bank_cheques.field_bank_cheques__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: bank_cheques
+#: model:ir.model.fields,field_description:bank_cheques.field_bank_cheques__partner
+msgid "Partner"
+msgstr "الشريك"
+
+#. module: bank_cheques
+#: model_terms:ir.ui.view,arch_db:bank_cheques.wiz_bank_cheques_view
+msgid "Print"
+msgstr "طباعة"
+
+#. module: bank_cheques
+#: selection:bank.cheques,state:0
+msgid "Rejected"
+msgstr "المرفـــوضه"
+
+#. module: bank_cheques
+#: selection:bank.cheques,state:0
+msgid "Returned"
+msgstr "المرتجعه"
+
+#. module: bank_cheques
+#: model:ir.model.fields,field_description:bank_cheques.field_bank_cheques__date_from
+msgid "Start Date"
+msgstr "تاريخ البدء"
+
+#. module: bank_cheques
+#: model:ir.model.fields,field_description:bank_cheques.field_bank_cheques__state
+msgid "State"
+msgstr "الحالة"
+
+#. module: bank_cheques
+#: model:ir.model,name:bank_cheques.model_bank_cheques
+msgid "bank.cheques"
+msgstr ""
+
+#. module: bank_cheques
+#: model_terms:ir.ui.view,arch_db:bank_cheques.wiz_bank_cheques_view
+msgid "or"
+msgstr "أو"
+
+#. module: bank_cheques
+#: model:ir.model,name:bank_cheques.model_report_bank_cheques_bank_cheques_report
+msgid "report.bank_cheques.bank_cheques_report"
+msgstr ""
+
+#. module: bank_cheques
+#: model_terms:ir.ui.view,arch_db:bank_cheques.bank_cheques_report
+msgid "اســـم العميـــل"
+msgstr ""
+
+#. module: bank_cheques
+#: model_terms:ir.ui.view,arch_db:bank_cheques.bank_cheques_report
+msgid "اسـم البنــك"
+msgstr ""
+
+#. module: bank_cheques
+#: model_terms:ir.ui.view,arch_db:bank_cheques.bank_cheques_report
+msgid "المبلـــغ"
+msgstr ""
+
+#. module: bank_cheques
+#: model:ir.actions.report,name:bank_cheques.action_report_bank_cheques
+msgid "بيـــان بشيكات بنـــــك"
+msgstr ""
+
+#. module: bank_cheques
+#: model_terms:ir.ui.view,arch_db:bank_cheques.bank_cheques_report
+msgid "تـــاريخ الادخـــال"
+msgstr ""
+
+#. module: bank_cheques
+#: model_terms:ir.ui.view,arch_db:bank_cheques.bank_cheques_report
+msgid "تـــــــــــاريخ الشيــك"
+msgstr ""
+
+#. module: bank_cheques
+#: model_terms:ir.ui.view,arch_db:bank_cheques.bank_cheques_report
+msgid "حــاله الشيــك"
+msgstr ""
+
+#. module: bank_cheques
+#: model_terms:ir.ui.view,arch_db:bank_cheques.bank_cheques_report
+msgid "رقــــم الحركه"
+msgstr ""
+
+#. module: bank_cheques
+#: model_terms:ir.ui.view,arch_db:bank_cheques.bank_cheques_report
+msgid "رقم الشــيك"
+msgstr ""
+

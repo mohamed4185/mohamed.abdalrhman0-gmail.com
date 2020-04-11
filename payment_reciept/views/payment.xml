@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   <record id="account_payment_inherited_view" model="ir.ui.view">
+		<field name="name">account_payment_inherited_view</field>
+		<field name="model">account.payment</field>
+		<field name="inherit_id" ref="account.view_account_payment_form" />
+		<field name="arch" type="xml">
+				<xpath expr="//field[@name='payment_transaction_id']" position="after">
+				    
+					<field name="customer" attrs="{'readonly':[('state','!=','draft')],'invisible':['|',('payment_type','=','inbound'),('payment_type','=','outbound')]}"/>
+				
+					 <field name="sales_rep_or_other" invisible="1"/>
+					<field name="sales_rep" attrs="{'readonly':[('state','!=','draft')],'required':[('sales_rep_or_other','=',False)],'invisible':[('payment_type','=','outbound')]}"/>
+					<field name="sales_rep" string="Deliver To" attrs="{'readonly':[('state','!=','draft')],'required':[('sales_rep_or_other','=',False)],'invisible':[('payment_type','in',['inbound','transfer'])]}"/>
+					
+					<field name="others" attrs="{'readonly':[('state','!=','draft')],'required':[('payment_type','=','inbound'),('sales_rep','=',False)]}"/>
+					<field name="analytical_account" attrs="{'readonly':[('state','!=','draft')],'required':[('payment_type','=','transfer')]}" groups="account.group_account_user"/>
+					<field name="ref_number" attrs="{'readonly':[('state','!=','draft')],'required':True}"/>
+					<field name="recieve_text"  attrs="{'readonly':[('state','!=','draft')],'required':True}"/>
+
+				</xpath>
+				<xpath expr="//field[@name='partner_id']" position="after">
+				     <field name="account_id" attrs="{'required':[('partner_type','=','miscellaneous')],'invisible':[('partner_type','!=','miscellaneous')],'readonly':[('state','!=','draft')]}"/>
+				 
+				</xpath>
+				<xpath expr="//field[@name='partner_id']" position="replace">
+				     <field name="partner_id" attrs="{'required': [('state', '=', 'draft'), ('partner_type', 'in', ('customer', 'supplier'))], 'invisible': ['|',('partner_type','=','miscellaneous'),('payment_type', 'not in', ('inbound', 'outbound'))], 'readonly': [('state', '!=', 'draft')]}" context="{'default_is_company': True, 'default_supplier': payment_type == 'outbound', 'default_customer': payment_type == 'inbound'}"/>
+				 
+				</xpath>
+				 
+
+  
+                <xpath expr="//button[@name='post']" position="attributes">
+   
+                        <attribute name="groups">account.group_account_user</attribute>
+            </xpath>
+		   
+		</field>
+	</record>
+   <!-- <record id="accountant_group" model="mail.channel">
+    <field name="name">Accountant Notification</field>
+    
+	<field name="group_ids" eval="[(4, ref('account.group_account_user'))]"/>
+	<field name="group_public_id" eval="ref('account.group_account_user')"/>
+</record>
+ 
+ <record id="advisor_group" model="mail.channel">
+    <field name="name">Advisor Notification</field>
+    
+	<field name="group_ids" eval="[(4, ref('account.group_account_manager'))]"/>
+	<field name="group_public_id" eval="ref('account.group_account_manager')"/>
+</record>-->
+ <record id="account_payment_inherited_view_tree" model="ir.ui.view">
+		<field name="name">account_payment_inherited_view_tree</field>
+		<field name="model">account.payment</field>
+		<field name="inherit_id" ref="account.view_account_payment_tree" />
+		<field name="arch" type="xml">
+         <xpath expr="//field[@name='state']" position="after">
+		     <field name="sales_rep" />
+			 <field name="analytical_account"/>
+			 <field name="ref_number"/>
+			 <field name="recieve_text"/>
+
+		 </xpath>
+		</field>
+</record>
+ </odoo>

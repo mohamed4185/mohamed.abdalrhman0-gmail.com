@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<odoo>
+
+
+
+ <record model="ir.actions.act_window" id="action_non_commerical">
+    <field name="name">Non Commerical List</field>
+    <field name="res_model">res.partner.commerical</field>
+	
+    <field name="view_mode">tree,form</field>
+
+
+   
+</record>
+
+</odoo>

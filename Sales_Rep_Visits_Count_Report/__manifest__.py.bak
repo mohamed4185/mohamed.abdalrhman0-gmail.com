@@ -1,0 +1,19 @@
+{
+    'name': "Sales Rep Visits Count Report",
+    'summary': """Sales Rep Visits Count Report""",
+    'author': 'BBL',
+    'website': '',
+    'category': 'Report Custimization',
+    'version': '12.0.1.0.8',
+    'depends': ['sale_visit','sales_team'],
+    'data': ['views/sale_visit_count.xml','views/sale_visit_count_menu.xml','views/sale_visit_templete','views/report_sales_visit_count_document.xml','secuirty/ir.model.access.csv'],
+    'demo': [
+    ],
+    'qweb': [
+        
+    ],
+    'installable':True,
+	'Sequence':101
+     
+}
+

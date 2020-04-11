@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<odoo>
+ 
+ <record model="ir.actions.act_window" id="action_sales_lost_search">
+    <field name="name">action_cancle_report</field>
+    <field name="res_model">lost.sale</field>
+	 <field name="view_type">form</field>
+   <field name="view_id" ref="lost_sale_report_form"/>
+   <field name="target">inline</field>
+             
+    
+</record>
+
+ 
+  <menuitem id="action_sales_visit_search_data"
+ name="Lost Sales Report"
+ action="action_sales_lost_search"
+ parent="sale.menu_sale_report"
+ 
+ /> 
+  
+</odoo>

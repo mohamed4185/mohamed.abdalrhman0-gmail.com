@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+
+        <record id="check_cycle_accounts_form" model="ir.ui.view">
+            <field name="name">check.cycle.accounts.default.form</field>
+            <field name="model">check.cycle.accounts.default</field>
+            <field name="view_type">form</field>
+            <field name="arch" type="xml">
+                <form>
+                    <h1>
+                        <field name="name" invisible="context.get('action_wiz',False)!='depoist'"/>
+                        <field name="name_cancel" invisible="context.get('action_wiz',False)!='cancel'"/>
+                        <field name="name_reject" invisible="context.get('action_wiz',False)!='reject'"/>
+                        <field name="name_return" invisible="context.get('action_wiz',False)!='return'"/>
+                        <field name="name_approve" invisible="context.get('action_wiz',False)!='approve'"/>
+                        <field name="name_debit" invisible="context.get('action_wiz',False)!='debit'"/>
+                        <field name="name_csreturn" invisible="context.get('action_wiz',False)!='cs_return'"/>
+                        <field name="name_split_merge" invisible="context.get('action_wiz',False)!='split_merge'"/>
+                    </h1>
+                    <group col="2">
+                        <field name="journal_id"
+                               invisible="context.get('action_wiz',False) not in ('approve','debit')"/>
+					    <field name="journal_id_deposit"
+                               invisible="context.get('action_wiz',False) !='depoist'"/>
+					 
+
+					    
+                    </group>
+                    <h3 invisible="context.get('action_wiz',False) != 'reject'"
+                        required="context.get('action_wiz',False) == 'reject'">Rejection Reason
+                    </h3>
+                    <field name="reject_reason" invisible="context.get('action_wiz',False) != 'reject'"
+                           required="context.get('action_wiz',False) == 'reject'"
+                    />
+                    <h3 invisible="context.get('action_wiz',False) != 'split_merge'">Total Checks Amount</h3>
+                    <field name="total_amt_checks" invisible="context.get('action_wiz',False) != 'split_merge'"/>
+
+                    <field name="merge_split_checks" invisible="context.get('action_wiz',False) != 'split_merge'" widget="one2many">
+                        <tree editable="bottom">
+                            <field name="check_number" />
+                            <field name="check_date" />
+                            <field name="amount" />
+                            <field name="bank" />
+                            <field name="dep_bank" />
+                        </tree>
+                    </field>
+
+                    <field name="approve_check" invisible="context.get('action_wiz',False) != 'approve'">
+                        <tree create="false" delete="false" editable="top">
+                            <field name="check_number" readonly="1"/>
+                            <field name="check_amt" readonly="1" sum="Total"/>
+                            <field name="open_amt" readonly="1"/>
+                            <field name="paid_amt"/>
+                        </tree>
+                    </field>
+                    <footer>
+                        <button name="action_save" type="object" string="Submit" class="oe_highlight"/>
+                        <button special="cancel" string="Cancel" class="oe_highlight"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+  <act_window
+                id="check_cycle_wizard_action"
+                multi="True"
+                key2="client_action_multi" name="Depoist Checks"
+                res_model="check.cycle.accounts.default" src_model="check.management"
+                view_mode="form" target="new" view_type="form"
+                context="{'action_wiz' : 'depoist'}"
+                view_id="check_managementtttt.check_cycle_accounts_form"
+        />
+
+        <act_window
+                id="check_cycle_wizard_action2"
+                multi="True"
+                key2="client_action_multi" name="Reject Checks"
+                res_model="check.cycle.accounts.default" src_model="check.management"
+                view_mode="form" target="new" view_type="form"
+                context="{'action_wiz' : 'reject'}"
+                view_id="check_managementtttt.check_cycle_accounts_form"
+        />
+
+        <act_window
+                id="check_cycle_wizard_action3"
+                multi="True"
+                key2="client_action_multi" name="Approve Checks"
+                res_model="check.cycle.accounts.default" src_model="check.management"
+                view_mode="form" target="new" view_type="form"
+                context="{'action_wiz' : 'approve'}"
+                view_id="check_managementtttt.check_cycle_accounts_form"
+        />
+
+        <act_window
+                id="check_cycle_wizard_action4"
+                multi="True"
+                key2="client_action_multi" name="Cancel Checks"
+                res_model="check.cycle.accounts.default" src_model="check.management"
+                view_mode="form" target="new" view_type="form"
+                context="{'action_wiz' : 'cancel'}"
+                view_id="check_managementtttt.check_cycle_accounts_form"
+        />
+
+        <act_window
+                id="check_cycle_wizard_action5"
+                multi="True"
+                key2="client_action_multi" name="Company Return"
+                res_model="check.cycle.accounts.default" src_model="check.management"
+                view_mode="form" target="new" view_type="form"
+                context="{'action_wiz' : 'return'}"
+                view_id="check_managementtttt.check_cycle_accounts_form"
+        />
+
+        <act_window
+                id="check_cycle_wizard_action6"
+                multi="True"
+                key2="client_action_multi" name="Debit Checks"
+                res_model="check.cycle.accounts.default" src_model="check.management"
+                view_mode="form" target="new" view_type="form"
+                context="{'action_wiz' : 'debit'}"
+                view_id="check_managementtttt.check_cycle_accounts_form"
+        />
+
+        <act_window
+                id="check_cycle_wizard_action7"
+                multi="True"
+                key2="client_action_multi" name="Customer Return"
+                res_model="check.cycle.accounts.default" src_model="check.management"
+                view_mode="form" target="new" view_type="form"
+                context="{'action_wiz' : 'cs_return'}"
+                view_id="check_managementtttt.check_cycle_accounts_form"
+        />
+
+        <act_window
+                id="check_cycle_wizard_action8"
+                multi="True"
+                key2="client_action_multi" name="Split-Merge"
+                res_model="check.cycle.accounts.default" src_model="check.management"
+                view_mode="form" target="new" view_type="form"
+                context="{'action_wiz' : 'split_merge'}"
+                view_id="check_managementtttt.check_cycle_accounts_form"
+        />
+
+    </data>
+</openerp>

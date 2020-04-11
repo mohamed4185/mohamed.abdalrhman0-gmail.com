@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<report
+    id="cuatomer_annual_report_rep"
+    model="sale.order.line"
+    string="Print report"
+    report_type="qweb-pdf"
+    name="Customer_Annual_Sales_Report.report_customer_annual_document"
+    file="Customer_Annual_Sales_Report.report_customer_annual_document"
+     
+/>
+
+</odoo>

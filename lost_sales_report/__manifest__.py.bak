@@ -1,0 +1,17 @@
+{
+    'name': "Lost Sale Report ",
+    'summary': """Lost Sale Report""",
+    'author': 'BBL',
+    'website': '',
+    'category': 'Sale Report ',
+    'version': '12.0.1.0.8',
+    'depends': ['sale','base'],
+    'data': ['views/lost_report_view.xml','views/lost_report_menu.xml','views/lost_report_view.xml','secuirty/ir.model.access.csv'],
+    'demo': [
+    ],
+    'qweb': [
+        
+    ],
+   'auto-install':True,
+     
+}

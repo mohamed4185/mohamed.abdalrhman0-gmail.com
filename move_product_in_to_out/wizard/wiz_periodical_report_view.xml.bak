@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record id="wiz_move_in_out_report_view" model="ir.ui.view">
+		<field name="name">wiz_move_in_out_report_view</field>
+		<field name="model">move.in.out.product</field>
+		<field name="arch" type="xml">
+			<form>
+				  
+				<group col="4">
+					<field name="date_from" />
+					<field name="date_to" />
+				</group>
+				<group>
+				   <field name="product"/>
+				   <field name="vendor"/>
+				    <field name="customer"/>
+				</group>
+				 
+				<footer>
+					<button name="check_report" string="Print" type="object" default_focus="1" class="oe_highlight" />
+					or
+					<button string="Cancel" class="oe_link" special="cancel" />
+				</footer>
+			</form>
+		</field>
+	</record>
+
+	<record id="action_move_in_out_product_report_wizard" model="ir.actions.act_window">
+		<field name="name">بيان حركه صنف لمورد مقابل العملاء</field>
+		<field name="res_model">move.in.out.product</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="view_type">form</field>
+		<field name="view_mode">form</field>
+		<field name="view_id" ref="wiz_move_in_out_report_view"/>
+		<field name="target">current</field>
+	</record>
+
+	 <!--<menuitem id="menu_move_in_out_menu_report"
+                  name="بيان حركه صنف لمورد مقابل العملاء"
+				  action="action_move_in_out_product_report_wizard"
+                  parent="sale.menu_sale_report"
+                  sequence="1"/>-->
+
+</odoo>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<odoo>
+<record id="action_sales_vs_forecat_report" model="ir.actions.act_window">
+<field name="type">ir.actions.act_window</field>
+<field name="name">Sales Vs Forecast Report</field>
+<field name="res_model">sale.vs.forecast</field>
+<field name="view_type">form</field>
+<field name="view_mode">form</field>
+<field name="target">inline</field>
+ 
+</record>
+
+ <menuitem id="menu_sales_Vs_forecast"
+ name="Sales Vs Forecast Report"
+ parent="sale.menu_sale_report"
+ action="action_sales_vs_forecat_report"
+ />
+
+
+</odoo>

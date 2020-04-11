@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_credit_report_analysis_line,access_credit_report_analysis_line,model_credit_analysis_line,sales_team.group_sale_manager,1,1,1,1
+access_credit_report_analysis,access_credit_report_analysis,model_credit_analysis_report,sales_team.group_sale_manager,1,1,1,1

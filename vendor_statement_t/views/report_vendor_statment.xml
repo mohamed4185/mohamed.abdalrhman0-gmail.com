@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="vendor_statement_report_t">
+       <t t-call="web.html_container">
+	        <div class="page">
+            
+                <t t-set="product_category" t-value="[]"/>
+							<t t-set="product_list" t-value="[]"/>
+                            <t t-set="customer_list" t-value="[]"/>
+							<t t-set="total" t-value="0"/>
+								<t t-foreach="sale_orders" t-as="l">
+
+									  <t t-set="customer_list" t-value="customer_list+[l['partner']]"/>
+									  <t t-set="product_list" t-value="product_list+[l['product_id']]"/>
+									  
+
+								</t>
+                                <t t-if="len(sale_orders)==0 ">
+                  <t t-foreach="cheques_list" t-as="l">
+
+				<t t-set="customer_list" t-value="customer_list+[l['partner']]"/>
+				 
+
+
+			</t>
+			</t>
+								       
+                                         <t t-set="all_total_qty" t-value="0"/>
+										<t t-set="all_total_price" t-value="0"/>
+										<t t-set="i" t-value="0"/>
+				<t t-call="web.external_layout">
+				<div class="page">
+                 <div class="text-right">
+				  
+                    
+                    <t t-if="data_check==True">
+				 
+					<p class="text-center"><br></br><b>لا يوجــد بيانـــــات</b></p></t></div></div></t>
+                 
+               
+                    
+                        
+                            
+										<t t-foreach="set(customer_list)" t-as="customer">
+										<t t-call="web.external_layout">
+				<div class="page">
+				 <br></br> 
+                 <div class="text-right">
+				 
+                    
+                                                  
+					 
+					 
+                                         <p class="text-right"><b>اسم المــــــورد :  <span t-esc="customer" /></b></p>
+										  
+										 <t t-if="data_check==False">
+										 <hr style="bold"></hr>
+										  <t t-set="be_debit" t-value="0"/>
+										<t t-set="be_credit" t-value="0"/>
+                                         <t t-foreach="benging_balance" t-as="ben_bal">
+										  
+										   <t t-if="customer==ben_bal['partner']">
+										   <t t-set="be_debit" t-value="ben_bal['debit']"/>
+										<t t-set="be_credit" t-value="ben_bal['credit']"/>
+										      <p style="text-align:left;"> مدين:<span t-esc="be_debit"/>
+
+                                                                                                                                                                                                                &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; دائن:<span t-esc="be_credit"/></p></t>
+											  
+										 </t>
+										 <table align="right"   style="float:right; width:70%; height:90%; border-right: 1px solid black;border-top: 1px solid black"  >
+													<thead>
+														<tr>
+														 <th  style="border-top: 1px solid black;border-right: 1px solid black;border-left: 1px solid black;border-right: 0px;border-bottom:0px;white-space: text-nowrap;text-align:center;width:20px"></th>
+														  <th  style="border: 1px solid black;white-space: text-nowrap;text-align:center;width:100px"> الملاحــظات</th>
+														  <th  style="border: 1px solid black;white-space: text-nowrap;text-align:center;width:50px"> المبلــغ</th>
+														   <th  style="border: 1px solid black;white-space: text-nowrap;text-align:center;width:50px">قيمــه الوحــده</th>
+														  
+														   <th  style="border: 1px solid black;white-space: text-nowrap;text-align:center;width:50px">   الكميــه </th>
+														   <th  style="border: 1px solid black;white-space: text-nowrap;text-align:center;width:100px">  رقم الفــاتوره
+														   <br></br>تاريــخ الفاتــوره</th>
+														    <th  style="border: 1px solid black;white-space: text-nowrap;text-align:center;width:130px"> الصنـــف</th>
+															 <th style="border: 1px solid black;white-space: text-nowrap;text-align:center;width:50px">تـــــــــــاريخ الاذن</th>
+															<th style="border: 1px solid black;white-space: text-nowrap;text-align:center;width:50px">  رقم الاذن </th>
+															<th  style="border: 1px solid black;white-space: text-nowrap;text-align:center;width:30px" > م</th>
+															
+															
+															
+														</tr>
+													</thead>
+													<tbody>
+												  
+													<t t-set="total_price" t-value="0"/>
+													<t t-set="total_qty" t-value="0"/>
+													 
+													<t t-set="i" t-value="0"/>
+											 
+											<t t-foreach="sale_orders" t-as="order">
+                                                
+												<t t-if="customer==order['partner'] ">
+												   <t t-set="total_price" t-value="total_price+order['total']"/>
+													<t t-set="total_qty" t-value="total_qty+order['quantity']"/>
+												    <t t-set="i" t-value="i+1"/>
+													<tr>
+													    <td  style="border-top: 0px  ;border-right: 0;border-left: 0px;border-right: 1px solid;border-bottom:0px;white-space: text-nowrap;text-align:center;width:20px"></td>
+													    <td style="border: 1px solid black;white-space: text-nowrap;text-align:center;width:100px">
+																	 <span t-esc="order['note_invoice']" />
+																</td>
+													     <td style="border: 1px solid black;white-space: text-nowrap;text-align:center;width:50px">
+																	 <span t-esc="order['total']" />
+																</td>
+														 <td style="border: 1px solid black;white-space: text-nowrap;text-align:center;width:50px">
+																	 <span t-esc="order['price_unit']" />
+																</td>
+															 
+																<td style="border: 1px solid black;white-space: text-nowrap;text-align:center;width:50px">
+																	 <span t-esc="order['quantity']" />
+																</td>
+																<td style="border: 1px solid black;white-space: text-nowrap;text-align:center;width:130px">
+																	 
+																	 <span t-esc="order['date_in']" />
+																	 <br></br>
+																	 <span t-esc="order['invoice_number']" />
+																</td>
+																
+																<td style="border: 1px solid black;white-space: text-nowrap;text-align:center;width:130px">
+																	 <span t-esc="order['product_id']" />
+																</td>
+																<td style="border: 1px solid black;white-space: text-nowrap;text-align:center;width:50px">
+																	 <span t-esc="order['date_so']" />
+																</td>
+																<td style="border: 1px solid black;white-space: text-nowrap;text-align:center;width:50px">
+																	 <span t-esc="order['so_number']" />
+																</td>	
+																 
+																<td style="border: 1px solid black;white-space: text-nowrap;text-align:center;width:30px" >
+																	<span t-esc="i" />
+																</td>
+
+												</tr>
+											    
+											    </t>
+										 
+												
+											 
+										</t>
+										
+                                     
+												
+                                        
+									<tr>
+									<t t-set="total_price_orders" t-value="total_price"/>
+									<td  style="border-top: 0px  ;border-right: 0;border-left: 0px;border-right: 1px solid black;border-bottom:0px ;white-space: text-nowrap;text-align:center;width:20px"></td>
+									                    <td style="border: 1px solid black;white-space: text-nowrap;text-align:center;width:100px">
+																	  
+																</td>
+													     <td style="border: 1px solid black;white-space: text-nowrap;text-align:center;width:50px">
+																	 <b><span t-esc="round(total_price,3)" /></b>
+																</td>
+														 <td style="border: 1px solid black;white-space: text-nowrap;text-align:center;width:50px">
+																	  
+																</td>
+															 
+																<td style="border: 1px solid black;white-space: text-nowrap;text-align:center;width:50px">
+																	 <b><span t-esc="round(total_qty,3)" /></b>
+																</td>
+																<td style="border: 1px solid black;white-space: text-nowrap;text-align:center;width:100px">
+																	 
+																</td>
+																
+																<td style="border: 1px solid black;white-space: text-nowrap;text-align:center;width:130px">
+																	  
+																</td>
+																<td style="border: 1px solid black;white-space: text-nowrap;text-align:center;width:50px">
+																	 
+																</td>
+																<td style="border: 1px solid black;white-space: text-nowrap;text-align:center;width:50px">
+																	 
+																</td>	
+																 
+																<td style="border: 1px solid black;white-space: text-nowrap;text-align:center;width:30px">
+																	 
+																</td>
+
+												</tr>
+
+                        </tbody>
+						
+					 	
+                    </table>
+
+                     <table align="right"   style="float: left;black;border-top: 1px solid black;width:30%" >
+													<thead>
+														<tr>
+														 
+														  
+														   <th  style="border: 1px solid black;white-space: text-nowrap;text-align:center;width:100px">   المبلـــغ </th>
+														   
+															 <th style="border: 1px solid black;white-space: text-nowrap;text-align:center;width:100px">تـــــــــــاريخ  الاستـــــلام
+															 <br></br>تــاريخ الاستحقاق </th>
+															<th style="border: 1px solid black;white-space: text-nowrap;text-align:center;width:50px">  رقم الشــيك
+															<br></br>اذن الايداع</th>
+															 
+															
+															
+															
+														</tr>
+													</thead>
+													<tbody>
+												  
+													<t t-set="total_price" t-value="0"/>
+													<t t-set="total_qty" t-value="0"/>
+													 
+													<t t-set="i" t-value="0"/>
+											 
+											<t t-foreach="cheques_list" t-as="cheques_list">
+                                                
+												<t t-if="customer==cheques_list['partner'] ">
+												   <t t-set="total_price" t-value="total_price+cheques_list['total']"/>
+													 
+												    <t t-set="i" t-value="i+1"/>
+													<tr>
+													    	 
+														 <td style="border: 1px solid black;white-space: text-nowrap;text-align:center;width:100px ">
+																	 <span t-esc="cheques_list['total']" />
+																</td>
+															 
+																<td style="border: 1px solid black;white-space: text-nowrap;text-align:center;width:100px ">
+																	 <span t-esc="cheques_list['check_payment']" /><br></br>
+																	 <span t-esc="cheques_list['cheque_date']" />
+																</td>
+																
+																<td style="border: 1px solid black;white-space: text-nowrap;text-align:center ;width:70px">
+																	 <span t-esc="cheques_list['cheque_number']" /><br></br>
+																	 <span t-esc="cheques_list['id_payement']" />
+																</td>	
+																 
+																 
+
+												</tr>
+											    
+											    </t>
+										 
+												
+											 
+										</t>
+										
+                                     
+												
+                                        
+									<tr>     
+									                    
+													     <td style="border: 1px solid black;white-space: text-nowrap;text-align:center;width:100px ">
+																	 <b><span t-esc="round(total_price,3)" /></b>
+																</td>
+														  
+																<td style="border: 1px solid black;white-space: text-nowrap;text-align:center;width:100px ">
+																	 
+																</td>
+																<td style="border: 1px solid black;white-space: text-nowrap;text-align:center;width:70px">
+																	 
+																</td>	
+																 
+																 
+
+												</tr>
+
+                        </tbody>
+						
+					 	
+                    </table> 
+
+                    
+					</t>
+					
+					
+					
+					
+					
+					</div>
+
+					 <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br> 
+					 <br></br><br></br><br></br>
+					<table align="left" style="float: left;width:40%;  margin-top: 80px">
+					<tr>
+					<th style="border: 0px;white-space: text-nowrap;text-align:center;width:50% ">
+																	 
+																</th>
+					 <th style="border: 1px solid black;white-space: text-nowrap;text-align:center;width:50% ">
+					 <t t-set="Diff" t-value="total_price_orders-total_price+be_debit-be_credit"/>
+                      
+                                <t t-if="Diff &lt; 0">رصيد دائن :				
+									<span t-esc="round(total_price-total_price_orders-be_debit-be_credit,3)" />
+									</t>
+									<t t-if="Diff &gt; 0">رصيد مدين :										
+									<span t-esc="round(total_price_orders-total_price+be_debit-be_credit,3)" />
+									</t>
+
+                                      <t t-if="Diff==0">رصيد: 0</t>
+								 
+								
+																</th>
+																</tr>
+
+																 
+					 
+					</table>
+				</div>
+					</t> 
+                
+            </t>
+			</div>
+        </t>
+    </template>
+<record id="vendor_statement_t.action_report_vendor_statement_t" model="ir.actions.report">
+    <field name="paperformat_id" ref="move_product_in_to_out.paperformat_lowmargin" />
+</record>
+	 
+</odoo>

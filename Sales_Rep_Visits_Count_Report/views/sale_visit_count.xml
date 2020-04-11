@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<odoo>
+
+   <record model="ir.ui.view" id="view_sale_visit_count">
+            <field name="name">view_sale_visit_count</field>
+            <field name="model">res.users</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+             <tree string="Users" create="false">
+			        <field name="year_date"/>
+					<!--<field name="Month_date"/>-->
+                    <field name="name" string="sale rep"/>
+                     
+                    <field name="planned_count"/>
+                    <field name="complete_count"/>
+					<field name="cancel_count"/>
+                </tree>
+            </field>
+   </record>
+     <record model="ir.ui.view" id="view_sale_visit_count_form">
+            <field name="name">view_sale_visit_count_form</field>
+            <field name="model">sale.visit.count.report</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+             <form string="Users">
+			 <sheet>
+			 <group>
+			    <group>
+			    <field name="Date_from"/>
+				<field name="user_id"/>
+				</group>
+				<group>
+				<field name="Date_to"/>
+				<field name="Status"/>
+				</group>
+			 </group>
+                
+				
+				<button string="search" type="object" name="search_report"/>
+				</sheet>
+				</form>
+            </field>
+   </record>
+</odoo>

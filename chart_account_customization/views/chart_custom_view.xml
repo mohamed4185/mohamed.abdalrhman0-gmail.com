@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record id="view_account_withparent_form_custome" model="ir.ui.view">
+		<field name="name">account.account.form custome</field>
+		<field name="model">account.account</field>
+		<field name="inherit_id" ref="account.view_account_form" />
+		<field name="arch" type="xml">
+		<xpath expr="//field[@name='code']" position="after">
+                    <field  name="check" invisible="1"/> </xpath>
+			<!--<xpath expr="//field[@name='code']" position="attributes">
+                    <attribute name="attrs">{'required':[('check','=',False )],'readonly':[('check','=',True)]}</attribute> </xpath>-->
+            
+		</field>
+	</record>
+<!--,'invisible':[('user_type_id','!=',18)-->
+	
+
+</odoo>

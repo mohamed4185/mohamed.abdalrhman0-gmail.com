@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sale_discount_tree" model="ir.ui.view">
+		<field name="name">sale_discount_tree</field>
+		<field name="model">sales.discount</field>
+		 
+		<field name="arch" type="xml">
+
+                <tree>
+				  <field name="name"/>
+				  <field name="discount_1"/>
+				  <field name="discount_2"/>
+				  <field name="discount_3"/>
+				</tree>
+		   
+		</field>
+    </record>
+
+
+	<record id="sale_discount_form" model="ir.ui.view">
+		<field name="name">sale_discount_form</field>
+		<field name="model">sales.discount</field>
+		 
+		<field name="arch" type="xml">
+
+                <tree>
+				  <field name="name"/>
+				  <field name="discount_1"/>
+				  <field name="discount_2"/>
+				  <field name="discount_3"/>
+				</tree>
+		   
+		</field>
+    </record>
+
+
+
+</odoo>

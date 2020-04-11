@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record id="view_budget_parent_inherit" model="ir.ui.view">
+		<field name="name">view_budget_parent_inherit</field>
+		<field name="model">crossovered.budget</field>
+		<field name="inherit_id" ref="account_budget.crossovered_budget_view_form" />
+		<field name="arch" type="xml">
+		<!--<xpath expr="//field[@name='code']" position="after">
+                    <field  name="check" invisible="1"/> </xpath>
+			 
+		</field>-->
+		<xpath expr="//field[@name='company_id']" position="after">
+                    <field  name="amount" string="Amount" attrs="{'required':True}"/> </xpath>
+			 
+		</field>
+	</record>
+ 
+	 <template id="report_report_paymrnt" inherit_id="account.report_payment_receipt_document">
+             <xpath expr="//div[@class='col-6']" position="after">
+			<div class="col-6">
+			<strong>Payment Journal: </strong>
+        <td><span t-field="o.journal_id.name"/></td></div>
+        </xpath>
+		<!--<xpath expr="//div[@class='page']" position="replace">
+			    <table class="table table-sm">
+
+				  <tr>
+				  <td>
+				 
+				<div class="row" dir="rtl">
+                     
+                        <strong>   شركه /</strong> <span t-field="o.partner_id.company_id.name" style="padding: 1em; text-overflow: ellipsis;"/> 
+                          <strong style="padding: 10em; text-overflow: ellipsis;">   خزينه /</strong>  <span t-field="o.journal_id" style="padding: 2em; text-overflow: ellipsis;"/>  
+
+                     
+					 
+                </div>
+				 
+				 </td>
+				</tr><tr><td>
+                <div class="row" dir="rtl">
+                         <t t-if="o.payment_type == 'outbound'">
+                           <strong>يصرح بدفع مبلغ/ </strong>
+                        </t>
+                        <t t-if="o.payment_type == 'inbound'">
+                            <strong>يصرح باستلام مبلغ/ </strong>
+                        </t>
+                          <span t-field="o.amount" style="padding: 2em; text-overflow: ellipsis;"/> 
+                    
+					 
+                </div>
+				<div class="row" dir="rtl">
+					  <strong>فقط وقدره/ </strong> <span t-field="o.amount" style="padding: 2em; text-overflow: ellipsis;"/> 
+                     
+					 
+
+                </div>
+				<div class="row" dir="rtl">
+					   
+					  <div   t-if="o.partner_type">
+                        <t t-if="o.partner_type == 'customer'">
+                            <strong>من السيد  </strong >
+                        </t>
+                        <t t-if="o.partner_type == 'supplier'">
+                            <strong>من السيد  </strong>
+                        </t><span t-field="o.partner_id" style="padding: 2em; text-overflow: ellipsis;"/>
+                    </div> 
+                   
+                </div>
+
+				<div class="row" dir="rtl">
+					 <strong>تحرير في/ </strong> <span t-field="o.payment_date" style="padding: 2em; text-overflow: ellipsis;"/> 
+                  
+                </div>
+				</td>
+				</tr>
+				<tr>
+				<td>
+				    <div class="row" dir="rtl">
+					<div class="col-6"> <strong>              إستلمت أنا  المبلغ الموضح أعلاه والقيمه قيدت بكشف حركه الخزينه </strong>  
+                  </div>
+				  </div>
+				  <div class="row" dir="rtl">
+					<div class="col-6"> <strong>              أمين الخزينه </strong>  
+                  </div>
+                </div>
+				</td>
+				</tr>
+				
+				</table>
+        </xpath>-->
+        </template>
+
+</odoo>

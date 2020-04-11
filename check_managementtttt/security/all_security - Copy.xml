@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+
+    <data noupdate="0">
+
+
+
+
+        <record model="ir.module.category" id="module_category_hide">
+            <field name="name">View Menu</field>
+        </record>
+
+        <record model="res.groups" id="group_hide_menu">
+            <field name="name">View Native Menus</field>
+            <field name="category_id" ref="module_category_hide"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_no_one'))]"/>
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        </record>
+
+
+        <record model="ir.module.category" id="module_category_realestate">
+            <field name="name">Real Estate</field>
+        </record>
+
+        <record model="res.groups" id="group_basic_realestate">
+            <field name="name">Basic Real Estate Group</field>
+            <field name="category_id" ref="module_category_realestate"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_no_one'))]"/>
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        </record>
+
+
+
+
+
+        <record model="res.groups" id="group_cs_user_realestate">
+            <field name="name">Customer Service User</field>
+            <field name="category_id" ref="module_category_realestate"/>
+            <field name="implied_ids" eval="[(4, ref('realestate.group_basic_realestate'))]"/>
+        </record>
+
+        <record model="res.groups" id="group_cs_manager_realestate">
+            <field name="name">Customer Service Manager</field>
+            <field name="category_id" ref="module_category_realestate"/>
+            <field name="implied_ids" eval="[(4, ref('realestate.group_cs_user_realestate'))]"/>
+        </record>
+
+        <record model="res.groups" id="group_cash_account_realestate">
+            <field name="name">Cash Account User</field>
+            <field name="category_id" ref="module_category_realestate"/>
+            <field name="implied_ids" eval="[(4, ref('realestate.group_basic_realestate'))]"/>
+        </record>
+
+         <record model="res.groups" id="group_bank_account_realestate">
+            <field name="name">Bank Account User</field>
+            <field name="category_id" ref="module_category_realestate"/>
+            <field name="implied_ids" eval="[(4, ref('realestate.group_cash_account_realestate'))]"/>
+         </record>
+
+         <record model="res.groups" id="group_bank_account_realestate">
+            <field name="name">check Account Manager</field>
+            <field name="category_id" ref="module_category_realestate"/>
+            <field name="implied_ids" eval="[(4, ref('realestate.group_bank_account_realestate'))]"/>
+         </record>
+
+
+
+        <record id="realestate_rule_cust_task_user" model="ir.rule">
+            <field name="name">Realestate Task Users</field>
+            <field ref="model_realestate_customers_tasks" name="model_id"/>
+            <field name="domain_force">['|',('user_id','=',user.id),('user_id_assign','=',user.id)]</field>
+            <field name="groups" eval="[(4, ref('realestate.group_cs_user_realestate'))]"/>
+        </record>
+
+        <record id="realestate_rule_cust_issue_user" model="ir.rule">
+            <field name="name">Realestate Issue Users</field>
+            <field ref="model_realestate_customers_issues" name="model_id"/>
+            <field name="domain_force">['|',('user_id','=',user.id),('user_id_assign','=',user.id)]</field>
+            <field name="groups" eval="[(4, ref('realestate.group_cs_user_realestate'))]"/>
+        </record>
+
+
+        <record id="realestate_rule_cust_task_man" model="ir.rule">
+            <field name="name">Realestate Task Manager</field>
+            <field ref="model_realestate_customers_tasks" name="model_id"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4, ref('realestate.group_cs_manager_realestate'))]"/>
+        </record>
+
+        <record id="realestate_rule_cust_issue_man" model="ir.rule">
+            <field name="name">Realestate Issue Manager</field>
+            <field ref="model_realestate_customers_issues" name="model_id"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4, ref('realestate.group_cs_manager_realestate'))]"/>
+        </record>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </data>
+</openerp>

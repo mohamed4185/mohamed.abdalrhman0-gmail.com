@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<template id="customer_statement_report">
+		<t t-call="web.html_container">
+
+
+			<t t-set="product_category" t-value="[]"/>
+			<t t-set="product_list" t-value="[]"/>
+			<t t-set="customer_list" t-value="[]"/>
+			<t t-set="total" t-value="0"/>
+			<t t-foreach="sale_orders" t-as="l">
+
+				<t t-set="customer_list" t-value="customer_list+[l['partner']]"/>
+				<t t-set="product_list" t-value="product_list+[l['product_id']]"/>
+
+
+			</t>
+
+			<t t-set="all_total_qty" t-value="0"/>
+			<t t-set="all_total_price" t-value="0"/>
+			<t t-set="i" t-value="0"/>
+			<t t-call="web.external_layout">
+				<div class="page">
+					<div class="text-right">
+
+
+						<t t-if="data_check==True">
+							<p class="text-center">
+								<t t-if="customer"> العميل :
+									<span t-esc="customer"/>
+								</t>
+							</p>
+
+							<p class="text-center">
+								<br></br>
+								<b>لا يوجــد بيانـــــات</b>
+							</p>
+						</t>
+					</div>
+				</div>
+			</t>
+
+
+
+
+
+			<t t-foreach="set(customer_list)" t-as="customer">
+				<t t-call="web.external_layout">
+					<div class="page">
+						<div class="text-right">
+
+
+
+
+
+							<p class="text-right">
+								<b>اسم العميـــــل :									<span t-esc="customer" />
+								</b>
+							</p>
+
+							<t t-if="data_check==False">
+								<table align="right" class="table table-bordered">
+									<thead>
+										<tr>
+											<th style="white-space: text-nowrap;text-align:center;width:100px"> الملاحــظات</th>
+											<th style="white-space: text-nowrap;text-align:center;width:50px"> المبلــغ</th>
+											<th style="white-space: text-nowrap;text-align:center;width:50px">قيمــه الوحــده</th>
+
+											<th style="white-space: text-nowrap;text-align:center;width:50px">   الكميــه </th>
+											<th style="white-space: text-nowrap;text-align:center;width:100px">  رقم الفــاتوره
+												<br></br>تاريــخ الفاتــوره
+											</th>
+											<th style="white-space: text-nowrap;text-align:center;width:100px"> الصنـــف</th>
+											<th style="white-space: text-nowrap;text-align:center;width:50px">تـــــــــــاريخ الاذن</th>
+											<th style="white-space: text-nowrap;text-align:center;width:50px">  رقم الاذن </th>
+											<th style="white-space: text-nowrap;text-align:center;width:30px"> م</th>
+
+
+
+										</tr>
+									</thead>
+									<tbody>
+
+										<t t-set="total_price" t-value="0"/>
+										<t t-set="total_qty" t-value="0"/>
+
+										<t t-set="i" t-value="0"/>
+
+										<t t-foreach="sale_orders" t-as="order">
+
+											<t t-if="customer==order['partner'] ">
+												<t t-set="total_price" t-value="total_price+order['total']"/>
+												<t t-set="total_qty" t-value="total_qty+order['quantity']"/>
+												<t t-set="i" t-value="i+1"/>
+												<tr>
+													<td style="white-space: text-nowrap;text-align:center">
+														<span t-esc="order['note_invoice']" />
+													</td>
+													<td style="white-space: text-nowrap;text-align:center">
+														<span t-esc="order['total']" />
+													</td>
+													<td style="white-space: text-nowrap;text-align:center">
+														<span t-esc="order['price_unit']" />
+													</td>
+
+													<td style="white-space: text-nowrap;text-align:center">
+														<span t-esc="order['quantity']" />
+													</td>
+													<td style="white-space: text-nowrap;text-align:center">
+
+														<span t-esc="order['date_in']" />
+														<br></br>
+														<span t-esc="order['invoice_number']" />
+													</td>
+
+													<td style="white-space: text-nowrap;text-align:center">
+														<span t-esc="order['product_id']" />
+													</td>
+													<td style="white-space: text-nowrap;text-align:center">
+														<span t-esc="order['date_so'].strftime('%d-%m-%Y')" />
+													</td>
+													<td style="white-space: text-nowrap;text-align:center">
+														<span t-esc="order['so_number']" />
+													</td>
+
+													<td>
+														<span t-esc="i" />
+													</td>
+
+												</tr>
+
+											</t>
+
+
+
+										</t>
+
+
+
+
+										<tr>
+											<td style="white-space: text-nowrap;text-align:center">
+
+											</td>
+											<td style="white-space: text-nowrap;text-align:center">
+												<b>
+													<span t-esc="round(total_price,3)" />
+												</b>
+											</td>
+											<td style="white-space: text-nowrap;text-align:center">
+
+											</td>
+
+											<td style="white-space: text-nowrap;text-align:center">
+												<b>
+													<span t-esc="total_qty" />
+												</b>
+											</td>
+											<td style="white-space: text-nowrap;text-align:center">
+
+											</td>
+
+											<td style="white-space: text-nowrap;text-align:center">
+
+											</td>
+											<td style="white-space: text-nowrap;text-align:center">
+
+											</td>
+											<td style="white-space: text-nowrap;text-align:center">
+
+											</td>
+
+											<td>
+
+											</td>
+
+										</tr>
+
+									</tbody>
+
+
+								</table>
+							</t>
+						</div>
+					</div>
+				</t>
+
+			</t>
+		</t>
+	</template>
+	<record id="customer_statement.action_report_customer_statement" model="ir.actions.report">
+		<field name="paperformat_id" ref="move_product_in_to_out.paperformat_lowmargin" />
+	</record>
+
+</odoo>

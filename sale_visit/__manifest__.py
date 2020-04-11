@@ -1,0 +1,16 @@
+{
+    'name': 'Sale Visit',
+    'version': '10.0.1.0.0',
+    "category": "Generic Modules/Sales",
+    'sequence': 25,
+    'author': 'BBL',
+    'company': 'BusinessBorderlines',
+    'website': 'www.BusinessBorderlines.com',
+    'depends': ['sale','sales_regions','base'],
+    'data':['views/visit_action.xml','views/visit_menu.xml','views/visit_view.xml','views/report_sale_visit_templete.xml','views/sale_visit_templete.xml','secuirty/ir.model.access.csv','secuirty/user_group.xml'],
+    'images': ['static/description/banner.jpg'],
+    'license': 'AGPL-3',
+    'installable': True,
+    'auto_install': False,
+    'application': False,
+}

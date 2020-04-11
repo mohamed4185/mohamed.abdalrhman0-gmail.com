@@ -1,0 +1,81 @@
+# -*- coding: utf-8 -*-
+
+from odoo import api ,models, fields
+from dateutil.relativedelta import relativedelta
+from odoo.exceptions import ValidationError,UserError
+import logging 
+from datetime import datetime, timedelta,date
+import datetime as dt
+import calendar
+_logger = logging.getLogger(__name__)
+
+class sale_visit_report(models.Model):
+    name="salevisitsearch"
+    rep = fields.Many2one('res.users',string="Sales Rep")
+    date_from=fields.Date('Day From')
+    date_to=fields.Date('Day To') 
+    Status = fields.Selection([('Planned','Planned'),('Canceled','Canceled'),('Completed','Completed')],"Status")
+    name=fields.Char('name',default="Sale Visit Report") 
+    def get_sale_report(self, data):
+        """Redirects to the report with the values obtained from the wizard
+        'data['form']': name of employee and the date duration"""
+        data = {}
+        _logger.info('sdfdsfdsfdsfdsfdsfdsfsdfdsfffffffffffffffffffffffffffffffff')
+        data = {            'ids': self.ids,
+            'model': self._name,
+            'form': {'date_from': self.date_from,
+            },
+        }
+        #return self.env['report'].get_action(self, 'sale_visit.sale_visit_rep', data=data)
+        return self.env.ref('sale_visit.sale_visit_rep').report_action(self, data=data)
+
+    def search_report(self):
+        _logger.info('Date from')
+        _logger.info(self.date_from)
+         
+        ids=[]
+        str_domain=""
+        if self.date_from and self.date_to and self.date_to<=self.date_from:
+            raise ValidationError('Date To must be greater than Date From')
+            return True
+            
+        if self.date_from and self.date_to and self.Status :
+            visits=self.env['sale.visit'].search(['&',('Status','=',self.Status),'&',('Day','>=',self.date_from),('Day','<=',self.date_to)])
+        elif self.date_from and self.date_to:
+            visits=self.env['sale.visit'].search(['&',('Day','>=',self.date_from),('Day','<=',self.date_to)])
+        elif self.date_from and self.Status :
+            visits=self.env['sale.visit'].search(['&',('Status','=',self.Status),('Day','>=',self.date_from)])
+        
+        elif self.Status and self.date_to:
+            visits=self.env['sale.visit'].search(['&',('Status','=',self.Status),('Day','<=',self.date_to)])
+        elif   self.date_to:
+            visits=self.env['sale.visit'].search([('Day','<=',self.date_to)])
+        elif self.Status  :
+            visits=self.env['sale.visit'].search([('Status','=',self.Status) ])
+        elif   self.date_from:
+            visits=self.env['sale.visit'].search([('Day','>=',self.date_from)]) 
+        else:
+            visits=self.env['sale.visit'].search([]) 
+
+        for rec in visits:
+            if self.rep :
+                if  self.rep==rec.rep:
+                    ids.append(rec.id)
+            else:
+                ids.append(rec.id)
+
+        _logger.info(visits)
+       
+        
+        return { 'name':'/',
+          
+        'view_mode': 'tree,pivot',
+        'res_model': 'sale.visit',
+        'target': 'current',
+         'domain':"[('id','in',%s)]"%(ids),
+         'context':{ },
+        'type': 'ir.actions.act_window',
+        
+         
+                   }
+

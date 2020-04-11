@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_total_size_sales">
+        <t t-call="web.html_container">
+  			
+
+            <t t-call="web.external_layout">
+				
+            	<t t-if="data_check==True"><p class="text-center"><br/><br/><b>لا يــوجد بيانــات </b></p></t>
+                <br/>
+                
+                  
+                <div class="text-right">
+                    
+                        
+                            <t t-set="product_category" t-value="[]"/>
+                            <t t-set="customer_list" t-value="[]"/>
+							<t t-set="total" t-value="0"/>
+							<t t-set="total_avg" t-value="0"/>
+							<t t-set="avg" t-value="0"/>
+							<t t-set="total_q" t-value="0"/>
+							<t t-set="total_in" t-value="0"/>
+							<t t-set="total_total_price" t-value="0"/>
+						    <t t-set="i" t-value="0"/>
+								<t t-foreach="sale_orders" t-as="l">
+
+									  <t t-set="customer_list" t-value="customer_list+[l['partner']]"/>
+								</t>
+								
+
+								 <t t-if="data_check==False"> 
+								       <table align="right" class="table table-bordered">
+													<thead>
+														<tr>
+														   <th   style="white-space: text-nowrap;text-align:center" >المبلغ</th>
+														   <th  style="white-space: text-nowrap;text-align:center"> عدد الاذون</th>
+														    <th  style="white-space: text-nowrap;text-align:center">عدد الفواتير</th>
+														   <th   style="white-space: text-nowrap;text-align:center">متوسط السعر </th>
+														   <th   style="white-space: text-nowrap;text-align:center">الكميه/طن</th>
+															<th  style="white-space: text-nowrap;text-align:center"> اسم العميل </th>
+															<th   style="white-space: text-nowrap;text-align:center">  م </th>
+															
+															
+															
+														</tr>
+													</thead>
+													<tbody>
+									<t t-if="total_qty!=0">
+                                        <tr t-foreach="set(customer_list)" t-as="customer">
+
+												 
+													<t t-set="total" t-value="0"/>
+													<t t-set="total_qty" t-value="0"/>
+													<t t-set="count_invoice" t-value="0"/>
+													<t t-set="avg" t-value="0"/>
+													<t t-set="j" t-value="0"/>
+													<t t-set="count_sale" t-value="0"/>
+                                                <t t-set="i" t-value="i+1"/>
+											<t t-foreach="sale_orders" t-as="order">
+
+												<t t-if="customer==order['partner'] ">
+													
+													<t t-set="total" t-value="total+order['total']"/>
+													<t t-set="total_qty" t-value="total_qty+order['quantity']"/>
+													 
+														<t t-set="count_invoice" t-value="count_invoice+order['count_invoice']"/>
+														 
+													 
+													   <t t-set="count_sale" t-value="count_sale+1"/>
+													 
+													 
+													<t t-set="total_q" t-value="total_q+order['quantity']"/>
+														
+														<t t-set="total_total_price" t-value="total_total_price+order['total']"/>
+														<t t-set="j" t-value="j+1"/>
+												</t>
+
+											</t>
+											<t t-if="total_qty!=0">
+												<t t-set="avg" t-value="round(total/total_qty,3)"/>
+												<t t-set="total_in" t-value="round(total_in+count_invoice,3)"/>
+												<t t-set="total_sale" t-value="round(total_sale+count_sale,3)"/>
+												<t t-set="total_avg" t-value="round(total_avg+avg,3)"/>
+											</t>
+											 <td   style="white-space: text-nowrap;text-align:center">
+														 <span t-esc="round(total,3)" /> 
+													</td>
+													<td  style="white-space: text-nowrap;text-align:center">
+														<span t-esc="round(count_sale,3)" />
+													</td>
+													<td  style="white-space: text-nowrap;text-align:center">
+														<span t-esc="round(count_invoice,3)" />
+													</td>
+													<td   style="white-space: text-nowrap;text-align:center">
+														<span t-esc="round(avg,3)" /> 
+													</td>
+													
+													
+													<td  style="white-space: text-nowrap;text-align:center">
+														<span t-esc="round(total_qty,3)" />
+													</td>
+													 <td   style="white-space: text-nowrap;text-align:center">
+														<span t-esc="customer" />
+													</td>
+													<td   style="white-space: text-nowrap;text-align:center">
+														<span t-esc="i" />
+													</td>
+
+											</tr>
+									</t>
+											<t t-if="total_q!=0">
+											 <tr style="border: 0;">
+														
+
+													<td  style="white-space: text-nowrap;text-align:center;font-weight: bold;">
+														 <span t-esc="round(total_total_price,3)" /> 
+													</td>
+													<td  style="white-space: text-nowrap;text-align:center;font-weight: bold;">
+														 <span t-esc="round(total_sale,3)" /> 
+													</td>
+													<td  style="white-space: text-nowrap;text-align:center;font-weight: bold;">
+														<span t-esc="round(total_in,3)" />
+													</td>
+
+													<td style="white-space: text-[nowrap];text-align:center;font-weight: bold;">
+														<span t-esc="round(total_total_price/total_q,3)" /> 
+													</td>
+													
+													
+													<td  style="white-space: text-nowrap;text-align:center;font-weight: bold;">
+														<span t-esc="round(total_q,3)" />
+													</td>
+													  
+													 <td>
+														 <span style="font-weight: bold;">الاجمالي</span>
+													</td>
+
+
+											</tr>
+												</t>
+
+                        </tbody>
+                    </table>
+				</t> 
+
+
+                </div>
+            </t>
+        </t>
+		
+    </template>
+     <template id="remove_footer_in_report" inherit_id="web.external_layout_standard">
+    <xpath expr="//div[@class='header']" position="replace">
+	<div class="header">
+	   <div class="row">
+                <div class="col-3 mb4">
+                    <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 45px;" alt="Logo"/>
+                </div>
+                <div class="col-9 text-right" style="margin-top:22px;" t-field="company.report_header" name="moto"/>
+            </div>
+            <div t-if="company.logo or company.report_header" class="row zero_min_height">
+                <div class="col-12">
+                    <div style="border-bottom: 1px solid black;"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6" name="company_address">
+                    <div t-field="company.partner_id" />
+                </div>
+            </div>
+             
+			<div class="text-center">
+			<p >            <t t-if="name_report"> 
+                                <span t-esc="name_report"/>
+                            </t></p><p>
+                            <p class="text-center"><t t-if="date_from">الفترة من <span t-esc="date_from"/></t><t t-if="  date_to"> الي <span t-esc="date_to"/></t></p>
+							<t t-if="product_name"><strong> المنتج :</strong>
+                                <span t-esc="product_name"/>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                            </t>
+							<t t-if="vendor_name"><strong>المورد :</strong>
+                                <span t-esc="vendor_name"/>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                            </t> 
+							<t t-if="customer_name"><strong>العميل :</strong>
+                                <span t-esc="customer_name"/>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                            </t>
+							</p>
+							<p>
+							<t t-if="bank">البنك :
+                                <span t-esc="bank"/>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                            </t>
+							<t t-if="state">الحـــاله :
+                                <span t-esc="state"/>
+                            </t>
+                        </p>
+                         
+					
+
+					
+			</div> 
+			
+			</div>
+	</xpath>
+	<xpath expr="//div[@class='footer o_standard_footer']" position="replace">
+	          <div class="footer o_standard_footer">
+			  
+                     <table align="right" class="table table-condensed" > <tr>
+					   <td class="text-right" style="white-space: text-nowrap;border-left:1px solid;border-top:1px solid;border-bottom:1px solid;width:300px">
+						 <span t-esc="user.name"/>
+					</td>
+                    <td class="text-right" style="white-space: text-nowrap;border-right:1px solid;border-top:1px solid;border-bottom:1px solid ;width:300px">
+							<span>وقت الطباعه</span> 
+							<span t-esc="context_timestamp(datetime.datetime.now()).strftime(' %H:%M')"/>
+							<span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d')"/>
+							
+					</td>
+					
+					</tr>
+					</table>
+					<div t-if="report_type == 'pdf'" class="text-muted">
+                    Page: <span class="page"/> / <span class="topage"/>
+                </div>
+			  </div>
+               
+            </xpath>
+    </template>
+</odoo>

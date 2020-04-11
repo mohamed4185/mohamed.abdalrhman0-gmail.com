@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<odoo>
+
+
+
+<!--Action to open Sales regions List -->
+  
+ 
+   <record model="ir.ui.view" id="view_sales_vs_forecast_form">
+            <field name="name">view_sales_vs_forecast_form</field>
+            <field name="model">sale.vs.forecast</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+              <form string="dfdsfs">
+			       <sheet>
+				   <field name="name" invisible="1"/>
+			       <group>
+                               <group>
+								<field name="Date_from"/>
+								 
+								<field name="product_id" options="{'no_create': True, 'no_create_edit':True}"/>
+								</group>
+								<group>
+								<field name="Date_to"/>
+								<field name="user_id" options="{'no_create': True, 'no_create_edit':True}"/>
+								<field name="region" options="{'no_create': True, 'no_create_edit':True}"/>
+
+								</group>
+								<button string="search" type="object" name="search_report"/>
+								 
+			        </group>   
+					</sheet>
+								
+              </form>
+            </field>
+   </record>
+    <record model="ir.ui.view" id="view_sales_vs_forecast_pivote">
+            <field name="name">view_sales_vs_forecast_pivote</field>
+            <field name="model">sale.order.line</field>
+            <field name="type">pivot</field>
+            <field name="arch" type="xml">
+              <pivot>
+			 
+			              <field name="create_date" type="col" interval="year"/>
+			                <field name="create_date" type="col" interval="month"/>
+                        	<field name="product_id" type="row"/>
+								<field name="product_uom_qty" string="Sales Qty" type="measure"/>
+								
+								 
+								<field name="region" type="col"/>
+								<field name="user_id" type="col"/>
+								 
+								 <field name="price_subtotal" string="Sales price" type="measure"/>
+								  <field name="forecast_Qty" type="measure"/>
+								 <field name="forecast_value"  type="measure"/>
+								 <!--<field name="pro_code" type="row"/>-->
+								
+								
+              </pivot>
+            </field>
+   </record>
+ <record model="ir.ui.view" id="view_sales_vs_forecast_tree">
+            <field name="name">view_sales_vs_forecast_tree</field>
+            <field name="model">sale.order.line</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+              <tree>
+			 
+			               <field name="year_date"   />
+			                <field name="month_date"   />
+							<field name="pro_code" />
+							
+                        	<field name="product_id"/>
+							<field name="region"/>
+							<field name="salesman_id" />
+								<field name="product_uom_qty" string="Sales Qty" sum="Total Qty"/>
+								 
+	
+								 <field name="price_total" string="Sales price" sum="Total Value" />
+								 
+								 <field name="forecast_Qty" sum="Total Qty"/>
+								 <field name="forecast_value"  sum="Total Value"/>
+                        	 
+								
+              </tree>
+            </field>
+   </record>
+ 
+</odoo>

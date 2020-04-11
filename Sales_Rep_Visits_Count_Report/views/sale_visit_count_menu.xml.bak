@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<odoo>
+<record id="action_sales_visit_count" model="ir.actions.act_window">
+<field name="type">ir.actions.act_window</field>
+<field name="name">Sales Visit Count Report</field>
+<field name="res_model">sale.visit.count.report</field>
+<field name="view_mode">from</field>
+ 
+</record>
+
+ <menuitem id="menu_sales_collection_Vs_forecast"
+ name="Sales Rep Visits Count Report"
+ parent="sale.menu_sale_report"
+ action="action_sales_visit_count"
+ />
+
+
+</odoo>

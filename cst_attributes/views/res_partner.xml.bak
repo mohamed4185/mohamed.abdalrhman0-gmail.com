@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="inherited_view_partner_form" model="ir.ui.view">
+        <field name="name">res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+		  <xpath expr="//field[@name='vat']" position="after">
+			 <field name="customer_Type"  attrs="{'invisible': [('supplier', '=', True)],'required':[('supplier','=',False)]}"/>
+			 <field name="customer_class" attrs="{'invisible': [('supplier', '=', True)]}"/>
+			 <field name="region" attrs="{'invisible': [('supplier', '=', True)],'required':[('supplier','=',False)]}" options="{'no_create': True, 'no_create_edit':True}"/>
+			 <field name="discount"/>
+			 <field name="is_blacklist"  />
+			 <field name="property_product_pricelist"/>
+			 
+            </xpath>
+			  
+			  <xpath expr="//group[@name='sale']" position="replace">
+						
+						<group string="Sales" name="sale" priority="1">
+                                    <field name="customer"/>
+                                    <field name="user_id" string="Sales Rep" attrs="{'required':[('customer','=',True)]}"/>
+                                </group>
+            </xpath>
+			<field name="name"   position="after">
+			    <h2>
+			     <field name="arabic_name" placeholder="Arabic Name" attrs="{'invisible': [('supplier', '=', True)],'required':[('supplier','=',False)]}"/>
+				 </h2>
+			</field>
+			<field name="vat"   position="before">
+			     <field name="customer_code"  attrs="{'invisible': [('supplier', '=', True)]}"/>
+			 
+			</field>
+			 
+			<group name="sale">
+			     <field name="credit_limit"/>
+				 
+				 <field name="credit_duration_from" />
+				 <field name="credit_duration_to" />
+				 
+
+				 <!--<field name="credit_duration" widget="time"/>-->
+				 <field name="property_payment_term_id"/>
+			</group>
+			 
+			
+            <notebook >
+                <page string="Customer Attributes" >
+                    <field name="cst_attributes_target" >
+                        <tree editable="1">
+                            <field name="attribute_name"/>
+                            <field name="attribute_value"/>
+                        </tree>
+                    </field>
+                </page>
+            </notebook>
+        </field>
+    </record>
+	  
+   
+	</record>
+    
+ 
+	 
+</odoo>

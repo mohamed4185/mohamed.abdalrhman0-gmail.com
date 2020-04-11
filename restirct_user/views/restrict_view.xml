@@ -1,0 +1,18 @@
+<odoo>
+   <record model="ir.module.category" id="module_management">
+  <field name="name">Demo user access</field>
+  <field name="description">User access level for create user</field>
+  <field name="sequence">3</field>
+</record>
+
+
+
+   <record id="group_user" model="res.groups">
+     <field name="name">User</field>
+     <field name="implied_ids" eval="[(4, ref('base.group_user')),(4,ref('base.group_erp_manager'))]"/>
+     <field name="users" eval="[(4, ref('base.user_root'))]"/>
+     <field name="category_id" ref="restirct_user.module_management"/>
+    </record>
+  
+   
+</odoo>

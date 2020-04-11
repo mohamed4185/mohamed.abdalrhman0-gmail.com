@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record id="ir_cron_scheduler_action" model="ir.cron">
+      <field name="name">Run mrp scheduler</field>
+      <field name="model_id" ref="procurement_agromed.model_procurement.order"/>
+      <field name="state">code</field>
+      <field name="code">model.run_scheduler()</field>
+      <field name="active" eval="True"/>
+      <field name="user_id" ref="base.user_root"/>
+      <field name="interval_number">1</field>
+      <field name="interval_type">days</field>
+      <field name="numbercall">-1</field>
+      <field name="doall" eval="False"/>
+    </record>
+
+        <record id="sequence_proc_group" model="ir.sequence">
+            <field name="name">Procurement Group</field>
+            <field name="code">procurement.group</field>
+            <field name="prefix">PG/</field>
+            <field name="padding">6</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+        </record>
+         
+</odoo>

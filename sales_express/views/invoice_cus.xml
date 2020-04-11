@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+	<record id="invoice_line_custom" model="ir.ui.view">
+		<field name="name">invoice_line_custom</field>
+		<field name="model">account.invoice</field>
+		<field name="inherit_id" ref="account.invoice_form" />
+		<field name="arch" type="xml">
+
+
+			<xpath expr="//notebook/page/field[@name='invoice_line_ids']/tree/field[@name='price_subtotal']" position="after">
+				<field name="note_invoice"/>
+			</xpath>
+
+		</field>
+	</record>
+	<record id="invoice_line_custom" model="ir.ui.view">
+		<field name="name">invoice_line_custom</field>
+		<field name="model">account.invoice</field>
+		<field name="inherit_id" ref="account.invoice_supplier_form" />
+		<field name="arch" type="xml">
+
+
+			<xpath expr="//notebook/page/field[@name='invoice_line_ids']/tree/field[@name='price_subtotal']" position="after">
+				<field name="note_invoice"/>
+			</xpath>
+
+		</field>
+	</record>
+
+	<record id="begin_balance_account" model="ir.ui.view">
+		<field name="name">begin_balance_account</field>
+		<field name="model">account.move</field>
+		<field name="inherit_id" ref="account.view_move_form" />
+		<field name="arch" type="xml">
+			<xpath expr="//field[@name='ref']" position="after">
+
+				<field name="begin_balance"/>
+			</xpath>
+
+
+		</field>
+	</record>
+
+</odoo> 

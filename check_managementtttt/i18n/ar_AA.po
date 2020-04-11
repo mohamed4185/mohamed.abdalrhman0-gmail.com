@@ -1,0 +1,1234 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* check_managementtttt
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0e+e-20190206\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-10-29 14:43+0000\n"
+"PO-Revision-Date: 2019-10-29 14:43+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: check_managementtttt
+#: model_terms:ir.ui.view,arch_db:check_managementtttt.receipt_check_cash_payment_print
+msgid "<strong style=\"padding: 1em;\">:تليفون</strong>"
+msgstr ""
+
+#. module: check_managementtttt
+#: model_terms:ir.ui.view,arch_db:check_managementtttt.receipt_check_cash_payment_print
+msgid "<strong style=\"padding: 1em;\">العنوان</strong>"
+msgstr ""
+
+#. module: check_managementtttt
+#: model_terms:ir.ui.view,arch_db:check_managementtttt.receipt_check_cash_payment_print
+msgid "<strong>   Company </strong>"
+msgstr ""
+
+#. module: check_managementtttt
+#: model_terms:ir.ui.view,arch_db:check_managementtttt.receipt_check_cash_payment_print
+msgid "<strong>   إذان توريد نقديه / </strong>"
+msgstr ""
+
+#. module: check_managementtttt
+#: model_terms:ir.ui.view,arch_db:check_managementtttt.receipt_check_cash_payment_print
+msgid "<strong>  التاريخ </strong>"
+msgstr ""
+
+#. module: check_managementtttt
+#: model_terms:ir.ui.view,arch_db:check_managementtttt.receipt_check_cash_payment_print
+msgid "<strong>  شركه </strong>"
+msgstr ""
+
+#. module: check_managementtttt
+#: model_terms:ir.ui.view,arch_db:check_managementtttt.receipt_check_cash_payment_print
+msgid "<strong> المستلم:</strong> ...................."
+msgstr ""
+
+#. module: check_managementtttt
+#: model_terms:ir.ui.view,arch_db:check_managementtttt.receipt_check_cash_payment_print
+msgid "<strong> بتاريخ:</strong> .................."
+msgstr ""
+
+#. module: check_managementtttt
+#: model_terms:ir.ui.view,arch_db:check_managementtttt.receipt_check_cash_payment_print
+msgid "<strong> بطاقة/ش/ع/رقم:</strong> ..............."
+msgstr ""
+
+#. module: check_managementtttt
+#: model_terms:ir.ui.view,arch_db:check_managementtttt.receipt_check_cash_payment_print
+msgid "<strong>أعتمد بواسطه.:</strong> ....................."
+msgstr ""
+
+#. module: check_managementtttt
+#: model_terms:ir.ui.view,arch_db:check_managementtttt.receipt_check_cash_payment_print
+msgid "<strong>أعد بمعرفه:</strong>"
+msgstr ""
+
+#. module: check_managementtttt
+#: model_terms:ir.ui.view,arch_db:check_managementtttt.receipt_check_cash_payment_print
+msgid "<strong>التوقيع.................</strong>"
+msgstr ""
+
+#. module: check_managementtttt
+#: model_terms:ir.ui.view,arch_db:check_managementtttt.receipt_check_cash_payment_print
+msgid "<strong>رُجع بمعرفه</strong> ..............................."
+msgstr ""
+
+#. module: check_managementtttt
+#: model_terms:ir.ui.view,arch_db:check_managementtttt.receipt_check_cash_payment_print
+msgid "<strong>صادرة من :............................</strong>"
+msgstr ""
+
+#. module: check_managementtttt
+#: model_terms:ir.ui.view,arch_db:check_managementtttt.receipt_check_cash_payment_print
+msgid "<strong>مبلغ وقدره/ </strong>"
+msgstr ""
+
+#. module: check_managementtttt
+#: model_terms:ir.ui.view,arch_db:check_managementtttt.receipt_check_cash_payment_print
+msgid "<strong>وذلك بقيمه / </strong>"
+msgstr ""
+
+#. module: check_managementtttt
+#: model_terms:ir.ui.view,arch_db:check_managementtttt.receipt_check_cash_payment_print
+msgid "<strong>يصرح باستلام مبلغ  من  للسيد /للساده/ </strong>"
+msgstr ""
+
+#. module: check_managementtttt
+#: model_terms:ir.ui.view,arch_db:check_managementtttt.receipt_check_cash_payment_print
+msgid "<strong>يصرح بصرف مبلغ الي  للسيد /للساده/ </strong>"
+msgstr ""
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_cycle_accounts_default__account_id
+msgid "Account"
+msgstr "الحساب"
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_normal_payments__account_id
+msgid "Account Payable"
+msgstr "حساب الدائن"
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_management__message_needaction
+#: model:ir.model.fields,field_description:check_managementtttt.field_normal_payments__message_needaction
+msgid "Action Needed"
+msgstr "الإجراء المطلوب"
+
+#. module: check_managementtttt
+#: code:addons/check_managementtttt/wizard/check_cycle_wizard first one.py:245
+#: code:addons/check_managementtttt/wizard/check_cycle_wizard first one.py:254
+#: code:addons/check_managementtttt/wizard/check_cycle_wizard.py:318
+#: code:addons/check_managementtttt/wizard/check_cycle_wizard.py:333
+#: code:addons/check_managementtttt/wizard/check_cycle_wizardnotdo.py:245
+#: code:addons/check_managementtttt/wizard/check_cycle_wizardnotdo.py:254
+#, python-format
+msgid "Action not allowed on normal checks"
+msgstr ""
+
+#. module: check_managementtttt
+#: selection:check.management,check_state:0
+msgid "Active"
+msgstr ""
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_management__activity_ids
+#: model:ir.model.fields,field_description:check_managementtttt.field_normal_payments__activity_ids
+msgid "Activities"
+msgstr "الأنشطة"
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_management__activity_state
+#: model:ir.model.fields,field_description:check_managementtttt.field_normal_payments__activity_state
+msgid "Activity State"
+msgstr "حالة النشاط"
+
+#. module: check_managementtttt
+#: model:ir.ui.menu,name:check_managementtttt.native_all_pay_checks
+msgid "All Payable Checks"
+msgstr "جميع الشيكــات مستحقه الدفــع"
+
+#. module: check_managementtttt
+#: model:ir.ui.menu,name:check_managementtttt.native_all_rece_checks
+msgid "All Receivable Checks"
+msgstr "جميع الشيكــات مستحقه القبـــــض"
+
+#. module: check_managementtttt
+#: code:addons/check_managementtttt/models/check_payment.py:228
+#: code:addons/check_managementtttt/wizard/check_cycle_wizard first one.py:335
+#: code:addons/check_managementtttt/wizard/check_cycle_wizard.py:400
+#: code:addons/check_managementtttt/wizard/check_cycle_wizardnotdo.py:343
+#: model:ir.model.fields,field_description:check_managementtttt.field_native_payments_check_create__amount
+#: model:ir.model.fields,field_description:check_managementtttt.field_normal_payments__amount
+#: model:ir.model.fields,field_description:check_managementtttt.field_normal_payments__amount1
+#: model:ir.model.fields,field_description:check_managementtttt.field_split_merge_check__amount
+#, python-format
+msgid "Amount"
+msgstr "القيمة"
+
+#. module: check_managementtttt
+#: code:addons/check_managementtttt/wizard/check_cycle_wizard first one.py:262
+#: code:addons/check_managementtttt/wizard/check_cycle_wizard.py:341
+#: code:addons/check_managementtttt/wizard/check_cycle_wizardnotdo.py:263
+#, python-format
+msgid "Amount of new Checks is not equal to amount of selected checks"
+msgstr "قيمعه الشيك لا تساوي الشيكات المحدده"
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_normal_payments__analyitc_id
+msgid "Analytic Account"
+msgstr "الحساب التحليلي"
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_cycle_accounts_default__approve_check
+msgid "Approve Check"
+msgstr ""
+
+#. module: check_managementtttt
+#: model:ir.actions.act_window,name:check_managementtttt.check_cycle_wizard_action3
+msgid "Approve Checks"
+msgstr "اعتمــــــــاد الشيك"
+
+#. module: check_managementtttt
+#: selection:check.management,state:0
+msgid "Approved"
+msgstr "معتــــمده"
+
+#. module: check_managementtttt
+#: model:ir.actions.act_window,name:check_managementtttt.native_check_approved_action
+#: model:ir.ui.menu,name:check_managementtttt.native_approved_checks
+msgid "Approved Checks"
+msgstr "شيكات معتمده"
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_management__message_attachment_count
+#: model:ir.model.fields,field_description:check_managementtttt.field_normal_payments__message_attachment_count
+msgid "Attachment Count"
+msgstr "عدد المرفقات"
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_management__will_collection_user
+msgid "Bank Maturity Date"
+msgstr ""
+
+#. module: check_managementtttt
+#: model_terms:ir.ui.view,arch_db:check_managementtttt.check_cycle_accounts_form
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. module: check_managementtttt
+#: model:ir.actions.act_window,name:check_managementtttt.check_cycle_wizard_action4
+#: model:ir.actions.act_window,name:check_managementtttt.native_check_canceled_action
+msgid "Cancel Checks"
+msgstr ""
+
+#. module: check_managementtttt
+#: selection:check.management,state:0
+msgid "Canceled"
+msgstr ""
+
+#. module: check_managementtttt
+#: model:ir.model,name:check_managementtttt.model_check_management
+#: model:ir.model.fields,field_description:check_managementtttt.field_appove_check_lines__check_id
+#: model_terms:ir.ui.view,arch_db:check_managementtttt.tttt_check_graph_view
+#: model_terms:ir.ui.view,arch_db:check_managementtttt.ttttt_check_pivot_view
+msgid "Check"
+msgstr "شيكـــات"
+
+#. module: check_managementtttt
+#: code:addons/check_managementtttt/models/checks_fields.py:20
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_management__amount
+#: model_terms:ir.ui.view,arch_db:check_managementtttt.checks_object_search
+#, python-format
+msgid "Check Amount"
+msgstr "قيمه الشيك"
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_appove_check_lines__check_amt
+msgid "Check Amt"
+msgstr ""
+
+#. module: check_managementtttt
+#: code:addons/check_managementtttt/models/checks_fields.py:18
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_management__check_bank
+#, python-format
+msgid "Check Bank"
+msgstr ""
+
+#. module: check_managementtttt
+#: code:addons/check_managementtttt/models/check_payment.py:229
+#: code:addons/check_managementtttt/wizard/check_cycle_wizard first one.py:336
+#: code:addons/check_managementtttt/wizard/check_cycle_wizard.py:401
+#: code:addons/check_managementtttt/wizard/check_cycle_wizardnotdo.py:344
+#: model:ir.model.fields,field_description:check_managementtttt.field_native_payments_check_create__bank
+#: model:ir.model.fields,field_description:check_managementtttt.field_split_merge_check__bank
+#, python-format
+msgid "Check Bank Name"
+msgstr "اســــم البنك المسحوب منها"
+
+#. module: check_managementtttt
+#: code:addons/check_managementtttt/models/check_payment.py:227
+#: code:addons/check_managementtttt/models/checks_fields.py:16
+#: code:addons/check_managementtttt/wizard/check_cycle_wizard first one.py:334
+#: code:addons/check_managementtttt/wizard/check_cycle_wizard.py:399
+#: code:addons/check_managementtttt/wizard/check_cycle_wizardnotdo.py:342
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_management__check_date
+#: model:ir.model.fields,field_description:check_managementtttt.field_native_payments_check_create__check_date
+#: model:ir.model.fields,field_description:check_managementtttt.field_split_merge_check__check_date
+#, python-format
+msgid "Check Date"
+msgstr "تـــــاريخ الشيك"
+
+#. module: check_managementtttt
+#: model_terms:ir.ui.view,arch_db:check_managementtttt.checks_object_form
+msgid "Check Info"
+msgstr ""
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_management__check_from_check_man
+msgid "Check Managment"
+msgstr ""
+
+#. module: check_managementtttt
+#: code:addons/check_managementtttt/models/checks_fields.py:15
+#: model:ir.model.fields,field_description:check_managementtttt.field_appove_check_lines__check_number
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_management__check_number
+#: model_terms:ir.ui.view,arch_db:check_managementtttt.checks_object_search
+#, python-format
+msgid "Check Number"
+msgstr "رقــــم الشيك"
+
+#. module: check_managementtttt
+#: code:addons/check_managementtttt/models/checks_fields.py:17
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_management__check_payment
+#, python-format
+msgid "Check Payment"
+msgstr "دفع الشيك"
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_management__amount_reg
+msgid "Check Regular Amount"
+msgstr ""
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_management__open_amount_reg
+msgid "Check Regular Open Amount"
+msgstr ""
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_management__check_state
+msgid "Check State"
+msgstr "حاله الشيك"
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_management__check_type
+msgid "Check Type"
+msgstr "نوع الشيك"
+
+#. module: check_managementtttt
+#: code:addons/check_managementtttt/models/check_payment.py:226
+#: code:addons/check_managementtttt/wizard/check_cycle_wizard first one.py:333
+#: code:addons/check_managementtttt/wizard/check_cycle_wizard.py:398
+#: code:addons/check_managementtttt/wizard/check_cycle_wizardnotdo.py:341
+#: model:ir.model.fields,field_description:check_managementtttt.field_native_payments_check_create__check_number
+#: model:ir.model.fields,field_description:check_managementtttt.field_split_merge_check__check_number
+#, python-format
+msgid "Check number"
+msgstr "رقم الشيك"
+
+#. module: check_managementtttt
+#: code:addons/check_managementtttt/models/check_payment.py:34
+#: model:ir.model.fields,field_description:check_managementtttt.field_normal_payments__pay_check_ids
+#: model:ir.ui.menu,name:check_managementtttt.native_check_main_menu
+#: model_terms:ir.ui.view,arch_db:check_managementtttt.normal_payments_check_form_view
+#, python-format
+msgid "Checks"
+msgstr "الضوابط"
+
+#. module: check_managementtttt
+#: model:ir.ui.menu,name:check_managementtttt.native_checks_menu_paid
+msgid "Checks Paid"
+msgstr "الشيكات المدفوعه"
+
+#. module: check_managementtttt
+#: model:ir.ui.menu,name:check_managementtttt.native_checks_menu_receive
+msgid "Checks Received"
+msgstr "الشيكات المستلمه"
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_normal_payments__logo
+msgid "Company Logo"
+msgstr "شعار الشركة"
+
+#. module: check_managementtttt
+#: model:ir.actions.act_window,name:check_managementtttt.check_cycle_wizard_action5
+msgid "Company Return"
+msgstr "ارجاع الشيك للـــشركه"
+
+#. module: check_managementtttt
+#: model_terms:ir.ui.view,arch_db:check_managementtttt.normal_payments_check_form_view
+msgid "Confirm"
+msgstr "تأكيد"
+
+#. module: check_managementtttt
+#: selection:check.management,type:0
+msgid "Contracting Installment"
+msgstr ""
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_appove_check_lines__create_uid
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_cycle_accounts_default__create_uid
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_management__create_uid
+#: model:ir.model.fields,field_description:check_managementtttt.field_create_moves__create_uid
+#: model:ir.model.fields,field_description:check_managementtttt.field_native_payments_check_create__create_uid
+#: model:ir.model.fields,field_description:check_managementtttt.field_normal_payments__create_uid
+#: model:ir.model.fields,field_description:check_managementtttt.field_split_merge_check__create_uid
+msgid "Created by"
+msgstr "أنشئ بواسطة"
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_appove_check_lines__create_date
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_cycle_accounts_default__create_date
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_management__create_date
+#: model:ir.model.fields,field_description:check_managementtttt.field_create_moves__create_date
+#: model:ir.model.fields,field_description:check_managementtttt.field_native_payments_check_create__create_date
+#: model:ir.model.fields,field_description:check_managementtttt.field_normal_payments__create_date
+#: model:ir.model.fields,field_description:check_managementtttt.field_split_merge_check__create_date
+msgid "Created on"
+msgstr "أنشئ في"
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_normal_payments__currency_id
+msgid "Currency"
+msgstr "العملة"
+
+#. module: check_managementtttt
+#: model_terms:ir.ui.view,arch_db:check_managementtttt.checks_object_search
+msgid "Customer"
+msgstr "العميل"
+
+#. module: check_managementtttt
+#: model_terms:ir.ui.view,arch_db:check_managementtttt.checks_object_form
+msgid "Customer Info"
+msgstr ""
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_normal_payments__partner_id
+#: model:ir.model.fields,field_description:check_managementtttt.field_split_merge_check__partner_id
+msgid "Customer Name"
+msgstr "اسم العميل "
+
+#. module: check_managementtttt
+#: model:ir.actions.act_window,name:check_managementtttt.check_cycle_wizard_action7
+msgid "Customer Return"
+msgstr "ارجاع الشيك  للعميل "
+
+#. module: check_managementtttt
+#: selection:check.management,state:0
+msgid "Customer Returned"
+msgstr "ارجاع الشيك للعميل"
+
+#. module: check_managementtttt
+#: model:ir.actions.act_window,name:check_managementtttt.native_check_csreturned_action
+msgid "Customer Returned Checks"
+msgstr ""
+
+#. module: check_managementtttt
+#: model_terms:ir.ui.view,arch_db:check_managementtttt.normal_payments_check_form_view
+msgid "Customer/Vendor"
+msgstr "العميل/المــورد"
+
+#. module: check_managementtttt
+#: model:ir.actions.act_window,name:check_managementtttt.check_cycle_wizard_action6
+msgid "Debit Checks"
+msgstr "صــرف شيــــك"
+
+#. module: check_managementtttt
+#: selection:check.management,state:0
+msgid "Debited"
+msgstr "المــدينــه"
+
+#. module: check_managementtttt
+#: model:ir.actions.act_window,name:check_managementtttt.native_check_debited_action
+#: model:ir.ui.menu,name:check_managementtttt.native_debited_checks
+msgid "Debited Checks"
+msgstr "الشيكات المدينه"
+
+#. module: check_managementtttt
+#: code:addons/check_managementtttt/models/check_payment.py:230
+#: code:addons/check_managementtttt/models/checks_fields.py:19
+#: code:addons/check_managementtttt/wizard/check_cycle_wizard first one.py:337
+#: code:addons/check_managementtttt/wizard/check_cycle_wizard.py:402
+#: code:addons/check_managementtttt/wizard/check_cycle_wizardnotdo.py:345
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_management__dep_bank
+#: model:ir.model.fields,field_description:check_managementtttt.field_native_payments_check_create__dep_bank
+#: model:ir.model.fields,field_description:check_managementtttt.field_split_merge_check__dep_bank
+#, python-format
+msgid "Depoist Bank"
+msgstr "البنك المسحوب عليه"
+
+#. module: check_managementtttt
+#: model:ir.actions.act_window,name:check_managementtttt.check_cycle_wizard_action
+msgid "Depoist Checks"
+msgstr "ايــــــداع شيــــك"
+
+#. module: check_managementtttt
+#: selection:check.management,state:0
+msgid "Depoisted"
+msgstr "تحت التحصيل"
+
+#. module: check_managementtttt
+#: model:ir.actions.act_window,name:check_managementtttt.native_check_depoisted_action
+#: model:ir.ui.menu,name:check_managementtttt.native_depoisted_checks
+msgid "Depoisted Checks"
+msgstr "شيكــات تحت التحصيل"
+
+#. module: check_managementtttt
+#: model_terms:ir.ui.view,arch_db:check_managementtttt.checks_object_search
+msgid "Deposited Checks"
+msgstr ""
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_management__deposited_journal
+msgid "Deposited Journal"
+msgstr ""
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_appove_check_lines__display_name
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_cycle_accounts_default__display_name
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_management__display_name
+#: model:ir.model.fields,field_description:check_managementtttt.field_create_moves__display_name
+#: model:ir.model.fields,field_description:check_managementtttt.field_native_payments_check_create__display_name
+#: model:ir.model.fields,field_description:check_managementtttt.field_normal_payments__display_name
+#: model:ir.model.fields,field_description:check_managementtttt.field_report_check_managementtttt_receipt_check_cash_payment__display_name
+#: model:ir.model.fields,field_description:check_managementtttt.field_split_merge_check__display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: check_managementtttt
+#: selection:normal.payments,state:0
+msgid "Draft"
+msgstr "مسوده"
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_account_move_line__date_maturity
+msgid "Due date"
+msgstr "تاريخ الاستحقاق"
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_management__message_follower_ids
+#: model:ir.model.fields,field_description:check_managementtttt.field_normal_payments__message_follower_ids
+msgid "Followers"
+msgstr "المتابعون"
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_management__message_channel_ids
+#: model:ir.model.fields,field_description:check_managementtttt.field_normal_payments__message_channel_ids
+msgid "Followers (Channels)"
+msgstr "المتابعون (القنوات)"
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_management__message_partner_ids
+#: model:ir.model.fields,field_description:check_managementtttt.field_normal_payments__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "المتابعون (الشركاء)"
+
+#. module: check_managementtttt
+#: selection:check.management,type:0
+msgid "Garage Installment"
+msgstr ""
+
+#. module: check_managementtttt
+#: selection:check.management,state:0
+msgid "Handed"
+msgstr "الصـــادره"
+
+#. module: check_managementtttt
+#: model:ir.actions.act_window,name:check_managementtttt.native_check_handed_action
+#: model:ir.ui.menu,name:check_managementtttt.native_handed_checks
+msgid "Handed Checks"
+msgstr "شيكات صادره"
+
+#. module: check_managementtttt
+#: selection:check.management,state:0
+msgid "Holding"
+msgstr "الخزنه"
+
+#. module: check_managementtttt
+#: model:ir.actions.act_window,name:check_managementtttt.native_check_holding_action
+#: model:ir.ui.menu,name:check_managementtttt.native_holding_checks
+msgid "Holding Checks"
+msgstr "شيكات الخزنه"
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_appove_check_lines__id
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_cycle_accounts_default__id
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_management__id
+#: model:ir.model.fields,field_description:check_managementtttt.field_create_moves__id
+#: model:ir.model.fields,field_description:check_managementtttt.field_native_payments_check_create__id
+#: model:ir.model.fields,field_description:check_managementtttt.field_normal_payments__id
+#: model:ir.model.fields,field_description:check_managementtttt.field_report_check_managementtttt_receipt_check_cash_payment__id
+#: model:ir.model.fields,field_description:check_managementtttt.field_split_merge_check__id
+msgid "ID"
+msgstr "المعرف"
+
+#. module: check_managementtttt
+#: model:ir.model.fields,help:check_managementtttt.field_check_management__message_unread
+#: model:ir.model.fields,help:check_managementtttt.field_normal_payments__message_unread
+msgid "If checked new messages require your attention."
+msgstr "إذا حددته، سيتم إخطارك بالرسائل الجديدة."
+
+#. module: check_managementtttt
+#: model:ir.model.fields,help:check_managementtttt.field_check_management__message_needaction
+#: model:ir.model.fields,help:check_managementtttt.field_normal_payments__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "إذا حددته، سيتم إخطارك بالرسائل الجديدة."
+
+#. module: check_managementtttt
+#: model:ir.model.fields,help:check_managementtttt.field_check_management__message_has_error
+#: model:ir.model.fields,help:check_managementtttt.field_normal_payments__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr "إذا تم تحديده ، فإن بعض الرسائل بها خطأ في التسليم."
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_management__message_is_follower
+#: model:ir.model.fields,field_description:check_managementtttt.field_normal_payments__message_is_follower
+msgid "Is Follower"
+msgstr "متابع"
+
+#. module: check_managementtttt
+#: selection:account.journal,payment_subtype:0
+#: code:addons/check_managementtttt/models/journal_subtype.py:7
+#, python-format
+msgid "Issued Checks"
+msgstr "الشيكات الصادره"
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_account_move_line__jebal_check_id
+#: model:ir.model.fields,field_description:check_managementtttt.field_account_move_line__jebal_con_pay_id
+#: model:ir.model.fields,field_description:check_managementtttt.field_account_move_line__jebal_nrom_pay_id
+msgid "Jebal Check"
+msgstr ""
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_account_move_line__jebal_pay_id
+msgid "Jebal Payment"
+msgstr ""
+
+#. module: check_managementtttt
+#: model:ir.model,name:check_managementtttt.model_account_journal
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_cycle_accounts_default__journal_id
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_cycle_accounts_default__journal_id_deposit
+msgid "Journal"
+msgstr "دفتر اليومية"
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_cycle_accounts_default__journal_id_approve
+msgid "Journal Approve"
+msgstr ""
+
+#. module: check_managementtttt
+#: model:ir.model,name:check_managementtttt.model_account_move
+msgid "Journal Entries"
+msgstr "قيود اليومية"
+
+#. module: check_managementtttt
+#: model:ir.model,name:check_managementtttt.model_account_move_line
+msgid "Journal Item"
+msgstr "عنصر يومية"
+
+#. module: check_managementtttt
+#: model_terms:ir.ui.view,arch_db:check_managementtttt.normal_payments_check_form_view
+msgid "Journal Items"
+msgstr "عناصر اليومية"
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_appove_check_lines____last_update
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_cycle_accounts_default____last_update
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_management____last_update
+#: model:ir.model.fields,field_description:check_managementtttt.field_create_moves____last_update
+#: model:ir.model.fields,field_description:check_managementtttt.field_native_payments_check_create____last_update
+#: model:ir.model.fields,field_description:check_managementtttt.field_normal_payments____last_update
+#: model:ir.model.fields,field_description:check_managementtttt.field_report_check_managementtttt_receipt_check_cash_payment____last_update
+#: model:ir.model.fields,field_description:check_managementtttt.field_split_merge_check____last_update
+msgid "Last Modified on"
+msgstr "آخر تعديل في"
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_appove_check_lines__write_uid
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_cycle_accounts_default__write_uid
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_management__write_uid
+#: model:ir.model.fields,field_description:check_managementtttt.field_create_moves__write_uid
+#: model:ir.model.fields,field_description:check_managementtttt.field_native_payments_check_create__write_uid
+#: model:ir.model.fields,field_description:check_managementtttt.field_normal_payments__write_uid
+#: model:ir.model.fields,field_description:check_managementtttt.field_split_merge_check__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_appove_check_lines__write_date
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_cycle_accounts_default__write_date
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_management__write_date
+#: model:ir.model.fields,field_description:check_managementtttt.field_create_moves__write_date
+#: model:ir.model.fields,field_description:check_managementtttt.field_native_payments_check_create__write_date
+#: model:ir.model.fields,field_description:check_managementtttt.field_normal_payments__write_date
+#: model:ir.model.fields,field_description:check_managementtttt.field_split_merge_check__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_management__message_main_attachment_id
+#: model:ir.model.fields,field_description:check_managementtttt.field_normal_payments__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "المرفق الرئيسي"
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_cycle_accounts_default__merge_split_checks
+msgid "Merge Split Checks"
+msgstr ""
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_management__message_has_error
+#: model:ir.model.fields,field_description:check_managementtttt.field_normal_payments__message_has_error
+msgid "Message Delivery error"
+msgstr "خطأ في تسليم الرسائل"
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_management__message_ids
+#: model:ir.model.fields,field_description:check_managementtttt.field_normal_payments__message_ids
+msgid "Messages"
+msgstr "الرسائل"
+
+#. module: check_managementtttt
+#: selection:check.management,type:0
+msgid "Modification Installment"
+msgstr ""
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_cycle_accounts_default__name
+#: model:ir.model.fields,field_description:check_managementtttt.field_normal_payments__name
+msgid "Name"
+msgstr "الاسم"
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_cycle_accounts_default__name_approve
+msgid "Name Approve"
+msgstr ""
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_cycle_accounts_default__name_cancel
+msgid "Name Cancel"
+msgstr ""
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_normal_payments__name_check
+msgid "Name Check"
+msgstr ""
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_cycle_accounts_default__name_csreturn
+msgid "Name Csreturn"
+msgstr ""
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_cycle_accounts_default__name_debit
+msgid "Name Debit"
+msgstr ""
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_cycle_accounts_default__name_reject
+msgid "Name Reject"
+msgstr ""
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_cycle_accounts_default__name_return
+msgid "Name Return"
+msgstr ""
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_cycle_accounts_default__name_split_merge
+msgid "Name Split Merge"
+msgstr ""
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_management__activity_date_deadline
+#: model:ir.model.fields,field_description:check_managementtttt.field_normal_payments__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "الموعد النهائي للنشاط القادم"
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_management__activity_summary
+#: model:ir.model.fields,field_description:check_managementtttt.field_normal_payments__activity_summary
+msgid "Next Activity Summary"
+msgstr "ملخص النشاط القادم"
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_management__activity_type_id
+#: model:ir.model.fields,field_description:check_managementtttt.field_normal_payments__activity_type_id
+msgid "Next Activity Type"
+msgstr "نوع النشاط التالي"
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_native_payments_check_create__nom_pay_id
+msgid "Nom Pay"
+msgstr ""
+
+#. module: check_managementtttt
+#: selection:check.management,check_type:0
+msgid "Notes Payable"
+msgstr ""
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_management__notes_rece_id
+msgid "Notes Rece"
+msgstr ""
+
+#. module: check_managementtttt
+#: selection:check.management,check_type:0
+msgid "Notes Receivable"
+msgstr ""
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_management__notespayable_id
+msgid "Notespayable"
+msgstr ""
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_management__message_needaction_counter
+#: model:ir.model.fields,field_description:check_managementtttt.field_normal_payments__message_needaction_counter
+msgid "Number of Actions"
+msgstr "عدد الإجراءات"
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_management__message_has_error_counter
+#: model:ir.model.fields,field_description:check_managementtttt.field_normal_payments__message_has_error_counter
+msgid "Number of error"
+msgstr "عدد الاخطاء"
+
+#. module: check_managementtttt
+#: model:ir.model.fields,help:check_managementtttt.field_check_management__message_needaction_counter
+#: model:ir.model.fields,help:check_managementtttt.field_normal_payments__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "عدد الرسائل التي تتطلب اجراء"
+
+#. module: check_managementtttt
+#: model:ir.model.fields,help:check_managementtttt.field_check_management__message_has_error_counter
+#: model:ir.model.fields,help:check_managementtttt.field_normal_payments__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "عدد الرسائل مع خطأ في التسليم"
+
+#. module: check_managementtttt
+#: model:ir.model.fields,help:check_managementtttt.field_check_management__message_unread_counter
+#: model:ir.model.fields,help:check_managementtttt.field_normal_payments__message_unread_counter
+msgid "Number of unread messages"
+msgstr "عدد الرسائل الجديدة"
+
+#. module: check_managementtttt
+#: code:addons/check_managementtttt/models/checks_fields.py:27
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_management__open_amount
+#, python-format
+msgid "Open Amount"
+msgstr ""
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_appove_check_lines__open_amt
+msgid "Open Amt"
+msgstr ""
+
+#. module: check_managementtttt
+#: selection:check.management,activity_state:0
+#: selection:normal.payments,activity_state:0
+msgid "Overdue"
+msgstr ""
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_appove_check_lines__paid_amt
+msgid "Paid Amt"
+msgstr ""
+
+#. module: check_managementtttt
+#: code:addons/check_managementtttt/models/checks_fields.py:28
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_management__investor_id
+#: model_terms:ir.ui.view,arch_db:check_managementtttt.view_norm_payment_filter_check
+#, python-format
+msgid "Partner"
+msgstr "الشريك"
+
+#. module: check_managementtttt
+#: model:ir.actions.act_window,name:check_managementtttt.native_check_pay_action
+msgid "Payable Checks"
+msgstr ""
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_normal_payments__payment_date
+msgid "Payment Date"
+msgstr "تاريخ الدفع"
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_normal_payments__payment_method
+msgid "Payment Journal"
+msgstr "يومية السداد"
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_normal_payments__payment_No
+msgid "Payment No"
+msgstr "رقم الدفع"
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_account_journal__payment_subtype
+#: model:ir.model.fields,field_description:check_managementtttt.field_normal_payments__payment_subtype
+msgid "Payment Subtype"
+msgstr "نوع الدفع"
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_normal_payments__send_rec_money
+msgid "Payment Type"
+msgstr "نوع السداد"
+
+#. module: check_managementtttt
+#: model:ir.actions.report,name:check_managementtttt.action_report_payment_receipt
+msgid "Payment check Receipt"
+msgstr ""
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_normal_payments__payment_related_journal
+msgid "Payment related journal"
+msgstr ""
+
+#. module: check_managementtttt
+#: model:ir.actions.act_window,name:check_managementtttt.check_action_norm_pay_action
+#: model:ir.model,name:check_managementtttt.model_normal_payments
+#: model:ir.ui.menu,name:check_managementtttt.default_norm_pay_menu
+msgid "Payments"
+msgstr "المدفوعات"
+
+#. module: check_managementtttt
+#: selection:check.management,activity_state:0
+#: selection:normal.payments,activity_state:0
+msgid "Planned"
+msgstr ""
+
+#. module: check_managementtttt
+#: code:addons/check_managementtttt/wizard/check_cycle_wizard first one.py:54
+#: code:addons/check_managementtttt/wizard/check_cycle_wizard first one.py:91
+#: code:addons/check_managementtttt/wizard/check_cycle_wizard first one.py:186
+#: code:addons/check_managementtttt/wizard/check_cycle_wizard.py:62
+#: code:addons/check_managementtttt/wizard/check_cycle_wizard.py:103
+#: code:addons/check_managementtttt/wizard/check_cycle_wizard.py:236
+#: code:addons/check_managementtttt/wizard/check_cycle_wizardnotdo.py:54
+#: code:addons/check_managementtttt/wizard/check_cycle_wizardnotdo.py:91
+#: code:addons/check_managementtttt/wizard/check_cycle_wizardnotdo.py:186
+#, python-format
+msgid "Please provide the bank account"
+msgstr ""
+
+#. module: check_managementtttt
+#: selection:normal.payments,state:0
+msgid "Posted"
+msgstr "مرحل"
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_normal_payments__receipt_number
+msgid "Receipt Number"
+msgstr ""
+
+#. module: check_managementtttt
+#: model:ir.actions.act_window,name:check_managementtttt.native_check_rece_action
+msgid "Receivable Checks"
+msgstr ""
+
+#. module: check_managementtttt
+#: selection:normal.payments,send_rec_money:0
+msgid "Receive Cheques"
+msgstr ""
+
+#. module: check_managementtttt
+#: model_terms:ir.ui.view,arch_db:check_managementtttt.normal_payments_check_form_view
+msgid "Receive/Issue Date"
+msgstr "تاريخ الاستلام/الاصدار"
+
+#. module: check_managementtttt
+#: selection:account.journal,payment_subtype:0
+#: code:addons/check_managementtttt/models/journal_subtype.py:7
+#, python-format
+msgid "Received Checks"
+msgstr ""
+
+#. module: check_managementtttt
+#: selection:check.management,type:0
+msgid "Regular Installment"
+msgstr ""
+
+#. module: check_managementtttt
+#: model:ir.actions.act_window,name:check_managementtttt.check_cycle_wizard_action2
+msgid "Reject Checks"
+msgstr "رفض شيــك"
+
+#. module: check_managementtttt
+#: selection:check.management,state:0
+msgid "Rejected"
+msgstr "مرفوضه"
+
+#. module: check_managementtttt
+#: model:ir.actions.act_window,name:check_managementtttt.native_check_rejected_action
+#: model:ir.ui.menu,name:check_managementtttt.native_rejected_checks
+msgid "Rejected Checks"
+msgstr "شيكات مرفوضه"
+
+#. module: check_managementtttt
+#: model_terms:ir.ui.view,arch_db:check_managementtttt.check_cycle_accounts_form
+msgid "Rejection Reason"
+msgstr "سبب الرفض"
+
+#. module: check_managementtttt
+#: code:addons/check_managementtttt/wizard/check_cycle_wizard first one.py:154
+#: code:addons/check_managementtttt/wizard/check_cycle_wizardnotdo.py:154
+#, python-format
+msgid "Rejection Reason is "
+msgstr "سبب الرفض يكون"
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_cycle_accounts_default__reject_reason
+msgid "Rejection reason"
+msgstr ""
+
+#. module: check_managementtttt
+#: selection:check.management,type:0
+msgid "Reservation Installment"
+msgstr ""
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_management__activity_user_id
+#: model:ir.model.fields,field_description:check_managementtttt.field_normal_payments__activity_user_id
+msgid "Responsible User"
+msgstr "المستخدم المسئول"
+
+#. module: check_managementtttt
+#: selection:check.management,state:0
+msgid "Returned"
+msgstr "مرتجعه"
+
+#. module: check_managementtttt
+#: model:ir.actions.act_window,name:check_managementtttt.native_check_returned_action
+msgid "Returned Checks"
+msgstr ""
+
+#. module: check_managementtttt
+#: model:ir.ui.menu,name:check_managementtttt.native_returned_checks
+msgid "Returned Checks On Hand"
+msgstr "شيكات مرتجعه"
+
+#. module: check_managementtttt
+#: model:ir.ui.menu,name:check_managementtttt.native_csreturned_checks
+msgid "Returned Checks To Customer"
+msgstr "شيكات مرتجعه للعميل"
+
+#. module: check_managementtttt
+#: model_terms:ir.ui.view,arch_db:check_managementtttt.view_norm_payment_filter_check
+msgid "Search Payments"
+msgstr ""
+
+#. module: check_managementtttt
+#: selection:normal.payments,send_rec_money:0
+msgid "Send Cheques"
+msgstr "اصدار شيك"
+
+#. module: check_managementtttt
+#: selection:check.management,type:0
+msgid "Services Installment"
+msgstr ""
+
+#. module: check_managementtttt
+#: model:ir.actions.act_window,name:check_managementtttt.check_cycle_wizard_action8
+msgid "Split-Merge"
+msgstr "تقسيم الشيــــك"
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_management__state
+#: model:ir.model.fields,field_description:check_managementtttt.field_normal_payments__state
+msgid "State"
+msgstr "الحالة"
+
+#. module: check_managementtttt
+#: model:ir.model.fields,help:check_managementtttt.field_check_management__activity_state
+#: model:ir.model.fields,help:check_managementtttt.field_normal_payments__activity_state
+msgid "Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr "الحالة على أساس الأنشطة\n"
+"المتأخرة: تاريخ الاستحقاق مر\n"
+"اليوم: تاريخ النشاط هو اليوم\n"
+"المخطط: الأنشطة المستقبلية"
+
+#. module: check_managementtttt
+#: model_terms:ir.ui.view,arch_db:check_managementtttt.check_cycle_accounts_form
+msgid "Submit"
+msgstr "إرسال"
+
+#. module: check_managementtttt
+#: selection:check.management,check_state:0
+msgid "Suspended"
+msgstr ""
+
+#. module: check_managementtttt
+#: code:addons/check_managementtttt/wizard/check_cycle_wizard first one.py:97
+#: code:addons/check_managementtttt/wizard/check_cycle_wizard.py:109
+#: code:addons/check_managementtttt/wizard/check_cycle_wizardnotdo.py:97
+#, python-format
+msgid "The paid amount is greater than open amount for some checks\n"
+""
+msgstr ""
+
+#. module: check_managementtttt
+#: model:ir.model.fields,help:check_managementtttt.field_normal_payments__logo
+msgid "This field holds the image used as avatar for this contact, limited to 1024x1024px"
+msgstr ""
+
+#. module: check_managementtttt
+#: model:ir.model.fields,help:check_managementtttt.field_account_move_line__date_maturity
+msgid "This field is used for payable and receivable journal entries. You can put the limit date for the payment of this line."
+msgstr "يُستخدم هذا الحقل للقيود الدائنة و المدينة اليومية. يمكنك وضع حد زمني لدفع هذا البند."
+
+#. module: check_managementtttt
+#: selection:check.management,activity_state:0
+#: selection:normal.payments,activity_state:0
+msgid "Today"
+msgstr ""
+
+#. module: check_managementtttt
+#: model_terms:ir.ui.view,arch_db:check_managementtttt.check_cycle_accounts_form
+msgid "Total"
+msgstr "الإجمالي"
+
+#. module: check_managementtttt
+#: model_terms:ir.ui.view,arch_db:check_managementtttt.checks_object_tree
+msgid "Total Amount"
+msgstr "إجمالي المبلغ"
+
+#. module: check_managementtttt
+#: model_terms:ir.ui.view,arch_db:check_managementtttt.check_cycle_accounts_form
+msgid "Total Checks Amount"
+msgstr ""
+
+#. module: check_managementtttt
+#: model_terms:ir.ui.view,arch_db:check_managementtttt.checks_object_tree
+msgid "Total Open Amount"
+msgstr ""
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_management__type
+msgid "Type"
+msgstr "النوع"
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_management__under_collect_id
+msgid "Under Collect"
+msgstr "تحت التحصيل"
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_management__under_collect_jour
+msgid "Under Collect Jour"
+msgstr ""
+
+#. module: check_managementtttt
+#: code:addons/check_managementtttt/wizard/check_cycle_wizard first one.py:309
+#: code:addons/check_managementtttt/wizard/check_cycle_wizard.py:371
+#: code:addons/check_managementtttt/wizard/check_cycle_wizardnotdo.py:317
+#, python-format
+msgid "Unknown Action"
+msgstr ""
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_management__message_unread
+#: model:ir.model.fields,field_description:check_managementtttt.field_normal_payments__message_unread
+msgid "Unread Messages"
+msgstr "الرسائل الجديدة"
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_management__message_unread_counter
+#: model:ir.model.fields,field_description:check_managementtttt.field_normal_payments__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "عدد الرسائل الجديدة"
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_normal_payments__user_id
+msgid "User"
+msgstr "المستخدم"
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_management__website_message_ids
+#: model:ir.model.fields,field_description:check_managementtttt.field_normal_payments__website_message_ids
+msgid "Website Messages"
+msgstr "رسائل الموقع"
+
+#. module: check_managementtttt
+#: model:ir.model.fields,help:check_managementtttt.field_check_management__website_message_ids
+#: model:ir.model.fields,help:check_managementtttt.field_normal_payments__website_message_ids
+msgid "Website communication history"
+msgstr "سجل تواصل الموقع"
+
+#. module: check_managementtttt
+#: code:addons/check_managementtttt/wizard/check_cycle_wizard first one.py:258
+#: code:addons/check_managementtttt/wizard/check_cycle_wizard.py:337
+#: code:addons/check_managementtttt/wizard/check_cycle_wizardnotdo.py:258
+#, python-format
+msgid "You can not merge checks from different journals"
+msgstr ""
+
+#. module: check_managementtttt
+#: model:ir.model,name:check_managementtttt.model_appove_check_lines
+msgid "appove.check.lines"
+msgstr ""
+
+#. module: check_managementtttt
+#: model_terms:ir.ui.view,arch_db:check_managementtttt.normal_payments_check_form_view
+msgid "check due date"
+msgstr "تاريخ استحقاق الشيك"
+
+#. module: check_managementtttt
+#: model:ir.model,name:check_managementtttt.model_check_cycle_accounts_default
+msgid "check.cycle.accounts.default"
+msgstr ""
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_management__check_id
+msgid "cheque Id"
+msgstr "رقم الشيك"
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_account_move_line__cheques
+msgid "cheques"
+msgstr ""
+
+#. module: check_managementtttt
+#: model:ir.model,name:check_managementtttt.model_create_moves
+msgid "create.moves"
+msgstr ""
+
+#. module: check_managementtttt
+#: model:ir.model,name:check_managementtttt.model_native_payments_check_create
+msgid "native.payments.check.create"
+msgstr ""
+
+#. module: check_managementtttt
+#: model:ir.model,name:check_managementtttt.model_report_check_managementtttt_receipt_check_cash_payment
+msgid "report.check_managementtttt.receipt_check_cash_payment"
+msgstr ""
+
+#. module: check_managementtttt
+#: model:ir.model,name:check_managementtttt.model_split_merge_check
+msgid "split.merge.check"
+msgstr ""
+
+#. module: check_managementtttt
+#: model:ir.model.fields,field_description:check_managementtttt.field_check_cycle_accounts_default__total_amt_checks
+msgid "total Amount of Checks"
+msgstr ""
+

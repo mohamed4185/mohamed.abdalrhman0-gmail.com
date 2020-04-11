@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+acess_crm_team_area_manager,acess_crm_team_area_manager,crm.model_crm_team,sales_team.group_sale_salesman_all_leads,1,1,1,0
+access_create_product_area_manager,access_create_product_area_manager,product.model_product_product,sales_team.group_sale_salesman_all_leads,1,1,1,0
+access_account_invoice_tax,access_account_invoice_tax,account.model_account_invoice_tax,sales_team.group_sale_manager,1,1,1,0
+access_stock_production_lot,access_stock_production_lot,stock.model_stock_production_lot,sales_team.group_sale_manager,1,0,0,0
+
+

@@ -1,0 +1,416 @@
+# -*- encoding: utf-8 -*-
+##############################################################################
+#
+#    Bista Solutions Pvt. Ltd
+#    Copyright (C) 2012 (http://www.bistasolutions.com)
+#
+##############################################################################
+
+from odoo import models, fields, api, _
+from datetime import datetime,date
+from odoo.exceptions import Warning
+from odoo.tools.translate import _
+from odoo.tools.translate import _
+from datetime import datetime,timedelta
+import time
+from dateutil.relativedelta import relativedelta
+from odoo.tools import DEFAULT_SERVER_DATE_FORMAT
+import logging
+import calendar
+from odoo.exceptions import ValidationError,UserError
+
+_logger = logging.getLogger(__name__)
+class sale_forecast(models.Model):
+    _name = 'sale.forecast' 
+
+    name = fields.Char('Name', required=True,track_visibility='onchange')
+    period = fields.Selection([('week','Week'),('month','Month'),('quarter','Quarter'),('year','Year')],'Period', required=True, copy=False, default='month')
+    period_count= fields.Integer('No. of Periods', required=True)
+    start_date = fields.Date(string='Start Date',required=True)
+    product_ids = fields.Many2many('product.template',string="Product") 
+    forecast_product_ids = fields.One2many('forecast.product', 'forecast_id', string='Forecast Products', default=False)
+    past_record_ids = fields.One2many('forecast.product', 'forecast_id', string='Past Forecast Records', default=False)
+    past_sale_record_ids = fields.One2many('forecast.product', 'forecast_id', string='Past Sale Records', default=False)
+    forecast_filter_id = fields.Many2one('forecast.period',string="Filter", edit=False)
+    filter_visible = fields.Boolean('filter_visible' ,defalut=False)
+    #warehouse_id = fields.Many2one('stock.warehouse', string="Warehouse",select=True)
+    create_action = fields.Boolean(string="Do you want to create Supply for process quantity?", default=False)
+    required_process = fields.Selection([('buy','Buy'),('manufacture','Manufacture')],'Required Process', copy=False)
+    record_generated = fields.Boolean('Record' ,defalut=False)
+    state = fields.Selection([('open','Open'),('confirm','Confirm'),('done','Done')], copy=False, default='open')
+    region = fields.Many2one('sale.region', string='Region')
+    sales_person_id = fields.Many2one('res.users', string='Salesrep')
+    
+    past_forecast_records=fields.Boolean(string='Show Past Forecast Records')
+    past_sales_records=fields.Boolean(string='Show Past Sales Records')
+     
+    @api.onchange('region')
+    def get_user_in_region(self):
+        if self.region:
+            return {'domain':{'sales_person_id':[('region_user','in',self.region.id)]}}
+
+    @api.onchange('start_date')
+    def get_current_date(self):
+        _logger.info(self.start_date)
+        _logger.info(type(self.start_date))
+        _logger.info(datetime.now())
+        _logger.info(type(datetime.now()))
+        if self.start_date:
+            """if self.start_date  <datetime.now().date() or self.start_date  ==datetime.now().date() :
+                raise ValidationError('start date must be greater than today')"""
+            if self.start_date  <datetime.now().date()  :
+                raise ValidationError('start date must be greater than today')
+
+
+    @api.one        
+    def set_confirm(self):
+        return self.write({'state':'confirm'})
+
+    @api.one
+    def set_open(self):
+        return self.write({'state':'open'})
+    @api.one
+    def set_done(self):
+        return self.write({'state':'done'})
+    @api.multi
+    def get_period(self, period, start_date, period_count):
+        res, period_list = [], []
+        period_env = self.env['forecast.period']
+        search_period_ids = period_env.search([('forecast_id', '=', self.id)])
+        if search_period_ids:
+            search_period_ids.unlink()
+        if period == 'week':
+            for item in range(period_count):
+                week_date =  start_date 
+                res.append(week_date)
+                new_week_date = week_date 
+                new_start_date = new_week_date  + relativedelta(weeks=1) + relativedelta(days=1)
+                start_date = new_start_date 
+        elif period == 'month':
+            for item in range(period_count):
+                month_date =  start_date 
+                res.append(month_date)
+                new_month_date = month_date 
+                new_start_date =  new_month_date + relativedelta(months=1)  
+                start_date = new_start_date 
+        elif period == 'quarter':
+            for item in range(period_count):
+                _logger.info('Quater')
+                _logger.info(DEFAULT_SERVER_DATE_FORMAT)
+                _logger.info(start_date)
+                _logger.info(type(start_date))
+                quarter_date = start_date
+                res.append(quarter_date)
+                new_quarter_date = quarter_date 
+                new_start_date =  new_quarter_date + relativedelta(months=3) + relativedelta(days=1)
+                start_date = new_start_date 
+        elif period == 'year':
+            for item in range(period_count):
+                year_date =  start_date 
+                res.append(year_date)
+                new_year_date = year_date 
+                new_start_date = new_year_date  + relativedelta(years=1) + relativedelta(days=1)
+                start_date = new_start_date 
+        for start_date in res:
+            vals = {
+                'name': start_date.strftime(DEFAULT_SERVER_DATE_FORMAT),
+                'p_date': start_date.strftime(DEFAULT_SERVER_DATE_FORMAT),
+                'forecast_id': self.id
+            }
+            period_list.append(period_env.create(vals))
+        self.filter_visible = True
+        return period_list
+    @api.multi
+    def generate_forecast(self):
+
+        self.record_generated = True
+        order_obj=self.env['sale.order']
+        order_line_obj=self.env['sale.order.line']
+        #stock_obj=self.env['stock.move']
+         
+        for rec in self.forecast_product_ids:
+            rec.unlink()
+        forecast_product_obj = self.env['forecast.product']
+        if self.period and self.start_date and self.period_count:
+            periods = self.get_period(self.period, self.start_date, self.period_count)
+        elif self.period_count <= 0:
+            raise Warning(_('Number of Periods should be grater than Zero'))
+        if self.product_ids:
+            #domain =  eval(self.product_ids)
+            product_ids = self.product_ids
+        else:
+            raise Warning(_('Atleast one product should be selected!'))
+        """if not self.warehouse_id:
+            warehouse_id = self.env['stock.warehouse'].search([])[0].id"""
+        first_period = True
+        for index,item in enumerate(periods):
+            if self.period == 'week':
+                expected_end_date = datetime.strptime(item.name, DEFAULT_SERVER_DATE_FORMAT) + relativedelta(weeks=1)
+                end_date = expected_end_date.strftime(DEFAULT_SERVER_DATE_FORMAT)
+                previous_rec_date = self.start_date  - relativedelta(weeks=1) - relativedelta(days=1)
+                previous_rec_start_date = previous_rec_date 
+                sec_last_period_date = self.start_date  - relativedelta(weeks=2) - relativedelta(days=2)
+                sec_last_start_date = sec_last_period_date 
+                third_last_period_date =  self.start_date  - relativedelta(weeks=3) - relativedelta(days=3)
+                third_last_start_date = third_last_period_date 
+            elif self.period == 'month':
+                expected_end_date = datetime.strptime(item.name, DEFAULT_SERVER_DATE_FORMAT) + relativedelta(months=1)-relativedelta(days=1)
+                end_date = expected_end_date.strftime(DEFAULT_SERVER_DATE_FORMAT)
+                previous_rec_date = self.start_date - relativedelta(months=1) - relativedelta(days=1)
+                previous_rec_start_date = previous_rec_date 
+                sec_last_period_date = self.start_date - relativedelta(months=2) - relativedelta(days=2)
+                sec_last_start_date = sec_last_period_date 
+                third_last_period_date =  self.start_date  - relativedelta(months=3) - relativedelta(days=3)
+                third_last_start_date = third_last_period_date 
+            elif self.period == 'quarter':
+                expected_end_date = datetime.strptime(item.name, DEFAULT_SERVER_DATE_FORMAT) + relativedelta(months=3)
+                end_date = expected_end_date.strftime(DEFAULT_SERVER_DATE_FORMAT)
+                previous_rec_date =  self.start_date - relativedelta(months=3) - relativedelta(days=1)
+                previous_rec_start_date = previous_rec_date 
+                sec_last_period_date =self.start_date - relativedelta(months=6) - relativedelta(days=2)
+                sec_last_start_date = sec_last_period_date 
+                third_last_period_date =  self.start_date  - relativedelta(months=9) - relativedelta(days=3)
+                third_last_start_date = third_last_period_date 
+            elif self.period == 'year':
+                expected_end_date = datetime.strptime(item.name, DEFAULT_SERVER_DATE_FORMAT) + relativedelta(years=1)
+                end_date = expected_end_date.strftime(DEFAULT_SERVER_DATE_FORMAT)
+                previous_rec_date =  self.start_date  - relativedelta(years=1) - relativedelta(days=1)
+                previous_rec_start_date = previous_rec_date 
+                sec_last_period_date =  self.start_date  - relativedelta(years=2) - relativedelta(days=2)
+                sec_last_start_date = sec_last_period_date 
+                third_last_period_date =  self.start_date - relativedelta(years=3) - relativedelta(days=3)
+                third_last_start_date = third_last_period_date 
+            for product in product_ids:
+                product_template_id = product.product_tmpl_id
+                #routes = self.env['product.template'].search([('id','=',product_template_id.id)]).route_ids
+                
+                 
+                
+
+                vals = {
+                    'name': product.name + ' on ' + str(item.name),
+                    'forecast_id': self.id,
+                    'product_id': product.id,
+                    'period_start_date': item.name,
+                    'period_end_date': end_date,
+                     
+
+                }
+                created_id = forecast_product_obj.create(vals)
+            first_period = False
+    @api.one
+    def onchange_forecast_filter(self, forecast_filter_id, context=None):
+        f_period_obj = self.pool.get('forecast.period')
+        f_product_obj = self.pool.get('forecast.product')
+        if not ids:
+            return {} 
+        if forecast_filter_id:
+            s_rec = f_product_obj.search(cr, uid, [('forecast_id','=',ids[0]),('period_start_date','=',f_period_obj.browse(cr, uid, forecast_filter_id,context ).p_date)])
+            
+        else:
+            s_rec = f_product_obj.search(cr, uid, [('forecast_id','=',ids[0])], context)
+        
+        return {
+            'value': {'forecast_product_ids': [(4,x) for x in s_rec]},
+            'domain': {'forecast_product_ids': ['id' ,'in', s_rec]},
+        }
+
+    @api.one
+    def onchange_required_process(self,required_process, context=None):
+
+        forecast_product_obj = self.pool.get('forecast.product')
+        if not ids:
+            return {}
+        line_list = []
+        if not required_process:
+            return {}
+        if required_process:
+            forecast_rec = self.browse(cr, uid, ids, context)
+            for rec in forecast_rec:
+                for line in rec.forecast_product_ids:
+                    if line.action_required == 'none':
+                        line_list.append((1, line.id, {'action_required': 'none'}))
+                    else:    
+                        line_list.append((1, line.id, {'action_required': required_process}))
+        self.write(cr, uid, ids[0], {'forecast_product_ids': line_list}, context= context)
+        return {'value': {'forecast_product_ids': line_list}}
+
+     
+     
+    @api.model
+    def copy (self, default=None):
+        raise Warning(_('Forecast Record Can not be Duplicated'))
+
+    @api.model
+    def create(self, vals):
+
+        _logger.info('Create')
+        _logger.info(vals['period_count'])
+        _logger.info('context')
+        _logger.info(self._context.copy())
+        _logger.info(self.period_count) 
+        if vals['period_count']:
+            if vals['period_count'] < 0:
+                raise Warning(_('Number of Periods should not be less than zero'))
+        return super(sale_forecast, self).create(vals)
+
+    @api.multi
+    def write(self, vals):
+        _logger.info('Write')
+        _logger.info(self.period_count)
+        if self.period_count :
+            vals['forecast_filter_id'] = False
+        if self.period_count:
+            if self.period_count <= 0:
+                raise Warning(_('Number of Periods should be grater than zero'))
+        return super(sale_forecast,self).write(vals)
+
+    
+
+   
+    @api.multi
+    def update_action_qty(self):
+        forecast_product_obj = self.env['forecast.product']
+        _logger.info('For Product')
+        _logger.info(forecast_product_obj)
+        if self.forecast_filter_id:
+            recs = self.env['forecast.product'].search([('forecast_id','=',self.id),('period_start_date','=',self.forecast_filter_id.name)])
+            self.forecast_filter_id = False
+        else:
+            recs = self.env['forecast.product'].search([('forecast_id','=',self.id)])
+
+        _logger.info('rec')
+        _logger.info(recs)
+        
+        for rec in recs:
+            rec.forecast_value=rec.forecast_qty * rec.average_sale_price
+            
+            vals = {'forecast_value': rec.forecast_value,'forecast_qty': rec.forecast_qty,'average_sale_price':rec.average_sale_price}
+             
+            forecast_product_obj.browse(rec.id).write(vals)
+
+     
+
+    @api.multi
+    def unlink(self):
+        '''
+        Here as per the selection of forecast_filter_id the records other than the filter value are not managable as filter is applying on One2many field.
+        so, by default unlink method is called for the records other than the filter records.
+        To resolve this here unlink method is marked as false, as delete functionality has been removed  for this perticular field once the record is created.
+        '''
+        #self.forecast_product_ids.unlink()
+        return super(sale_forecast,self).unlink()
+class product_product(models.Model):
+    _inherit = 'product.product'    
+
+    @api.multi
+    def _get_domain_dates(self):
+        for record in self:
+            if (self._context.has_key('current_model') and self._context['current_model']) and (self._context.has_key('rec_id') and self._context['rec_id']):
+                record_id = self._context['rec_id']
+                generated_record = self.env['sale.forecast'].browse(record_id).record_generated
+                if generated_record:
+                    from_date = self._context.get('from_date', False)
+                    to_date = self._context.get('to_date', False)
+                    domain = []
+                    if from_date:
+                        domain.append(('date_expected', '>=', from_date))
+                    if to_date:
+                        domain.append(('date_expected', '<=', to_date))
+                    return domain
+        return super(product_product,self)._get_domain_dates()
+    
+ 
+class forecast_period(models.Model):
+
+    _name = 'forecast.period'
+
+    _rec_name = 'p_date'
+
+    name = fields.Char('Period Name', edit=False)
+    p_date = fields.Date('Period Date')
+    forecast_id = fields.Many2one('sale.forecast', string='Forecast', edit=False)
+
+class forecast_product(models.Model):
+
+    _name = 'forecast.product'
+
+    name = fields.Char('Name')
+    forecast_id = fields.Many2one('sale.forecast', string='Forecast',select=True,ondelete="cascade")
+    product_id = fields.Many2one('product.product', string='Product')
+    period_start_date = fields.Date('Start Date')
+    period_end_date = fields.Date('End Date')
+    sales_person = fields.Many2one(related='forecast_id.sales_person_id', string='Sales Rep',store=True)
+    # sales_team = fields.Many2one('crm.team', string='Sales Team')
+    #cst = fields.Many2one('res.partner', string='Customer')
+    #area = fields.Many2one('sale.region', string='Sales Area')
+    forecast_qty = fields.Float('Forecast Qty')
+    average_sale_price=fields.Float('Average Sales Price',compute='_get_average_price',store=True,readonly=True)
+    forecast_value=fields.Float('Forecast Value')
+    product_qty=fields.Float('Product Qty')
+    product_qty=fields.Float('Product Value')
+    region = fields.Many2one(related='forecast_id.region', string='Sales Area',store=True)
+
+    @api.one
+    @api.depends('product_id')
+    def _get_average_price(self):
+
+        year=int(self.period_start_date.strftime('%Y'))
+        month=int(self.period_start_date.strftime('%m'))
+        day=0
+        for d in range(1,13):
+            day+=calendar.monthrange(year,d)[1]
+        _logger.info(day)
+        #day=calendar.monthrange(year,month)[1]
+        
+        sale_order=self.env['sale.order.line'].search([])
+        """if self.sales_person:
+            _logger.info('Sale Rep')
+            sale_order=sale_order.search([('user_id','=',self.sales_person.id)])
+            _logger.info(sale_order)
+            if not sale_order:
+               return True"""
+
+
+
+        sale_order=sale_order.search(['&',('create_date','>=',self.period_start_date-timedelta(days=day)),'&',('create_date','<=',self.period_end_date-timedelta(days=day)),('product_id','=',self.product_id.id)])
+        ids=[]
+        for rec in sale_order:
+            ids.append(rec.id)
+        
+        sale_order=self.env['sale.order.line'].search(['&',('id','in',ids),'&',('state','=','sale'),('salesman_id','=',self.sales_person.id)])
+        _logger.info('AVERAGE PRICE')
+        price=0
+        qty=0
+        _logger.info(sale_order)
+        for rec in sale_order:
+
+            price+=rec.price_unit*rec.product_uom_qty
+            qty+=rec.product_uom_qty
+            _logger.info('price')
+            _logger.info(price)
+            _logger.info('qty')
+            _logger.info(qty)
+        if sale_order: 
+            self.average_sale_price=price/qty
+    @api.constrains('product_id')
+    def check_dublicate(self):
+        records=self.search(['&',('sales_person','=',self.sales_person.id),('product_id','=',self.product_id.id)])
+        for rec in records:
+            if rec.period_start_date>self.period_start_date and rec.period_end_date>self.period_end_date and rec.forecast_id!=self.forecast_id:
+                raise Warning(_('Product is selected berfor with Sales Rep.........'))
+                
+
+
+    @api.multi
+    def unlink(self):
+        '''
+        Here as per the selection of forecast_filter_id the records other than the filter value are not managable as filter is applying on One2many field.
+        so, by default unlink method is called for the records other than the filter records.
+        To resolve this here unlink method is marked as false, as delete functionality has been removed  for this perticular field once the record is created.
+        '''
+        return super(forecast_product,self).unlink()
+        
+ 
+
+ 

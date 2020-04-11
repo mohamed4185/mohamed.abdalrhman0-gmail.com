@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+  <record model="ir.ui.view" id="view_sale_region_tree">
+            <field name="name">sale region tree view</field>
+            <field name="model">sale.region</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+              <tree string ="Sales Regions" default_order="path_region">
+                <field name="name"/>
+				<field name="area_manager"/>
+				 
+				<field name="area_check" string="Area Region"/>
+              </tree>
+            </field>
+   </record>
+
+   <record model="ir.ui.view" id="view_sale_region_from">
+            <field name="name">view_sale_region_from</field>
+            <field name="model">sale.region</field>
+            
+            <field name="arch" type="xml">
+              <form string ="Sales Regions">
+			    <group>
+							<group>
+							<field name="name"/>
+							<field name="user_id" widget="many2many_tags" attrs="{'invisible':[('area_check','=',True)],'required':[('area_check','=',False)]}"/>
+							<field name="area_manager" attrs="{'invisible':[('area_check','=',False)],'required':[('area_check','=',True)]}"/>
+							</group>
+							<group>
+							<field name="parent_region" string="Parent Region" />
+							<field name="sale_manager" attrs="{'invisible':[('area_check','=',False)],'required':[('area_check','=',True)]}"/>
+							<field name="area_check"/></group>
+				</group>
+              </form>
+            </field>
+   </record>
+
+
+
+  <!-- <record id="sale_region__search_view" model="ir.ui.view">   
+
+    <field name="name">sale_region_search_view</field>   
+
+    <field name="model">sale.region</field>   
+
+    <field name="arch" type="xml">       
+
+        <search string="DMR">           
+            <group name="ff">
+            <filter name="parent_region" string="Parent Region"   context="{'group_by':'parent2'}" domain="[('parent_region','!=','0')]" />     
+			   <filter name="parent_region2" string="Parent Region2"   context="{'group_by':'parent_region'}"  ></filter>      
+              </group>
+        </search>   
+
+    </field>
+
+</record>-->
+</data>
+</odoo>

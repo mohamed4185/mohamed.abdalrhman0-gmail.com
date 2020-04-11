@@ -1,0 +1,12 @@
+from odoo import api, fields, models, _
+import odoo.addons.decimal_precision as dp
+from odoo.exceptions import ValidationError,UserError
+import logging
+import datetime as dt
+from datetime import datetime, timedelta
+import calendar
+import re
+_logger = logging.getLogger(__name__)
+
+class sale_rep_visit_count(models.Model):
+    _inherit='res.partner'

@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<odoo>
+
+
+
+<!--Action to open Sales regions List -->
+  
+ 
+   <record model="ir.ui.view" id="view_credit_analysis_vs_sales_form">
+            <field name="name">view_credit_analysis_vs_sales_form</field>
+            <field name="model">credit.analysis.report</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+              <form create="false">
+			       <sheet>
+				   <field name="name" invisible="1"/>
+			       <group>
+                               <group>
+								<field name="Date_from"/>
+							 
+								 <field name="customer" options="{'no_create': True, 'no_create_edit':True}"/>
+								</group>
+								<group>
+								<field name="Date_to"/>
+								<!--<field name="user_id" options="{'no_create': True, 'no_create_edit':True}"/>-->
+								
+
+								</group>
+								<button string="search" type="object" name="search_report"/>
+								 
+			        </group>   
+					</sheet>
+								
+              </form>
+            </field>
+   </record>
+   
+<report
+    id="sale_credit_analysis_rep"
+    model="credit.analysis.line"
+    string="Print report"
+    report_type="qweb-pdf"
+    name="credit_analysis_report_custom.report_credit_analysis_document"
+    file="credit_analysis_report_custom.report_credit_analysis_document"
+     
+/>
+
+ <record model="ir.ui.view" id="view_credit_analysis_line_tree">
+            <field name="name">view_credit_analysis_line_tree</field>
+            <field name="model">credit.analysis.line</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+              <tree create="false">
+			      <field name="customer"/>
+				  
+				 <field name="sale_rep"/>
+				  
+				 
+				 <field name="begin_balance"/>
+				 <field name="total_sale"/>
+				 <field name="total_return"/>
+				 <field name="net_sale"/>
+				 <field name="cash"/>
+				 <field name="cheque"/>
+				 <field name="collection"/>
+				  
+				 <field name="discount"/>
+				 <field name="today_aging" />
+				 <field name="second_date"/>
+				 <field name="third_duration_invoice"/>
+				 <field name="credit_limit"/>
+				 <field name="addition"/>
+				  <field name="current_balance"/>
+
+								
+              </tree>
+            </field>
+   </record>
+</odoo>

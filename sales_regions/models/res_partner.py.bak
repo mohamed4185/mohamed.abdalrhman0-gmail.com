@@ -1,0 +1,21 @@
+# -*- coding: utf-8 -*-
+
+from odoo import fields ,models
+
+class cst_area(models.Model):
+    _inherit="res.partner"
+    user_list=fields.Many2many('res.users','users_list','id','user_id')
+     
+    @api.constrains('region')
+    def _get_user_in_list(self):
+        _logger.info('LIST USER IN REGION')
+        user_ids=self.env['res.users'].search([])
+        for record in user_ids:
+            for rec in record.user_list:
+                 record.sudo().user_list=[(2,rec.id)]
+
+        for record in user_ids:
+            for rec in record.region_user:
+                for user in rec.user_id:
+                     record.sudo().user_list=[(4,user.id)]
+    #customer_Region = fields.Many2one('sale.region')

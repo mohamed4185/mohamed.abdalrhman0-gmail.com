@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<odoo>
+
+ <!-- <record model="ir.actions.act_window" id="action_sales_visit">
+    <field name="name">Sales Visits List</field>
+    <field name="res_model">sale.visit</field>
+    <field name="view_mode">tree</field>
+    <field name="target">inline</field>
+
+   
+</record>
+ <record model="ir.actions.act_window" id="action_sales_visit">
+    <field name="name">Sales Visits List</field>
+    <field name="res_model">sale.visit</field>
+    <field name="view_mode">form</field>
+    <field name="target">inline</field>
+
+   
+</record>
+ <record model="ir.actions.act_window" id="action_sales_visit">
+    <field name="name">Sales Visits List</field>
+    <field name="res_model">sale.visit</field>
+    <field name="view_mode">pivot</field>
+    <field name="target">inline</field>
+
+   
+</record>
+ <record model="ir.actions.act_window" id="action_sales_visit">
+    <field name="name">Sales Visits List</field>
+    <field name="res_model">sale.visit</field>
+    <field name="view_mode">calendar</field>
+    <field name="target">inline</field>
+
+   
+</record> -->
+ <record model="ir.actions.act_window" id="action_sales_visit">
+    <field name="name">Sales Visits List</field>
+    <field name="res_model">sale.visit</field>
+    <field name="view_mode">tree,form,pivot,calendar</field>
+    <field name="target">inline</field>
+
+   
+</record>
+
+
+
+<record model="ir.actions.act_window" id="action_sales_visit_planned">
+    <field name="name">Sales Visits Planned</field>
+    <field name="res_model">sale.visit.planned</field>
+    <field name="view_mode">tree,form</field>
+    <field name="target">inline</field>
+
+   
+</record>
+<record model="ir.actions.act_window" id="action_sales_visit_activity">
+    <field name="name">Sales Visits activity</field>
+    <field name="res_model">sale.visit</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('state','=','Approve')]</field>
+    <field name="target">inline</field>
+    
+   
+</record>
+
+ <act_window id="action_sales_visit_search"
+ name="Sales Visits plan"
+ res_model="sale_visit_report"
+ view_mode="form"/>
+  <!--<record model="ir.actions.act_window" id="action_sales_visit_objective">
+    <field name="name">Sales Visits Objective</field>
+    <field name="res_model">objective.visit</field>
+    <field name="view_mode">tree</field>
+   
+</record>-->
+  
+</odoo>

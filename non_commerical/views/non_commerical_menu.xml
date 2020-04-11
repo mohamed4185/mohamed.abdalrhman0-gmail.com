@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<odoo>
+
+
+<menuitem id="menu_custom_non_commerical" name="Non commerical Customer" parent="sale.sale_order_menu"  action="action_non_commerical" groups="sales_team.group_sale_salesman"/>
+<menuitem id="menu_custom_non_commerical_account" name="Non commerical Customer" parent="account.menu_finance_receivables"  action="action_non_commerical" groups="account.group_account_manager"/>
+
+</odoo>

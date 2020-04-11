@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_vs_visit_count,access_sale_vs_visit_count,model_sale_visit_count_report,base.group_erp_manager,1,1,1,1
+access_visit_count_manager,access_visit_count_manager,model_sale_visit_count_report,sales_team.group_sale_manager,1,1,1,1
+access_user_manager,access_user_manager,base.model_res_users,sales_team.group_sale_manager,1,1,1,1

@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        
+        <record id="sale_forecast_form" model="ir.ui.view">
+            <field name="name">sale.forecast.form</field>
+            <field name="model">sale.forecast</field>
+            <field name="arch" type="xml">
+                <form string="Sale Forecast" >
+                    <header>
+                        <button name="set_confirm" string="Confirm" type="object" states="open" class="oe_highlight" groups="sales_team.group_sale_manager,sales_team.group_sale_salesman_all_leads"/>
+                        <button name="set_open" string="Re-open" type="object" states="confirm" class="oe_highlight" groups="sales_team.group_sale_manager,sales_team.group_sale_salesman_all_leads"/>
+						<button name="set_done" string="Approve" type="object" states="confirm" class="oe_highlight" groups="sales_team.group_sale_manager"/>
+						
+                        <field name="state" widget="statusbar" statusbar_colors='{"pending":"blue"}' readonly="1"/>
+
+                    </header>
+                    <sheet >
+                        <h1>
+                            <field name="name" attrs="{'readonly': [('state','in',['done'])]}"/>
+                        </h1>
+                       <group>
+                            <field name="start_date" attrs="{'readonly': [('state','in',['done'])]}"/>
+                            <!--<field name="period" attrs="{'readonly': [('state','in',['done'])]}" />-->
+							<field name="period" attrs="{'readonly':True}" />
+                            <field name="period_count" context="{'active_rec_id':active_id}" attrs="{'readonly': [('state','in',['done'])]}"/>
+                            <field name="product_ids" widget="many2many_tags" attrs="{'readonly': [('state','in',['done'])]}"/>
+                            <!--<field name="warehouse_id"  options="{'no_create': True, 'no_create_edit':True}" widget="selection"  />
+							 <field name="warehouse_id" invisible="1" options="{'no_create': True, 'no_create_edit':True}" widget="selection" attrs="{'readonly': [('state','in',['done'])]}"/>-->
+                            <!--<field name="sales_team_id" options="{'no_create': True, 'no_create_edit':True}" widget="selection" on_change="onchange_sales_team_id(sales_team_id)" attrs="{'readonly': [('state','in',['done'])]}"/>-->
+							<field name="region"   options="{'no_create': True, 'no_create_edit':True}" widget="selection" attrs="{'readonly': [('state','in',['done'])],'required':True}"/>
+                            <field name="sales_person_id" options="{'no_create': True, 'no_create_edit':True}"    widget="selection"   attrs="{'readonly': [('state','in',['done'])],'required':True}"/>
+                            <!--<field name="cst" domain="[('customer','=',True)]"/>
+                            <field name="area"/>-->
+                            <field name="filter_visible" invisible="1"/>
+                            <field name="record_generated" invisible="1" />
+                            <field name="required_process" invisible="1" string="Required Process" on_change="onchange_required_process(required_process)" attrs="{'invisible': [('filter_visible','=',False)],'readonly':[('state','in',['done'])]}"/>
+                            <field name="create_action" invisible="1" attrs="{'readonly': [('state','in',['done'])]}"/>
+
+                            <field name="forecast_filter_id" invisible="1" domain="[('forecast_id', '=', active_id)]" attrs="{'invisible': [('filter_visible','=',False)],'readonly':[('state','in',['done'])]}" options="{'no_create': True, 'no_create_edit':True, 'no_open':True}" on_change="onchange_forecast_filter(forecast_filter_id)" />
+                           <field name="past_forecast_records" invisible="1"/>
+                           <field name="past_sales_records" invisible="1"/>
+						   <field name="region" invisible="1" />
+                           <newline/>
+                        </group>
+                        <group>
+                            <div>
+<!--                                 <button name='generate_forecast' type='object' string='Generate' attrs="{'invisible': [('filter_visible','=',True)]}"/> -->
+                                <button name='generate_forecast' type='object' string='Generate' attrs="{'invisible': [('state','in',['done'])]}" groups="sales_team.group_sale_manager,sales_team.group_sale_salesman_all_leads" />
+                                <button name='update_action_qty' type='object' string='Calculate Quantity' attrs="{'invisible': ['|', ('filter_visible','=',False),('state','in',['done'])]}" groups="sales_team.group_sale_manager,sales_team.group_sale_salesman_all_leads"/>
+                                <button name='perform_action' type='object' string='Action' confirm="Do you really want to create action for process quantity?" attrs="{'invisible': ['|', ('create_action','=',False),('state','in',['done'])]}" groups="sales_team.group_sale_manager,sales_team.group_sale_salesman_all_leads"/>
+
+                            </div>
+                        </group>
+
+                        <notebook>
+                           
+                           
+                            <page name="forecast_records" string="Forecast Records">
+                                <field name="forecast_product_ids" nolabel='1'   context="{'active_rec_id':active_id}" domain="[('period_start_date','=', forecast_filter_id)]" attrs="{'readonly': [('state','in',['done'])]}">
+                                    <tree string= "Forecast" editable="top" delete="false" create="false" default_order="product_id asc">
+                                        <field name= "product_id" readonly='1' />
+                                        <!-- <field name="id" invisible='1'/> -->
+                                        <field name= "period_start_date" readonly='1'/>
+                                        <field name= "period_end_date" readonly='1'/>
+                                         <!--<field name="sales_team" options="{'no_create': True,'no_create_edit':True, 'no_open':True}" on_change="onchange_sales_team(sales_team)"/>-->
+                                        <field name="sales_person" options="{'no_create': True,'no_create_edit':True,'no_open':True}"/>
+										
+                                        <field name="forecast_qty"/>
+										<field name="average_sale_price" readonly="False"/>
+										<field name="forecast_value"/>
+                                         
+                                       
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="sale_forecast_tree" model="ir.ui.view">
+            <field name="name">sale.forecast.tree</field>
+            <field name="model">sale.forecast</field>
+            <field name="arch" type="xml">
+                <tree string="Sale Forecast">
+                    <field name="name"/>
+                    <field name="period"/>
+                    <field name="period_count"/>
+                    <field name="start_date"/>
+                </tree>
+            </field>
+        </record>
+
+         <record model="ir.actions.act_window" id="sale_forecast_action">
+            <field name="name">Sale Forecast</field>
+            <field name="res_model">sale.forecast</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+         <record id="sale_forecast_product_form" model="ir.ui.view">
+            <field name="name">sale_forecast_product_form</field>
+            <field name="model">forecast.product</field>
+            <field name="arch" type="xml">
+                <form><group><group>
+                    <field name="product_id"/>
+                    <field name="period_start_date"/>
+                    <field name="period_end_date"/></group><group>
+                    <field name="forecast_qty"/>
+					<field name="average_sale_price"/>
+					<field name="forecast_value"/></group></group>
+					 
+                </form>
+            </field>
+        </record>
+        <menuitem action="sale_forecast_action" id="sale_forecast_action_menu" name="Sale Forecast" parent="sale.sale_menu_root" sequence="8"/>
+
+        
+
+         
+
+      
+
+    </data>
+</openerp>
+

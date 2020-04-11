@@ -1,0 +1,163 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* vendor_statement
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0e+e-20190103\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-11-13 13:58+0000\n"
+"PO-Revision-Date: 2019-11-13 13:58+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: vendor_statement
+#: model:ir.model.fields,field_description:vendor_statement.field_vendor_statement__date_from
+msgid " Start Date"
+msgstr "تاريخ البدء"
+
+#. module: vendor_statement
+#: model_terms:ir.ui.view,arch_db:vendor_statement.vendor_statement_report
+msgid "<br/>\n"
+"						<b>لا يوجــد بيانـــــات</b>"
+msgstr ""
+
+#. module: vendor_statement
+#: model_terms:ir.ui.view,arch_db:vendor_statement.wiz_vendor_statement_view
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. module: vendor_statement
+#: model:ir.model.fields,field_description:vendor_statement.field_vendor_statement__create_uid
+msgid "Created by"
+msgstr "أنشئ بواسطة"
+
+#. module: vendor_statement
+#: model:ir.model.fields,field_description:vendor_statement.field_vendor_statement__create_date
+msgid "Created on"
+msgstr "أنشئ في"
+
+#. module: vendor_statement
+#: model:ir.model.fields,field_description:vendor_statement.field_report_vendor_statement_vendor_statement_report__display_name
+#: model:ir.model.fields,field_description:vendor_statement.field_vendor_statement__display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: vendor_statement
+#: model:ir.model.fields,field_description:vendor_statement.field_vendor_statement__date_to
+msgid "End Date "
+msgstr "تاريخ الانتهاء"
+
+#. module: vendor_statement
+#: model:ir.model.fields,field_description:vendor_statement.field_report_vendor_statement_vendor_statement_report__id
+#: model:ir.model.fields,field_description:vendor_statement.field_vendor_statement__id
+msgid "ID"
+msgstr "المعرف"
+
+#. module: vendor_statement
+#: model:ir.model.fields,field_description:vendor_statement.field_report_vendor_statement_vendor_statement_report____last_update
+#: model:ir.model.fields,field_description:vendor_statement.field_vendor_statement____last_update
+msgid "Last Modified on"
+msgstr "آخر تعديل في"
+
+#. module: vendor_statement
+#: model:ir.model.fields,field_description:vendor_statement.field_vendor_statement__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: vendor_statement
+#: model:ir.model.fields,field_description:vendor_statement.field_vendor_statement__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: vendor_statement
+#: model_terms:ir.ui.view,arch_db:vendor_statement.wiz_vendor_statement_view
+msgid "Print"
+msgstr "طباعة"
+
+#. module: vendor_statement
+#: model:ir.model.fields,field_description:vendor_statement.field_vendor_statement__vendor
+msgid "Vendor"
+msgstr "المورّد"
+
+#. module: vendor_statement
+#: model:ir.ui.menu,name:vendor_statement.menu_customer_statement_t
+#: model_terms:ir.ui.view,arch_db:vendor_statement.wiz_vendor_statement_view
+msgid "Vendor Statement"
+msgstr "كشــف حســـاب مــورد"
+
+#. module: vendor_statement
+#: model:ir.actions.act_window,name:vendor_statement.action_vendor_statment_view_wizard
+msgid "Vendor Statement Report"
+msgstr "كشــف حســـاب مــورد"
+
+#. module: vendor_statement
+#: model_terms:ir.ui.view,arch_db:vendor_statement.wiz_vendor_statement_view
+msgid "or"
+msgstr "أو"
+
+#. module: vendor_statement
+#: model:ir.model,name:vendor_statement.model_report_vendor_statement_vendor_statement_report
+msgid "report.vendor_statement.vendor_statement_report"
+msgstr ""
+
+#. module: vendor_statement
+#: model:ir.model,name:vendor_statement.model_vendor_statement
+msgid "vendor.statement"
+msgstr ""
+
+#. module: vendor_statement
+#: model_terms:ir.ui.view,arch_db:vendor_statement.vendor_statement_report
+msgid "اسم المـــــــورد :"
+msgstr ""
+
+#. module: vendor_statement
+#: model_terms:ir.ui.view,arch_db:vendor_statement.vendor_statement_report
+msgid "الصنـــف"
+msgstr ""
+
+#. module: vendor_statement
+#: model_terms:ir.ui.view,arch_db:vendor_statement.vendor_statement_report
+msgid "الكميــه"
+msgstr ""
+
+#. module: vendor_statement
+#: model_terms:ir.ui.view,arch_db:vendor_statement.vendor_statement_report
+msgid "المبلــغ"
+msgstr ""
+
+#. module: vendor_statement
+#: model_terms:ir.ui.view,arch_db:vendor_statement.vendor_statement_report
+msgid "الملاحــظات"
+msgstr ""
+
+#. module: vendor_statement
+#: model_terms:ir.ui.view,arch_db:vendor_statement.vendor_statement_report
+msgid "تـــــــــــاريخ الاذن"
+msgstr ""
+
+#. module: vendor_statement
+#: model_terms:ir.ui.view,arch_db:vendor_statement.vendor_statement_report
+msgid "رقم الاذن"
+msgstr ""
+
+#. module: vendor_statement
+#: model_terms:ir.ui.view,arch_db:vendor_statement.vendor_statement_report
+msgid "رقم الفــاتوره\n"
+"											<br/>تاريــخ الفاتــوره"
+msgstr ""
+
+#. module: vendor_statement
+#: model_terms:ir.ui.view,arch_db:vendor_statement.vendor_statement_report
+msgid "قيمــه الوحــده"
+msgstr ""
+
+#. module: vendor_statement
+#: model:ir.actions.report,name:vendor_statement.action_report_vendor_statement
+msgid "كشــف حســـاب مــورد "
+msgstr ""
+

@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<odoo>
+
+
+
+  <!--Action to open Sales regions List -->
+
+
+  <record model="ir.ui.view" id="view_sales_report_annual_tree">
+    <field name="name">view_customer_annual_tree</field>
+    <field name="model">sales.rep.annual.report</field>
+    <field name="type">form</field>
+    <field name="arch" type="xml">
+      <form  edit="false">
+        <field name="name" invisible="1"/>
+        <sheet>
+          <div class="oe_title">
+            <h1>Sales Rep Annual Sales Report</h1>
+          </div>
+          <br/>
+          <group>
+            <group>
+              <field name="year_selected" widget="many2many_tags" options="{'no_create': True, 'no_create_edit':True}"/>
+
+            </group>
+            <group>
+
+              <field name="product_id" options="{'no_create': True, 'no_create_edit':True}"/>
+
+
+            </group>
+            <button string="search" type="object" name="search_report"/>
+
+          </group>
+        </sheet>
+
+      </form>
+    </field>
+  </record>
+  <record model="ir.ui.view" id="view_sales_report_annual_pivotte">
+    <field name="name">view_sales_report_annual_pivotte</field>
+    <field name="model">sale.order.line</field>
+    <field name="type">pivot</field>
+    <field name="arch" type="xml">
+      <pivot  >
+
+        <field name="create_date" type="col" interval="year"/>
+
+
+        <field name="product_uom_qty" string="Sales Qty" type="measure"/>
+
+        <field name="salesman_id" type="row"/>
+        <field name="product_id" type="col"/>
+        <field name="price_total" string="Sales Value" type="measure"/>
+        <!--<field name="pro_code" type="row"/>-->
+
+      </pivot>
+    </field>
+  </record>
+  <record model="ir.ui.view" id="view_sales_report_annual_tree_line">
+    <field name="name">view_sales_report_annual_tree_line</field>
+    <field name="model">sale.order.line</field>
+    <field name="type">tree</field>
+    <field name="arch" type="xml">
+      <tree  create="false">
+
+        <field name="year_date"/>
+
+        <field name="product_uom_qty"/>
+
+        <field name="salesman_id" />
+        <field name="product_id" />
+        <field name="price_total" />
+
+      </tree>
+    </field>
+  </record>
+
+
+
+</odoo>

@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_vs_forecast_report,access_sale_vs_forecast_report,model_sale_vs_forecast,base.group_system,1,1,1,1
+access_sale_vs_forecast_report_manager,access_sale_vs_forecast_report_manager,model_sale_vs_forecast,sales_team.group_sale_manager,1,1,1,1
+access_sale_vs_forecast_report_area_manager,access_sale_vs_forecast_report_area_manager,model_sale_vs_forecast,sales_team.group_sale_salesman_all_leads,1,1,1,0

@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<template id="report_report_paymrnt" inherit_id="account.report_payment_receipt_document">
+		<!-- <xpath expr="//div[@class='col-6']" position="after">
+			<div class="col-6">
+			<strong>Payment Journal: </strong>
+        <td><span t-field="o.journal_id.name"/></td></div>
+        </xpath>-->
+		<xpath expr="//div[@class='page']" position="replace">
+			<table class="table table-sm" dir="rtl">
+				<!-- <tr>
+					<td colspan="3">
+						<div class="text-center">
+								<img t-if="o.logo" t-att-src="image_data_uri(o.logo)" style="max-width: 100px ; height: 80px"/>
+						</div>
+					</td>
+				</tr> -->
+				<tr style="border:0;">
+					<td style="padding: 10px;">
+
+						<div class="text-right" dir="rtl">
+
+							<strong>  شركه :
+								<span t-field="o.partner_id.company_id.name" style="  text-overflow: ellipsis;"/>
+							</strong>
+
+						</div>
+					</td>
+					<td>
+							
+					</td>
+					
+					<td style="padding: 10px;">
+						<div class="text-left" dir="rtl">
+							<!-- <strong >
+								<span t-field="o.partner_id.company_id.name" style="padding:5px; text-overflow: ellipsis;"/>
+							</strong> -->
+						</div>
+					</td>
+
+
+				</tr>
+				<tr style="border:0;">
+					<td style="padding: 10px;">
+
+						<div class="text-right" dir="rtl">
+
+							<strong>   التاريخ : </strong>
+							<span t-field="o.payment_date" style="  text-overflow: ellipsis;"/>
+							&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+							<strong >   إذان صرف نقدي  /  </strong>
+							<span t-field="o.name_check" style="padding:5px; text-overflow: ellipsis;"/>
+						
+						</div>
+					</td>
+					
+					<!-- <td style="padding: 10px;">
+						<div class="text-right" dir="rtl">
+
+
+							<strong >   إذان صرف نقدي  /  </strong>
+							<span t-field="o.name_check" style="padding:5px; text-overflow: ellipsis;"/>
+						</div>
+					</td> -->
+					<td>
+					</td>
+					<td>
+						<div style="border: 1px solid black;" class="text-center" dir="rtl">
+							<span t-field="o.amount" style=" text-overflow: ellipsis;"/>
+
+						</div>
+
+					</td>
+
+
+				</tr>
+
+				<!-- <tr>
+					<td>
+
+						<div class="text-right" dir="rtl">
+
+							<strong>
+								: شركه
+								<span t-field="o.partner_id.company_id.name" style="  text-overflow: ellipsis;"/>
+							</strong>
+
+						</div>
+					</td>
+					<td class="text-right">
+						<img t-if="o.logo" t-att-src="image_data_uri(o.logo)" style="max-height: 40px;"/>
+					</td>
+					<td>
+						<div class="text-right" dir="rtl">
+
+
+							<strong>
+								Company
+								<span t-field="o.partner_id.company_id.name" style="padding:5px; text-overflow: ellipsis;"/>
+							</strong>
+						</div>
+					</td>
+
+
+				</tr> -->
+				<!-- <tr>
+					<td>
+
+						<div class="text-right" dir="rtl">
+
+							<strong>التاريخ</strong>
+							<span t-field="o.payment_date" style="  text-overflow: ellipsis;"/>
+
+						</div>
+					</td>
+					<td>
+						<div class="text-right" dir="rtl">
+
+							<span t-field="o.name_check" style="padding: 4em; text-overflow: ellipsis;"/>
+
+						</div>
+
+					</td>
+					<td>
+						<div class="text-right" dir="rtl">
+
+
+							<strong>إذان توريد نقديه /</strong>
+							<span t-field="o.name_check" style="padding:5px; text-overflow: ellipsis;"/>
+						</div>
+					</td>
+
+
+				</tr> -->
+
+
+				<tr style="border:0;">
+					<td style="padding: 10px;" dir="rlt">
+						<div class="row" dir="rtl">
+							<t t-if="o.payment_type == 'outbound'">
+								<strong>يصرف  للسيد / للساده /</strong>
+								<span t-field="o.partner_id" style="padding: 2em; text-overflow: ellipsis;"/>
+							</t>
+							<t t-if="o.payment_type == 'inbound'">
+								<strong>يصرح باستلام مبلغ من السيد / الساده /</strong>
+								<span t-field="o.partner_id" style="padding: 2em; text-overflow: ellipsis;"/>
+							</t>
+
+						</div>
+						<div class="row" dir="rtl">
+							<strong>مبلغ وقدره/</strong>
+							<span t-field="o.amount" style="padding: 2em; text-overflow: ellipsis;"/>
+
+
+
+						</div>
+						<div class="row" dir="rtl">
+							<strong>وذلك بقيمه /</strong>
+							<span t-field="o.communication" style="padding: 2em; text-overflow: ellipsis;"/>
+
+
+
+						</div>
+						<!--<div class="row" dir="rtl">
+										 <t t-if="o.send_rec_money == 'send'">
+										   <strong>يصرح بدفع مبلغ/ </strong>
+										</t>
+										<t t-if="o.send_rec_money == 'rece'">
+											<strong>يصرف  باستلام مبلغ/ </strong>
+										</t>
+										  <span t-field="o.amount" style="padding: 2em; text-overflow: ellipsis;"/> 
+									
+									 
+								</div>
+								-->
+					</td>
+					<td>
+					</td>
+					<td/>
+				</tr>
+			</table>
+
+
+			<table class="table table-sm" dir="rtl" style="display: inline-block ;border-style: dotted">
+				<tr style="border:0;">
+					<td style="padding: 10px;" class="text-right" width="400px">
+						<div style="border: 1px solid black;" class="row" dir="rtl">
+							<strong>أعد بمعرفه:</strong>
+							<span t-field="o.create_uid" style="padding: 2em; text-overflow: ellipsis;"/>
+
+						</div>
+						<div style="border: 1px solid black;" class="row" dir="rtl">
+							<strong>رُجع بمعرفه</strong>
+							..............................................
+
+						</div>
+
+					</td>
+					<td width="400px"/>
+					<td style="padding: 10px;" width="400px">
+						<div style="border: 1px solid black;" class="row" dir="rtl">
+							<strong>أٌعتمد بواسطه.:</strong>
+							...............................................
+
+						</div>
+					</td>
+				</tr>
+				<tr style="border:0;">
+					<td style="padding: 10px;" width="400px">
+						<div class="row" dir="rtl">
+							<strong>المستلم:</strong>
+							..................................
+						</div>
+						<div class="row" dir="rtl">
+							<strong>بطاقة/ش/ع/رقم:</strong>
+							..................................
+
+						</div>
+						<div class="row" dir="rtl">
+							<strong>بتاريخ:</strong>
+							..................................
+
+						</div>
+					</td>
+					<td style="padding: 10px;" width="400px">
+						<div class="row" dir="rtl">
+							<strong>التوقيع............................</strong>
+						</div>
+						<div class="row" dir="rtl">
+							<strong>صادرة من :............................</strong>
+						</div>
+
+					</td>
+					<!--<td width="400px">
+	      
+		 <t t-if="o.payment_type == 'outbound'">
+		 <div class ="row" dir="rtl">
+         <strong>كود الحساب:</strong> <span dir="rtl" t-field="o.journal_id.code" style="padding: 1em; text-overflow: ellipsis;"/> </div>
+		 <div class ="row" dir="rtl">
+         <strong>دائن:</strong><span dir="rtl" t-field="o.journal_id.default_credit_account_id.name" style="padding: 1em; text-overflow: ellipsis;"/> </div>
+		 <div class ="row" dir="rtl">
+         <strong>مدين </strong><span dir="rtl" t-field="o.partner_id.property_account_payable_id.name" style="padding: 1em; text-overflow: ellipsis;"/> </div>
+        </t>
+		 <t t-if="o.payment_type == 'inbound'">
+		 .......
+		 <div class ="row" dir="rtl">
+         <strong>كود الحساب:</strong> <span dir="rtl" t-field="o.journal_id.code" style="padding: 1em; text-overflow: ellipsis;"/> </div>
+		 <div class ="row" dir="rtl">
+         <strong>دائن: </strong><span dir="rtl" t-field="o.partner_id.property_account_payable_id.name" style="padding: 1em; text-overflow: ellipsis;"/> </div>
+		 <div class="row" dir="rtl">
+         <strong>مدين:</strong><span dir="rtl" t-field="o.journal_id.default_debit_account_id.name" style="padding: 1em; text-overflow: ellipsis;"/> </div>
+		 
+        </t>
+		 
+     </td>-->
+	 <td style="padding: 10px;" width="400px">
+						<div style="border: 1px solid black;" class ="row" dir="rtl">
+							<strong>كود الحساب:</strong>
+							<span dir="rtl" t-field="o.journal_id.code" style="padding: 1em; text-overflow: ellipsis;"/>
+						</div>
+
+						<t t-if="o.payment_type == 'outbound'">
+							<div style="border: 1px solid black;" class ="row" dir="rtl">
+								<strong>مدين: </strong>
+								<span dir="rtl" t-field="o.partner_id.property_account_payable_id.name" style="padding: 1em; text-overflow: ellipsis;"/>
+							</div>
+							<div style="border: 1px solid black;" class ="row" dir="rtl">
+								<strong>دائن: </strong>
+								<span dir="rtl" t-field="o.journal_id.default_credit_account_id.name" style="padding: 1em; text-overflow: ellipsis;"/>
+							</div>
+						</t>
+
+						<t t-if="o.payment_type == 'inbound'">
+							<div style="border: 1px solid black;" class ="row" dir="rtl">
+								<strong>مدين:</strong>
+								<span dir="rtl" t-field="o.journal_id.default_debit_account_id.name" style="padding: 1em; text-overflow: ellipsis;"/>
+							</div>
+							<div style="border: 1px solid black;" class ="row" dir="rtl">
+								<strong>دائن: </strong>
+								<span dir="rtl" t-field="o.partner_id.property_account_payable_id.name" style="padding: 1em; text-overflow: ellipsis;"/>
+							</div>
+						</t>
+					</td>
+				</tr>
+
+
+			</table>
+
+			<div class="footer">
+				<hr style="width: 1500px; height: 1px;" />
+				<div class="row" dir="rtl">
+
+					<strong style="padding: 1em;">العنوان</strong>
+					<div class="row" dir="rtl">
+						<span t-field="o.partner_id.company_id.street" style="padding: 1em; text-overflow: ellipsis;"/>
+						<span t-field="o.partner_id.company_id.street2" style="padding: 1em; text-overflow: ellipsis;"/>
+						<span t-field="o.partner_id.company_id.city" style="padding: 1em; text-overflow: ellipsis;"/>
+						<strong style="padding: 1em;">:تليفون</strong>
+						<span t-field="o.partner_id.company_id.phone" style="padding: 1em; text-overflow: ellipsis;"/>
+					</div>
+				</div>
+			</div>
+
+		</xpath>
+	</template>
+
+</odoo>

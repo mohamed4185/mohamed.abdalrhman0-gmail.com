@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report 
+            id="action_report_customer_statement"
+            model="vendor.statement"
+            string="كشــف حســـاب مــورد "
+            report_type="qweb-pdf"
+            name="vendor_statement.vendor_statement_report"
+            file="vendor_statement.vendor_statement_report"
+            />
+    </data>
+</odoo>

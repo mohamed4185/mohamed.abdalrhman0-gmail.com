@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+ 
+ 
+       <record id="group_usertt" model="res.groups">
+     <field name="name">Userrrr</field>
+     <field name="implied_ids" eval="[(4, ref('account.group_account_invoice'))]"/>
+     <field name="users" eval="[(4, ref('base.user_root'))]"/>
+     <field name="category_id" ref="account_access_rights.module_management"/>
+    </record>
+
+
+
+
+	 
+     
+   
+ 
+</odoo>
+ 

@@ -1,0 +1,114 @@
+<odoo>
+    <data>
+
+
+        <record id="view_norm_payment_filter_check" model="ir.ui.view">
+            <field name="name">view.norm.payment.filter</field>
+            <field name="model">normal.payments</field>
+            <field eval="1" name="priority"/>
+            <field name="arch" type="xml">
+                <search string="Search Payments">
+                    <field name="partner_id" string="Partner"/>
+                </search>
+            </field>
+        </record>
+
+
+        <record id="normal_payments_check_form_view" model="ir.ui.view">
+            <field name="name">realestate.noraml.payments.form</field>
+            <field name="model">normal.payments</field>
+            <field name="arch" type="xml">
+                <form string="" delete="[('state','=','posted')]">
+                    <header>
+                        <button name="action_confirm" string="Confirm" class="oe_highlight oe_read_only" states="draft"
+                                type="object"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button" name="button_journal_entries"
+                                    string="Journal Items" type="object"
+                                    attrs="{'invisible':[('state','=','draft')]}" icon="fa-bars"/>
+                        </div>
+                        <div class="oe_title">
+                            <field name="name_check" readonly="1"/>
+                            <h1>
+							    
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group col="4">
+                            <field name="partner_id" string="Customer/Vendor" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="payment_method"  widget="selection" options='{"no_open": True, "no_create": True}' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+						
+                            <label for="amount"/>
+
+                            <div name="amount_div" class="o_row">
+                                <field name="amount1" widget='monetary' options="{'currency_field': 'currency_id'}"
+                                attrs="{'invisible' : ['|',('payment_subtype', '=', 'issue_check'),('payment_subtype', '=', 'rece_check')]
+                                ,'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="amount" widget='monetary' options="{'currency_field': 'currency_id'}"
+                                attrs="{'invisible' : [('payment_subtype', '!=', 'issue_check'),('payment_subtype', '!=', 'rece_check')]}"/>
+                            </div>
+                            <field name="account_id" attrs="{'readonly': [('state', '!=', 'draft')],'required':True}" />
+                            <field name="payment_date"  string="Receive/Issue Date"  attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="analyitc_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="send_rec_money" widget="radio" attrs="{'readonly': ['|',('state', '!=', 'draft'),('payment_related_journal','=',True)]}"/>
+							 
+                            <field name="receipt_number" invisible="1"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="user_id" invisible="1"/>
+                            <field name="payment_subtype" invisible="1"/>
+                        </group>
+                        <notebook>
+                            <page string="Checks" attrs="{'invisible': [('payment_subtype', '!=', 'issue_check'),('payment_subtype', '!=', 'rece_check')]}" >
+                                <field name="pay_check_ids" attrs="{'readonly': [('state', '!=', 'draft')]}">
+                                    <tree editable="bottom">
+                                        <field name="check_number"/>
+                                        <field name="check_date" string="check due date"/>
+                                        <field name="amount"/>
+                                        <field name="bank"/>
+                                        <field name="dep_bank"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+							<field name="payment_related_journal" invisible="1"/>
+                    </sheet>
+                    <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="normal_payments_check_tree_view" model="ir.ui.view">
+            <field name="name">noraml.payments.tree</field>
+            <field name="model">normal.payments</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="payment_date"/>
+                    <field name="state"/>
+                    <field name="create_uid"/>
+                    <field name="amount"/>
+                    <field name="payment_method"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="check_action_norm_pay_action" model="ir.actions.act_window">
+            <field name="name">Payments</field>
+            <field name="res_model">normal.payments</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_type">form</field>
+        </record>
+
+
+
+
+    </data>
+</odoo>

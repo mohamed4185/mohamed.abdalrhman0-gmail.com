@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   <record id="view_partner_form_non_commerical" model="ir.ui.view">
+            <field name="name">res.partner.form</field>
+            <field name="model">res.partner.commerical</field>
+          
+            <field name="arch" type="xml">
+                   <form  string="non_commerical">
+				   <header attrs="{'invisible':[('active','=',False)]}">
+				   <!-- <button name="set_confirm" string="Confirm" type="object" attrs="{'invisible':['|','|',('state','=','account_manager_con')]}" class="oe_highlight" groups="sales_team.group_sale_manager,account.group_account_manager"/> -->
+				   <button name="set_confirm" string="Confirm" type="object" attrs="{'invisible':['|',('state','=','account_manager_con'),('state','=','sale_manager_con')]}" class="oe_highlight" groups="sales_team.group_sale_manager" />
+				   <button name="set_confirm1" string="Confirm" type="object" attrs="{'invisible':['|',('state','=','account_manager_con')]}" class="oe_highlight" groups="account.group_account_manager"/>
+				   <button name="set_reject" string="Reject" type="object" attrs="{'invisible':[('state','=','account_manager_con')]}"  groups="account.group_account_manager"/>
+				   <button name="set_reject" string="Reject" type="object" attrs="{'invisible':['|',('state','=','sale_manager_con'),('state','=','account_manager_con')]}"  groups="sales_team.group_sale_manager"/>
+				   <button name="set_return" string="Return" type="object" attrs="{'invisible':[('state','in',['draft','account_manager_con'])]}"  groups="sales_team.group_sale_manager,account.group_account_manager"/>
+				   
+                   
+                   <field name="state" widget="statusbar" />
+				   </header>
+                <sheet string="non_commerical">
+                    <!--<div class="oe_button_box" name="button_box">
+                        <button name="toggle_active" type="object"
+                                class="oe_stat_button" icon="fa-archive">
+                            <field name="active" widget="boolean_button"
+                                options='{"terminology": "archive"}'/>
+                        </button>
+                    </div>-->
+                    <field name="image" widget='image' class="oe_avatar" options='{"preview_image": "image_medium", "size": [90, 90]}'/>
+                    <div class="oe_title">
+                        <field name="is_company" invisible="1"/>
+                         
+                        <field name="company_type" widget="radio"
+                            class="oe_edit_only"
+                            options="{'horizontal': true}"/>
+                        <h1>
+                            <field name="name" default_focus="1" placeholder="Name" required="1"/>
+							
+                        </h1>
+						<h1>
+                            <field name="arabic_name" default_focus="1" placeholder="Arabic Name" required="1"/>
+							<field name="active" attrs="{'invisible':True}"/>
+                        </h1>
+                       
+                    </div>
+
+                    <group>
+                        <group>
+                            
+                            <label for="street" string="Address"/>
+                            <div class="o_address_format">
+                                <div  class="oe_edit_only"></div>
+                                <field name="street" placeholder="Street..." class="o_address_street" />
+                                <field name="street2" placeholder="Street 2..." class="o_address_street" />
+                                <field name="city" placeholder="City" class="o_address_city"  />
+                                <field name="state_id" class="o_address_state" placeholder="State" options='{"no_open": True}'
+                                    context="{'country_id': country_id, 'zip': zip}"/>
+                                <field name="zip" placeholder="ZIP" class="o_address_zip"/>
+                                <field name="country_id" placeholder="Country" class="o_address_country" options='{"no_open": True, "no_create": True}'
+                                   />
+                            </div>
+                            <field name="vat" required="1" placeholder="e.g. BE0477472701"/>
+							<field name="customer_code" groups="sales_team.group_sale_manager,account.group_account_manager"/>
+							<field name="customer_Type"/>
+							<field name="customer_class"/>
+							<field name="region"/>
+							<field name="national_id" attrs="{'required':[('company_type','=','person')]}"/>
+							<field name="tax_file" required="1"/>
+							<field name="user_ids" groups="sales_team.group_sale_salesman_all_leads"/>
+						 
+                           </group>
+                        <group>
+                           
+                            <field name="phone" widget="phone"/>
+                            <field name="mobile" widget="phone"/>
+                            <field name="user_ids" invisible="1"/>
+                            <field name="email" widget="email" context="{'gravatar_image': True}" />
+                            <field name="website" widget="url" placeholder="e.g. www.odoo.com"/>
+                            <field name="title" options='{"no_open": True}'
+                                attrs="{'invisible': [('is_company', '=', True)]}"/>
+                            <field name="lang"/>
+							<field name="discount"/>
+                            <field name="category_id" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}" placeholder="Tags..."/>
+                        </group>
+                    </group>
+					<notebook>
+					  <page string="sales"  groups="sales_team.group_sale_manager,account.group_account_manager">
+					  <group>
+					      <group>
+						  <field name="credit_limit" />
+						  <field name="credit_duration_from"  />
+
+						  
+						  </group>
+						  <group >
+						  <field name="credit_duration" />
+						  <field name="credit_duration_to"/></group>
+					  </group>
+					  
+					  </page>
+					  <page string="Internal Notes">
+					     <group>
+                               
+                                <field name="comment" />
+                                
+                            </group>
+					  </page>
+                      <page string="Accounting Enteries"   groups="account.group_account_manager">
+					     <group  groups="account.group_account_manager">
+                               
+                                <field name="property_account_receivable_id" />
+                                <field name="property_account_payable_id" />
+                            </group>
+					  </page>
+					</notebook>
+                   </sheet>
+				    <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+				   </form>
+            </field>
+        </record>
+        <record id="non_commerical_tree" model="ir.ui.view">
+		<field name="name">res.partner.tree</field>
+            <field name="model">res.partner.commerical</field>
+          
+            <field name="arch" type="xml"> <tree>
+			 <field name="name" string="Name"/>
+			
+                    <field name="state"/>
+                    <field name="phone" invisible="1"/>
+                    <field name="email" invisible="1"/>
+                    <field name="user_id" invisible="1"/>
+                    <field name="is_company" invisible="1"/>
+                    <field name="country_id" invisible="1"/>
+                    
+                    <field name="active" invisible="1"/></tree>
+			</field>
+		</record>
+	 
+    <record id="view_partner_form_non_commerical_pop" model="ir.ui.view">
+            <field name="name">res.partner.form.pop</field>
+            <field name="model">res.partner.commerical</field>
+          
+            <field name="arch" type="xml">
+                   <form  create="0">
+				      <field name="reason" required="1"/>
+					  <footer> <button name="write" type="object" string="Save" class="btn-primary"/> 
+			      <button name="cancel" string="Cancel" special="cancel" class="oe_link" /> </footer>
+				   </form>
+		    </field>
+	</record>
+	 <record id="view_partner_form_non_commerical_pop_reject" model="ir.ui.view">
+            <field name="name">res.partner.form.pop.reject</field>
+            <field name="model">res.partner.commerical</field>
+          
+            <field name="arch" type="xml">
+                   <form  create="0">
+				      <field name="reason_reject" required="1"/>
+					  <footer> <button name="write" type="object" string="Save" class="btn-primary"/> 
+			      <button name="cancel" string="Cancel" special="cancel" class="oe_link" /> </footer>
+				   </form>
+		    </field>
+	</record>
+
+
+	<record id="write_sale_rep_non_commericala" model="ir.ui.view">
+		<field name="name">write_sale_rep_non_commericala</field>
+		<field name="model">res.partner.commerical</field>
+		<field name="inherit_id" ref="non_commerical.view_partner_form_non_commerical" />
+		<field name="groups_id" eval="[(6,0, [ref('sales_team.group_sale_salesman')])]" />
+		<field name="arch" type="xml">
+		         <xpath expr="//field[@name='name']" position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['sale_manager_con','account_manager_con'])]}</attribute>
+                </xpath>
+				<xpath expr="//field[@name='company_type']" position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['sale_manager_con','account_manager_con'])]}</attribute>
+                </xpath>
+				<xpath expr="//field[@name='arabic_name']" position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['sale_manager_con','account_manager_con'])]}</attribute>
+                </xpath>
+                <xpath expr="//div/field[@name='street']" position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['sale_manager_con','account_manager_con'])]}</attribute>
+                </xpath>
+				<xpath expr="//div/field[@name='street2']" position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['sale_manager_con','account_manager_con'])]}</attribute>
+                </xpath>
+				<xpath expr="//div/field[@name='city']" position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['sale_manager_con','account_manager_con'])]}</attribute>
+                </xpath>
+				<xpath expr="//div/field[@name='state_id']" position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['sale_manager_con','account_manager_con'])]}</attribute>
+                </xpath>
+				<xpath expr="//div/field[@name='zip']" position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['sale_manager_con','account_manager_con'])]}</attribute>
+                </xpath>
+				<xpath expr="//div/field[@name='country_id']" position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['sale_manager_con','account_manager_con'])]}</attribute>
+                </xpath>
+				<xpath expr="//field[@name='vat']" position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['sale_manager_con','account_manager_con'])],'required':True}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='customer_code']" position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['sale_manager_con','account_manager_con'])]}</attribute>
+                </xpath>
+				<xpath expr="//field[@name='customer_Type']" position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['sale_manager_con','account_manager_con'])]}</attribute>
+                </xpath>
+				<xpath expr="//field[@name='customer_class']" position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['sale_manager_con','account_manager_con'])]}</attribute>
+                </xpath>
+				<xpath expr="//field[@name='region']" position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['sale_manager_con','account_manager_con'])]}</attribute>
+                </xpath>
+				<xpath expr="//field[@name='phone']" position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['sale_manager_con','account_manager_con'])]}</attribute>
+                </xpath>
+				<xpath expr="//field[@name='mobile']" position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['sale_manager_con','account_manager_con'])]}</attribute>
+                </xpath>
+				<xpath expr="//field[@name='email']" position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['sale_manager_con','account_manager_con'])]}</attribute>
+                </xpath>
+				<xpath expr="//field[@name='website']" position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['sale_manager_con','account_manager_con'])]}</attribute>
+                </xpath>
+				<xpath expr="//field[@name='title']" position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['sale_manager_con','account_manager_con'])]}</attribute>
+                </xpath>
+				<xpath expr="//field[@name='category_id']" position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['sale_manager_con','account_manager_con'])]}</attribute>
+                </xpath>
+				<xpath expr="//field[@name='lang']" position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['sale_manager_con','account_manager_con'])]}</attribute>
+                </xpath>
+				<xpath expr="//field[@name='discount']" position="attributes">
+   
+                        <attribute name="attrs">{'invisible': True}</attribute>
+                </xpath>
+				
+				<xpath expr="//field[@name='user_ids']" position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['sale_manager_con','account_manager_con'])]}</attribute>
+                </xpath>
+				<xpath expr="//field[@name='lang']" position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['sale_manager_con','account_manager_con'])]}</attribute>
+                </xpath>
+				<xpath expr="//field[@name='credit_limit']"   position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['sale_manager_con','account_manager_con'])]}</attribute>
+                </xpath>
+				<xpath expr="//field[@name='national_id']"   position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['sale_manager_con','account_manager_con'])],'required':[('company_type','=','person')]}</attribute>
+                </xpath>
+				<xpath expr="//field[@name='tax_file']"   position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['sale_manager_con','account_manager_con'])]}</attribute>
+                </xpath>
+				
+
+				</field>
+        </record>
+    <record id="write_sale_manager_non_commericala" model="ir.ui.view">
+		<field name="name">write_sale_manager_non_commericala</field>
+		<field name="model">res.partner.commerical</field>
+		<field name="inherit_id" ref="non_commerical.view_partner_form_non_commerical" />
+		<field name="groups_id" eval="[(6,0, [ref('sales_team.group_sale_manager')])]" />
+		<field name="arch" type="xml">
+		         <xpath expr="//field[@name='user_ids']" position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['sale_manager_con','account_manager_con'])]}</attribute>
+                </xpath>
+				<xpath expr="//field[@name='lang']" position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['sale_manager_con','account_manager_con'])]}</attribute>
+                </xpath>
+				<xpath expr="//field[@name='discount']" position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['sale_manager_con','account_manager_con'])]}</attribute>
+                </xpath>
+				<xpath expr="//field[@name='credit_limit']"   position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['sale_manager_con','account_manager_con'])],'required':True}</attribute>
+                </xpath>
+				<xpath expr="//field[@name='credit_duration_from']"   position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['sale_manager_con','account_manager_con'])],'required':True}</attribute>
+                </xpath>
+				 
+				<xpath expr="//field[@name='credit_duration']"   position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['sale_manager_con','account_manager_con'])],'required':True}</attribute>
+                </xpath>
+				<xpath expr="//field[@name='credit_duration_to']"   position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['sale_manager_con','account_manager_con'])],'required':True}</attribute>
+                </xpath>
+
+				</field>
+        </record>
+
+
+
+
+
+<record id="write_advisorr_non_commericala" model="ir.ui.view">
+		<field name="name">write_advisorr_non_commericala</field>
+		<field name="model">res.partner.commerical</field>
+		<field name="inherit_id" ref="non_commerical.view_partner_form_non_commerical" />
+		<field name="groups_id" eval="[(6,0, [ref('account.group_account_manager')])]" />
+		<field name="arch" type="xml">
+		        <xpath expr="//field[@name='name']" position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['account_manager_con'])]}</attribute>
+                </xpath>
+				<xpath expr="//field[@name='company_type']" position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['account_manager_con'])]}</attribute>
+                </xpath>
+				<xpath expr="//field[@name='arabic_name']" position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['account_manager_con'])]}</attribute>
+                </xpath>
+                <xpath expr="//div/field[@name='street']" position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['account_manager_con'])]}</attribute>
+                </xpath>
+				<xpath expr="//div/field[@name='street2']" position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['account_manager_con'])]}</attribute>
+                </xpath>
+				<xpath expr="//div/field[@name='city']" position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['account_manager_con'])]}</attribute>
+                </xpath>
+				<xpath expr="//div/field[@name='state_id']" position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['account_manager_con'])]}</attribute>
+                </xpath>
+				<xpath expr="//div/field[@name='zip']" position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['account_manager_con'])]}</attribute>
+                </xpath>
+				<xpath expr="//div/field[@name='country_id']" position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['account_manager_con'])]}</attribute>
+                </xpath>
+				<xpath expr="//field[@name='vat']" position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['account_manager_con'])],'required':True}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='customer_code']" position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['account_manager_con'])],'required':True}</attribute>
+                </xpath>
+				<xpath expr="//field[@name='customer_Type']" position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['account_manager_con'])]}</attribute>
+                </xpath>
+				<xpath expr="//field[@name='discount']" position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['account_manager_con'])]}</attribute>
+                </xpath>
+				<xpath expr="//field[@name='customer_class']" position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['account_manager_con'])]}</attribute>
+                </xpath>
+				<xpath expr="//field[@name='region']" position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['account_manager_con'])]}</attribute>
+                </xpath>
+				<xpath expr="//field[@name='phone']" position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['account_manager_con'])]}</attribute>
+                </xpath>
+				<xpath expr="//field[@name='mobile']" position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['account_manager_con'])]}</attribute>
+                </xpath>
+				<xpath expr="//field[@name='email']" position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['account_manager_con'])]}</attribute>
+                </xpath>
+				<xpath expr="//field[@name='website']" position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['account_manager_con'])]}</attribute>
+                </xpath>
+				<xpath expr="//field[@name='title']" position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['account_manager_con'])]}</attribute>
+                </xpath>
+				<xpath expr="//field[@name='category_id']" position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['account_manager_con'])]}</attribute>
+                </xpath>
+				<xpath expr="//field[@name='lang']" position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['account_manager_con'])]}</attribute>
+                </xpath>
+				<xpath expr="//field[@name='user_ids']" position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['account_manager_con'])]}</attribute>
+                </xpath>
+				<xpath expr="//field[@name='lang']" position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['account_manager_con'])]}</attribute>
+                </xpath>
+				<xpath expr="//field[@name='credit_limit']"   position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['account_manager_con'])],'required':True}</attribute>
+                </xpath>
+				
+		         <xpath expr="//field[@name='user_ids']" position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['account_manager_con'])]}</attribute>
+                </xpath>
+				<xpath expr="//field[@name='lang']" position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['account_manager_con'])]}</attribute>
+                </xpath>
+				<xpath expr="//field[@name='credit_limit']"   position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['account_manager_con'])],'required':True}</attribute>
+                </xpath>
+				<xpath expr="//field[@name='credit_duration_from']"   position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['account_manager_con'])],'required':True}</attribute>
+                </xpath>
+				 
+				<xpath expr="//field[@name='credit_duration']"   position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['account_manager_con'])]}</attribute>
+                </xpath>
+				<xpath expr="//field[@name='credit_duration_to']"   position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['account_manager_con'])],'required':True}</attribute>
+                </xpath>
+				<xpath expr="//field[@name='property_account_receivable_id']"   position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['account_manager_con'])],'required':True}</attribute>
+                </xpath>
+				<xpath expr="//field[@name='property_account_payable_id']"   position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['account_manager_con'])],'required':True}</attribute>
+                </xpath>
+				<xpath expr="//field[@name='national_id']"   position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['account_manager_con'])],'required':[('company_type','=','person')]}</attribute>
+                </xpath>
+				<xpath expr="//field[@name='tax_file']"   position="attributes">
+   
+                        <attribute name="attrs">{'readonly': [('state','in',['account_manager_con'])]}</attribute>
+                </xpath>
+
+				</field>
+        </record>
+
+
+     <record id="inherited_view_partner_form_national_num" model="ir.ui.view">
+        <field name="name">inherited_view_partner_form_national_num</field>
+        <field name="model">res.partner</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+		  
+			<field name="vat"   position="after">
+			      
+				 <field name="national_id" required="1"/>
+				 <field name="tax_file" required="1"/>
+			</field>
+	    </field>
+	  </record>
+
+	
+</odoo>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<template id="report_customer_annual_print_data">
+                      <h1>fffff</h1>
+                      
+						  <tr>
+						 
+                           <td>
+						   <span t-field="o.create_date"  style="padding:5px; text-overflow: ellipsis;"/>
+						   </td>
+                            <td>
+						   <span t-field="o.order_partner_id" style="padding:5px; text-overflow: ellipsis;"/>
+						   </td>
+						   <td>
+						   <span t-field="o.salesman_id" style="padding:5px; text-overflow: ellipsis;"/>
+						   </td>
+						   <td>
+						   <span t-field="o.region" style="padding:5px; text-overflow: ellipsis;"/>
+						   </td>
+						   <td>
+						   <span t-field="o.product_id" style="padding:5px; text-overflow: ellipsis;"/>
+						   </td>
+						   <td>
+						   <span t-field="o.product_uom_qty" style="padding:5px; text-overflow: ellipsis;"/>
+						   </td>
+						   <td>
+						   <span t-field="o.price_total" style="padding:5px; text-overflow: ellipsis;"/>
+						   </td>
+						 
+
+						  </tr>
+					  
+					 
+  
+                 
+         
+    
+</template>
+
+<!-- Translatable template -->
+ 
+
+<template id="report_sale_line_doc">
+        
+          <t t-call="web.html_container">
+		 <t t-call="web.external_layout">
+		       		     
+
+                <div class="page">
+				<t t-foreach="docs" t-as="o">
+                    
+				       <h2 style="text-align:center;color:grey">
+					  
+					      
+					
+					</h2>
+					 
+			    </t>
+					 
+					<table class="table table-sm" style="width:100%;text-align:center;padding-left:20px;padding-right:20px">
+					<tr style="color:blue">
+							<th>Date</th>
+							<th>Customer</th> 
+							<th>sale Rep</th>
+							<th>Region</th>
+							<th>Product</th>
+							<th>Quantity</th>
+							<th>Total Price</th>
+							
+						  </tr>
+                    <t t-foreach="docs" t-as="o">
+                        
+                        <t t-call="Customer_Annual_Sales_Report.report_customer_annual_print_data">
+                            
+                        </t>
+                    </t>
+					</table>
+					 
+                </div>
+				 
+            </t>
+			</t>
+    </template>
+	
+        
+</odoo>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record id="wiz_cheques_cheques_view" model="ir.ui.view">
+		<field name="name">wiz_customer_cheques_view</field>
+		<field name="model">customer.cheques</field>
+		<field name="arch" type="xml">
+			<form>
+				  <sheet>
+					<div class="oe_title">
+						<h1>  Customer Checks</h1>
+					</div>
+					<br/>
+				<group col="4">
+					<field name="date_from" />
+					<field name="date_to" />
+					
+				</group>
+				<group>
+				   <group>
+				   <field name="customer"/></group><group>
+				   <field name="state"/></group>
+				</group>
+				 
+				<footer>
+					<button name="check_report" string="Print" type="object" default_focus="1" class="oe_highlight" />
+					or
+					<button string="Cancel" class="oe_link" special="cancel" />
+				</footer>
+				  </sheet>
+			</form>
+		</field>
+	</record>
+
+<!--	<record id="action_customer_cheques_view_wizard" model="ir.actions.act_window">
+		<field name="name">   بيــان بشيـكات عميــل</field>
+		<field name="res_model">customer.cheques</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="view_type">form</field>
+		<field name="view_mode">form</field>
+		<field name="view_id" ref="wiz_cheques_cheques_view"/>
+		<field name="target">new</field>
+		<field name="target">inline</field>
+	</record>
+
+	 <menuitem id="menu_customer_cheques_report"
+                  name="بيــان بشيــكـات عميــل"
+                  action="action_customer_cheques_view_wizard"
+                  parent="sale.menu_sale_report"
+                  sequence="1"/>-->
+<record id="action_customer_cheques_view_wizard" model="ir.actions.act_window">
+		<field name="type">ir.actions.act_window</field>
+		<field name="name">Customer Cheques Report</field>
+		<field name="res_model">customer.cheques</field>
+		<field name="view_mode">form</field>
+		<field name="view_id" ref="wiz_cheques_cheques_view"/>
+
+	</record>  
+
+	<menuitem action="action_customer_cheques_view_wizard" id="menu_customer_cheques" name="Customer Cheques"  parent="account.menu_finance_reports" />
+
+</odoo>

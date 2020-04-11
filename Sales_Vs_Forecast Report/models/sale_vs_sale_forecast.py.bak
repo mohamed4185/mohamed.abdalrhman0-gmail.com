@@ -1,0 +1,161 @@
+from odoo import api, fields, models, _
+import odoo.addons.decimal_precision as dp
+from odoo.exceptions import ValidationError,UserError
+import logging
+import datetime as dt
+from datetime import datetime, timedelta
+import calendar
+import re
+_logger = logging.getLogger(__name__)
+
+class sale_vs_forecast(models.Model):
+    #_name='consildate.sale.report'
+    _inherit="sale.order.line"
+    year_date=fields.Integer('Year',compute='_get_year')
+    month_date=fields.Char('Month',compute='_get_month')
+    forecast_Qty=fields.Float('Forecast Qty') 
+    forecast_value=fields.Float('Forecast Value')
+    @api.one
+    @api.depends('product_id')
+    def _get_year(self):
+        self.year_date=int(self.create_date.strftime('%Y'))
+    @api.one
+    @api.depends('product_id')
+    def _get_month(self):
+        self.month_date=self.create_date.strftime('%B')
+    
+    """@api.one
+    @api.constrains('product_id','state')
+    def _get_date_format(self):
+         
+        #dt.datetime.strptime(self.create_date,'%Y-%m-%d').strftime('%B')
+        
+        _logger.info('Forecast Search')
+        res=[]
+        order=[]
+        
+         
+        forcast_search=self.env['forecast.product'].search(['&',('sales_person','=',self.user_id.id),('product_id','=',self.product_id.id)])
+        #order_line=self.env['sale.order.line'].search(['&',('salesman_id','=',self.user_id.id),('product_id','=',self.product_id.id)])
+         
+             
+        for record in forcast_search:
+            _logger.info(record.period_end_date.strftime('%m'))
+            
+            if self.create_date.date().strftime('%m')==record.period_start_date.strftime('%m') and self.create_date.date().strftime('%Y')==record.period_start_date.strftime('%Y'):
+                
+                _logger.info(record.id)
+                res.append((record.id)) 
+        _logger.info('REPORT FORECAST VS SALES')
+        _logger.info(res)
+        forcast_search=self.env['forecast.product'].search(['&',('id','in',res),('region','=',self.order_partner_id.region.id)]) 
+        _logger.info(forcast_search)
+        _logger.info(self.order_partner_id.region.id)
+        order_line=self.env['sale.order.line'].search(['&',('salesman_id','=',self.user_id.id),('product_id','=',self.product_id.id)])
+        for record in order_line:
+             
+            if self.create_date.date().strftime('%m')==record.create_date.strftime('%m') and self.create_date.date().strftime('%Y')==record.create_date.strftime('%Y')  :
+                order.append((record.id)) 
+        order.append((self.id)) 
+        order_line=self.env['sale.order.line'].search(['&',('state','=','sale'),('id','in',order)]) 
+            
+        forecast_Qty=0
+        forecast_value=0
+        
+        _logger.info(forcast_search)
+        if forcast_search:
+            for record in forcast_search: 
+               forecast_Qty+=record.forecast_qty
+               forecast_value+=record.forecast_value
+        if order_line:
+            sale_line_forecast_qty=forecast_Qty/(len(order_line))
+            sale_line_value=forecast_value/(len(order_line))
+            for rec in order_line:
+                rec.forecast_Qty=sale_line_forecast_qty
+                rec.forecast_value=sale_line_value
+                   
+        _logger.info('len Order')
+        _logger.info(order_line)
+        _logger.info(len(order_line))
+        _logger.info(forecast_Qty)
+        _logger.info(forecast_value)"""
+
+class sale_vs_forecast(models.Model):
+    _name='sale.vs.forecast'
+    _description = "Sales Vs Forecast report"
+    name=fields.Char('name',default='Sales Vs Forecast report') 
+    #_inherit="sale.order.line"
+    user_id=fields.Many2one('res.users','Sale rep')
+    customer=fields.Many2one('res.partner','Customer',domain="[('customer','=',True)]")
+    region=fields.Many2one('sale.region','Region')
+    Date_from=fields.Date('Date From')
+    Date_to=fields.Date('Date To')
+    product_id = fields.Many2one('product.product', string='Product')
+
+    def search_report(self):
+        _logger.info('Date from')
+        _logger.info(self.Date_from)
+         
+        ids=[]
+        str_domain=""
+        if self.Date_from and self.Date_to and self.Date_to<=self.Date_from:
+            raise ValidationError('Date To must be greater than Date From')
+            return True
+        group_id=self.env['ir.model.data'].search([('name','=','group_sale_manager')])
+        group_user = self.env['res.groups'].search([('id','=',group_id.res_id)]) 
+        user=self.env['res.users'].search(['&',('id','=',self.env.uid),('groups_id','in',group_user.id)])  
+        
+        if user:
+            visits=self.env['sale.order.line'].search([('state','=','sale')])
+        else:
+            user=self.env['res.users'].search([('id','=',self.env.uid)]) 
+            visits=self.env['sale.order.line'].search(['&',('region','in',user.region_user.ids),('state','=','sale')]) 
+            
+
+        res=[] 
+        for record in visits:
+            res.append((record.id))
+        if   self.Date_from:
+
+             
+            visits=visits.search(['&',('id','in',visits.ids),('create_date','>=',self.Date_from)]) 
+        if   self.Date_to:
+             
+            visits=visits.search(['&',('id','in',visits.ids),('create_date','<=',self.Date_to)])
+        if self.customer  :
+             
+            visits=visits.search(['&',('id','in',visits.ids),('customer','=',self.customer.id) ])
+        
+        if self.user_id:
+             
+            visits=visits.search(['&',('id','in',visits.ids),('salesman_id','=',self.user_id.id)])
+            
+        if self.region:
+            
+            visits=visits.search(['&',('id','in',visits.ids),('region','=',self.region.id)])
+        if self.product_id:
+             
+            visits=visits.search(['&',('id','in',visits.ids),('product_id','=',self.product_id.id)])
+        
+
+        for rec in visits:
+            ids.append(rec.id)
+        view_id_pivot=self.env.ref('Sales_Vs_Forecast Report.view_sales_vs_forecast_pivote').id
+
+        view_id_tree=self.env.ref('Sales_Vs_Forecast Report.view_sales_vs_forecast_tree').id
+        
+        _logger.info(view_id_pivot)
+        return { 'name':'Sales Vs Forecast report',
+        'view_mode': 'pivot,tree', 
+        'view_mode': 'pivot,search', 
+        'views': [(view_id_pivot, 'pivot'),(view_id_tree,'tree')], 
+        
+        'res_model': 'sale.order.line',
+        'target': 'current',
+         'domain':"[('id','in',%s)]"%(ids),
+         'context':{ },
+        'type': 'ir.actions.act_window',
+        
+         
+                   }   
+ 

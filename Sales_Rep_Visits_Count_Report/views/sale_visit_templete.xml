@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<report
+    id="sale_visit_count_rep"
+    model="res.users"
+    string="Print report"
+    report_type="qweb-pdf"
+    name="Sales_Rep_Visits_Count_Report.report_sales_visit_count_document"
+    file="Sales_Rep_Visits_Count_Report.report_sales_visit_count_document"
+     
+/>
+
+</odoo>

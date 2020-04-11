@@ -1,0 +1,60 @@
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="view_employee_form_inherit" model="ir.ui.view">
+            <field name="name">view.employee.form.inherit</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='birthday']" position="after">
+                    <label for="age"/>
+                    <div class="o_row">
+                        <field name="age"/>Years
+                    </div>
+
+                    <!-- Add your fields or attributes here -->
+                </xpath>
+                <xpath expr="//field[@name='identification_id']" position="after">
+                    <field name="religion"/>
+
+
+                </xpath>
+                <xpath expr="//field[@name='gender']" position="after">
+
+                    <field name="military_status" attrs="{'invisible':[('gender','!=', 'male')]}"/>
+
+                </xpath>
+
+                <xpath expr="//group[@name='active_group']" position="after">
+                    <group string="Experience">
+                        <field name="start_date"/>
+                        <label for="experience_y"/>
+                        <div class="o_row">
+                            <field name="experience_y"/>Years-<field name="experience_m"/>Months-<field
+                                name="experience_d"/>Days
+                        </div>
+
+
+                    </group>
+                </xpath>
+
+
+
+
+                <xpath expr="//page[@name='hr_settings']" position="before">
+                    <page name="education_info" string="Education Info">
+                        <group string="Education">
+                            <field name="edu_phase"/>
+                            <field name="edu_school"/>
+                            <field name="edu_major"/>
+                            <field name="edu_grad"/>
+                        </group>
+                        <field name="edu_note" placeholder="Education Notes ..........."/>
+                    </page>
+                </xpath>
+
+            </field>
+        </record>
+    </data>
+</odoo>

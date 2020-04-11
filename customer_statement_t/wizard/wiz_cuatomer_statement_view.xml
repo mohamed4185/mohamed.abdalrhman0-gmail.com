@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record id="wiz_customer_statement_view_t" model="ir.ui.view">
+		<field name="name">wiz_total_size_product_report_view_T</field>
+		<field name="model">customer.statement.t</field>
+		<field name="arch" type="xml">
+			<form>
+				<sheet>
+					<div class="oe_title">
+						<h1>Customer Statement T</h1>
+					</div>
+					<br/>
+					<group col="4">
+						<field name="date_from" />
+						<field name="date_to" />
+					</group>
+					<group>
+						<field name="customer"/>
+					</group>
+
+					<footer>
+						<button name="check_report" string="Print" type="object" default_focus="1" class="oe_highlight" />
+					or
+						<button string="Cancel" class="oe_link" special="cancel" />
+					</footer>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<!--	<record id="action_customer_statment_view_wizard_t" model="ir.actions.act_window">
+		<field name="name"> كشــف حســاب عميل</field>
+		<field name="res_model">customer.statement.t</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="view_type">form</field>
+		<field name="view_mode">form</field>
+		<field name="view_id" ref="wiz_customer_statement_view_t"/>
+		<field name="target">new</field>
+		<field name="target">inline</field>
+	</record>
+
+	 <menuitem id="menu_customer_statement_report" name="كشـــف حســــاب عميـل" action="action_customer_statment_view_wizard" parent="sale.menu_sale_report" sequence="1"/>-->
+	<record id="action_customer_statment_view_wizard_t" model="ir.actions.act_window">
+		<field name="type">ir.actions.act_window</field>
+		<field name="name">Customer Statement T Report</field>
+		<field name="res_model">customer.statement.t</field>
+		<field name="view_mode">form</field>
+		<field name="view_id" ref="wiz_customer_statement_view_t"/>
+
+	</record>
+
+	<menuitem action="action_customer_statment_view_wizard_t" id="menu_customer_statement_t" name="Customer Statement T" parent="account.menu_finance_reports" />
+
+
+</odoo>

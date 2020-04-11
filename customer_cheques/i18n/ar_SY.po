@@ -1,0 +1,205 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* customer_cheques
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0e+e-20190103\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-11-13 12:52+0000\n"
+"PO-Revision-Date: 2019-11-13 12:52+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: customer_cheques
+#: model_terms:ir.ui.view,arch_db:customer_cheques.customer_cheques_report
+msgid "<b>لا يوجــد بيانـــــات</b>"
+msgstr ""
+
+#. module: customer_cheques
+#: selection:customer.cheques,state:0
+msgid "Approved"
+msgstr "معتـــــمدة"
+
+#. module: customer_cheques
+#: model_terms:ir.ui.view,arch_db:customer_cheques.wiz_cheques_cheques_view
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. module: customer_cheques
+#: selection:customer.cheques,state:0
+msgid "Canceled"
+msgstr "ملغي"
+
+#. module: customer_cheques
+#: model:ir.model.fields,field_description:customer_cheques.field_customer_cheques__create_uid
+msgid "Created by"
+msgstr "أنشئ بواسطة"
+
+#. module: customer_cheques
+#: model:ir.model.fields,field_description:customer_cheques.field_customer_cheques__create_date
+msgid "Created on"
+msgstr "أنشئ في"
+
+#. module: customer_cheques
+#: selection:customer.cheques,state:0
+msgid "Cs_return"
+msgstr "مرتجعة للعميل"
+
+#. module: customer_cheques
+#: model:ir.model.fields,field_description:customer_cheques.field_customer_cheques__customer
+msgid "Customer"
+msgstr "العميل"
+
+#. module: customer_cheques
+#: model_terms:ir.ui.view,arch_db:customer_cheques.wiz_cheques_cheques_view
+msgid "Customer Checks"
+msgstr "شيكات عميل"
+
+#. module: customer_cheques
+#: model:ir.ui.menu,name:customer_cheques.menu_customer_cheques
+msgid "Customer Cheques"
+msgstr "شيكات عميل"
+
+#. module: customer_cheques
+#: model:ir.actions.act_window,name:customer_cheques.action_customer_cheques_view_wizard
+msgid "Customer Cheques Report"
+msgstr "بيان شيكات عميــل"
+
+#. module: customer_cheques
+#: selection:customer.cheques,state:0
+msgid "Debited"
+msgstr "المــدينــه"
+
+#. module: customer_cheques
+#: selection:customer.cheques,state:0
+msgid "Depoisted"
+msgstr "تحت التحصيل"
+
+#. module: customer_cheques
+#: model:ir.model.fields,field_description:customer_cheques.field_customer_cheques__display_name
+#: model:ir.model.fields,field_description:customer_cheques.field_report_customer_cheques_customer_cheques_report__display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: customer_cheques
+#: model:ir.model.fields,field_description:customer_cheques.field_customer_cheques__date_to
+msgid "End Date "
+msgstr "تاريخ الانتهاء"
+
+#. module: customer_cheques
+#: selection:customer.cheques,state:0
+msgid "Handed"
+msgstr "الصـــادره"
+
+#. module: customer_cheques
+#: selection:customer.cheques,state:0
+msgid "Holding"
+msgstr "الخزنه"
+
+#. module: customer_cheques
+#: model:ir.model.fields,field_description:customer_cheques.field_customer_cheques__id
+#: model:ir.model.fields,field_description:customer_cheques.field_report_customer_cheques_customer_cheques_report__id
+msgid "ID"
+msgstr "المعرف"
+
+#. module: customer_cheques
+#: model:ir.model.fields,field_description:customer_cheques.field_customer_cheques____last_update
+#: model:ir.model.fields,field_description:customer_cheques.field_report_customer_cheques_customer_cheques_report____last_update
+msgid "Last Modified on"
+msgstr "آخر تعديل في"
+
+#. module: customer_cheques
+#: model:ir.model.fields,field_description:customer_cheques.field_customer_cheques__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: customer_cheques
+#: model:ir.model.fields,field_description:customer_cheques.field_customer_cheques__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: customer_cheques
+#: model_terms:ir.ui.view,arch_db:customer_cheques.wiz_cheques_cheques_view
+msgid "Print"
+msgstr "طباعة"
+
+#. module: customer_cheques
+#: selection:customer.cheques,state:0
+msgid "Rejected"
+msgstr "المرفـــوضه"
+
+#. module: customer_cheques
+#: selection:customer.cheques,state:0
+msgid "Returned"
+msgstr "المرتجعه"
+
+#. module: customer_cheques
+#: model:ir.model.fields,field_description:customer_cheques.field_customer_cheques__date_from
+msgid "Start Date"
+msgstr "تاريخ البدء"
+
+#. module: customer_cheques
+#: model:ir.model.fields,field_description:customer_cheques.field_customer_cheques__state
+msgid "State"
+msgstr "الحالة"
+
+#. module: customer_cheques
+#: model:ir.model,name:customer_cheques.model_customer_cheques
+msgid "customer.cheques"
+msgstr ""
+
+#. module: customer_cheques
+#: model_terms:ir.ui.view,arch_db:customer_cheques.wiz_cheques_cheques_view
+msgid "or"
+msgstr "أو"
+
+#. module: customer_cheques
+#: model:ir.model,name:customer_cheques.model_report_customer_cheques_customer_cheques_report
+msgid "report.customer_cheques.customer_cheques_report"
+msgstr ""
+
+#. module: customer_cheques
+#: model_terms:ir.ui.view,arch_db:customer_cheques.customer_cheques_report
+msgid "اســم البنــك"
+msgstr ""
+
+#. module: customer_cheques
+#: model_terms:ir.ui.view,arch_db:customer_cheques.customer_cheques_report
+msgid "اسم العميـــــل :"
+msgstr ""
+
+#. module: customer_cheques
+#: model_terms:ir.ui.view,arch_db:customer_cheques.customer_cheques_report
+msgid "المبلـــغ"
+msgstr ""
+
+#. module: customer_cheques
+#: model:ir.actions.report,name:customer_cheques.action_report_customer_cheques
+msgid "بيـــان بشيكات عميــل"
+msgstr ""
+
+#. module: customer_cheques
+#: model_terms:ir.ui.view,arch_db:customer_cheques.customer_cheques_report
+msgid "تــاريخ الاستحقاق"
+msgstr ""
+
+#. module: customer_cheques
+#: model_terms:ir.ui.view,arch_db:customer_cheques.customer_cheques_report
+msgid "تـــــــــــاريخ  الاستـــــلام"
+msgstr ""
+
+#. module: customer_cheques
+#: model_terms:ir.ui.view,arch_db:customer_cheques.customer_cheques_report
+msgid "حــاله الشيــك"
+msgstr ""
+
+#. module: customer_cheques
+#: model_terms:ir.ui.view,arch_db:customer_cheques.customer_cheques_report
+msgid "رقم الشــيك"
+msgstr ""
+

@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<odoo>
+
+<menuitem id="menu_sales_visit"
+ name="Sales Visits"
+ action="action_sales_visit"
+ parent="sale.sale_menu_root"
+ sequence ="50"/>
+ 
+  <menuitem id="action_sales_visit_search_data"
+ name="Sales Visits Plan"
+ action="action_sales_visit_search"
+ parent="sale.menu_sale_report"
+ 
+ /> 
+ 
+ <menuitem id="sales_visit_planned"
+ name="Sales Visits planned "
+ action="action_sales_visit_planned"
+ parent="menu_sales_visit"
+ 
+ /> 
+ <menuitem id="sales_visit_activity"
+ name="Sales Visits Activity"
+ action="action_sales_visit_activity"
+ parent="menu_sales_visit"
+ 
+ /> 
+ <!--
+ <menuitem id="sales_visit_objective"
+ name="Sales Visits objective"
+ action="action_sales_visit_objective"
+ parent="menu_sales_visit"
+ groups="base.group_system"
+ />-->
+ 
+</odoo>

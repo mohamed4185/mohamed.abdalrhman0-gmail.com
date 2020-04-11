@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_customer_annual_report,access_customer_annual_report,model_customer_annual_sales_report,base.group_system,1,1,1,1
+access_customer_annual_year_list,access_customer_annual_year_list,model_customer_annual_year_list,base.group_system,1,1,1,1
+access_customer_annual_report_sale_manager,access_customer_annual_report_sale_manager,model_customer_annual_sales_report,sales_team.group_sale_manager,1,1,1,1
+access_customer_annual__sale_manager,access_customer_annual__sale_manager,model_customer_annual_year_list,sales_team.group_sale_manager,1,1,1,1
+
+

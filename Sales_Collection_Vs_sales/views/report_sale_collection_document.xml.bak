@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<template id="report_sale_visit_print_data">
+   
+                      
+						  <tr style="border: 1px solid #ddd;">
+						    <td style="border: 1px solid #ddd;">asdas
+						   <span t-field="o.customer" style="padding:5px; text-overflow: ellipsis;"/>
+						   </td >
+						   <td>
+						   <span t-field="o.begin_balance" style="padding:5px; text-overflow: ellipsis;"/>
+						   </td>
+						  
+                           <td style="border: 1px solid #ddd;">
+						   <span t-field="o.total_sale" style="padding:5px; text-overflow: ellipsis;"/>
+						   </td>
+                            
+							<td style="border: 1px solid #ddd;">
+						   <span t-field="o.total_return" style="padding:5px; text-overflow: ellipsis;"/>
+						   </td>
+						   <td style="border: 1px solid #ddd;">
+						   <span t-field="o.net_sale" style="padding:5px; text-overflow: ellipsis;"/>
+						   </td>
+						   <td style="border: 1px solid #ddd;">
+						   <span t-field="o.cash" style="padding:5px; text-overflow: ellipsis;"/>
+						   </td>
+						   <td style="border: 1px solid #ddd;">
+						   <span t-field="o.cheque" style="padding:5px; text-overflow: ellipsis;"/>
+						   </td>
+						    <td style="border: 1px solid #ddd;">
+						    
+						   </td >
+						   <td style="border: 1px solid #ddd;">
+						    <span t-field="o.addition" style="padding:5px; text-overflow: ellipsis;"/>
+						   </td >
+						    <td style="border: 1px solid #ddd;">
+						   <span t-field="o.current_balance" style="padding:5px; text-overflow: ellipsis;"/>
+						   </td>
+
+						  </tr>
+					  
+					 
+  
+                 
+         
+    
+</template>
+
+<!-- Translatable template -->
+ 
+
+<template id="report_sale_collection_document">
+        
+          <t t-call="web.html_container">
+		 <t t-call="web.external_layout">
+		       		     
+
+                <div class="page">
+
+				    <!--<h2 style="text-align:center;color:grey">Sales and Collection Report</h2>-->
+                      
+					<table class="table table-sm" style="width:100%;text-align:center;padding-left:20px;padding-right:20px;border-collapse: collapse;border: 1px solid #ddd;">
+					<tr style="color:blue;border: 1px solid #ddd;">
+					        <th style="border: 1px solid #ddd;">Customer Name</th>
+							<th style="border: 1px solid #ddd;">Begining Balance</th>
+							<th style="border: 1px solid #ddd;">Total Sales</th>
+							<th style="border: 1px solid #ddd;">Total Return</th> 
+							<th style="border: 1px solid #ddd;">Net Sales</th> 
+							<th style="border: 1px solid #ddd;">Cash</th> 
+							<th style="border: 1px solid #ddd;">cheques</th> 
+							<th style="border: 1px solid #ddd;">Discount</th> 
+							<th style="border: 1px solid #ddd;">Addition</th> 
+							
+							<th style="border: 1px solid #ddd;">Current Balance</th>
+							 
+						  </tr>
+						 
+						
+                    <t t-foreach="docs" t-as="o">
+					         
+							<t t-call="Sales_Collection_Vs_sales.report_sale_visit_print_data">
+									<t t-set="docs" t-value="o"/>
+									 
+									 
+						    </t>
+								 
+				    </t>
+							 
+					</table>
+					 
+                </div>
+				 
+            </t>
+			</t>
+    </template>
+	<record id="paperformat_llance_sacpe_sales_collcetion" model="report.paperformat">
+		<field name="name">landscap report paper express</field>
+		<field name="default" eval="True" />
+		<field name="format">A4</field>
+		<field name="page_height">0</field>
+		<field name="page_width">0</field>
+		<field name="orientation">Landscape</field>
+		<field name="margin_top">40.00</field>
+		<field name="margin_bottom">28.00</field>
+		<field name="margin_left">7.00</field>
+		<field name="margin_right">7.00</field>
+		<field name="header_line" eval="False" />
+		<field name="header_spacing">45</field>
+		<field name="dpi">90</field>
+
+	</record>
+
+	<record id="Sales_Collection_Vs_sales.sale_collection_rep" model="ir.actions.report">
+		<field name="paperformat_id" ref="Sales_Collection_Vs_sales.paperformat_llance_sacpe_sales_collcetion" />
+	</record>
+        
+</odoo>

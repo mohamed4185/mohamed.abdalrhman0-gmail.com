@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+acess_region_sale_manager_internal,acess_region_sale,model_sale_region,base.group_user,1,0,0,0
+acess_region_sale_manager,acess_region_sale,model_sale_region,sales_team.group_sale_manager,1,1,1,1
+acess_region_sale_area_manager,acess_region_sale,model_sale_region,sales_team.group_sale_salesman,1,0,0,0
+acess_region_sale_rep,acess_region_sale,model_sale_region,sales_team.group_sale_salesman_all_leads,1,0,0,0
+access_sale_advance_payment_inv,access_sale_advance_payment_inv,sale.model_sale_advance_payment_inv,sales_team.group_sale_salesman_all_leads,1,0,0,0

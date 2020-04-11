@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+ <template id="assets_backend" name="module_name assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" href="/sale_visit/static/src/css/visit_css.css"/>
+            </xpath>
+        </template>
+  <data>
+    <record model="ir.ui.view" id="view_sales_visit_tree">
+      <field name="name">sale Visits tree.view</field>
+      <field name="model">sale.visit</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree string ="Sales Visits" editable="top" create="0">
+
+
+          <field name="Day" required="1" readonly="1"/>
+          <field name="rep" string="Sales Rep" attrs="{'readonly':True}"/>
+          <field name="Customer" required="1" readonly="1"/>
+          <field name="customer_Type"/>
+          <field name="area"/>
+          <field name="Objective" widget="many2many" options="{'no_create_edit': True}" required="1"/>
+
+          <field name="Description" />
+          <field name="Status"/>
+          <field name="Feedback"/>
+
+
+
+        </tree>
+      </field>
+    </record>
+    <record model="ir.ui.view" id="view_sales_visit_calendar">
+      <field name="name">sale Visits calendar.view</field>
+      <field name="model">sale.visit</field>
+      <field name="type">calendar</field>
+      <field name="arch" type="xml">
+        <calendar string ="Sales Visits">
+
+
+          <field name="Day" required="1" readonly="1"/>
+          <field name="rep" string="Sales Rep" attrs="{'readonly':True}"/>
+          <field name="Customer" required="1" readonly="1"/>
+          <field name="customer_Type"/>
+          <field name="area"/>
+          <field name="Objective" widget="many2many_tags" options="{'no_create_edit': True}" required="1"/>
+
+          <field name="Description" />
+          <field name="Status"/>
+          <field name="Feedback"/>
+
+
+
+        </calendar>
+      </field>
+    </record>
+    <record model="ir.ui.view" id="view_sales_visit_planned">
+      <field name="name">view_sales_visit_planned</field>
+      <field name="model">sale.visit.planned</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree string ="Sales Visits palnned">
+
+
+          <field name="date_from" required="1"/>
+          <field name="date_to" required="1"/>
+          <field name="rep" string="Sales Rep"/>
+
+
+
+
+        </tree>
+      </field>
+    </record>
+    <record model="ir.ui.view" id="view_sales_visit_form">
+      <field name="name">sale Visits form.view</field>
+      <field name="model">sale.visit.planned</field>
+      <!--<field name="type">form,kanban</field>-->
+      <field name="arch" type="xml">
+        <form string ="Sales Visits">
+          <header>
+            <button name="action_approve" class="oe_highlight" states="Open" string="Approve" type="object" groups="sales_team.group_sale_salesman_all_leads,sales_team.group_sale_manager" />
+            <button name="action_open" class="oe_highlight" states="Approve" string="Re-open" type="object" groups="sales_team.group_sale_salesman_all_leads,sales_team.group_sale_manager"/>
+            <field name="state" widget="statusbar" />
+          </header>
+
+          <sheet>
+            <group>
+
+              <field name="date_from" required="1" attrs="{'readonly':[('state','=','Approve')]}"/>
+              <field name="date_to" required="1" attrs="{'readonly':[('state','=','Approve')]}"/>
+              <field name="rep" string="Sales Rep" options="{'no_create_edit': True, 'no_create':True, 'no_open':True} " groups="sales_team.group_sale_manager" attrs="{'readonly':[('state','=','Approve')]}"/>
+
+            </group>
+            <notebook>
+              <page string="Visit">
+                <field name="sale_visit_activity" widget="section_and_note_one2many"
+                                mode="tree,kanban" attrs="{'readonly':[('state','=','Approve')],'required':True,'invisible':[('date_from','=',False)]}">
+                  <tree editable="top">
+                    <field name="Day" required="1"/>
+
+                    <field name="Customer" required="1" options="{'no_create_edit': True, 'no_create':True, 'no_open':True} " />
+                    <field name="customer_Type"/>
+                    <field name="area"/>
+                    <field name="Objective" widget="many2many_tags" options="{'no_create_edit': True}" required="1"/>
+
+                    <field name="Description" />
+                    <field name="Status" attrs="{'readonly':True}"  />
+					 
+					 
+
+                  </tree>
+				  <form>
+				    <group><group>
+				     <field name="Day" required="1"/>
+
+                    <field name="Customer" required="1" options="{'no_create_edit': True, 'no_create':True, 'no_open':True} " />
+                    <field name="customer_Type"/>
+                    <field name="area"/>
+					</group><group>
+                    <field name="Objective" widget="many2many_tags" options="{'no_create_edit': True}" required="1"/>
+   
+                    <field name="Description" />
+                    <field name="Status" attrs="{'readonly':True}"  /></group></group>
+				  </form>
+				  <kanban class="o_kanban_mobile">
+				  <field name="Day" required="1"/>
+
+                    <field name="Customer" required="1" options="{'no_create_edit': True, 'no_create':True, 'no_open':True} " />
+                    <field name="customer_Type"/>
+                    <field name="area"/>
+                    <field name="Objective" widget="many2many_tags" options="{'no_create_edit': True}" required="1"/>
+
+                    <field name="Description" />
+                    <field name="Status" attrs="{'readonly':True}"  />
+					<templates>
+					<t t-name="kanban-box">
+                                            <div t-attf-class="oe_kanban_card oe_kanban_global_click {{ record.Customer.raw_value ? 'o_is_' + record.Customer.raw_value : '' }}">
+                                               
+												<t t-if="record.Customer.raw_value">
+                                                    <div class="row">
+													    <div class="col-8">
+                                                            <strong>
+															 Date :
+                                                                <span class="float-right text-right">
+                                                                    <t t-esc="record.Day.value"/>
+                                                                </span>
+                                                            </strong>
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <strong>
+                                                                <span>
+																Customer Name:
+                                                                    <t t-esc="record.Customer.value"/>
+                                                                </span>
+                                                            </strong>
+                                                        </div>
+														 
+                                                
+                                                </t>
+                                                 
+                                            </div>
+                                        </t>
+                                    </templates>
+					
+				  </kanban>
+
+                </field>
+
+
+              </page>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+
+    <!-- <record model="ir.ui.view" id="view_sales_visit_pivot">
+      <field name="name">sale Visits pivot.view</field>
+      <field name="model">sale.visit</field>
+      <field name="type">pivot</field>
+      <field name="arch" type="xml">
+        <pivot  >
+          <field name="Day" type="col" interval="day"/>
+
+
+          <field name="rep" type="row"/>
+          <field name="Objective" type="col"/>
+          <field name="reg" type="measure"/>
+
+          <field name="Customer" type="row"/>
+
+          <field name="Status" type="row"/>
+          <field name="Description" type="row" />
+
+
+        </pivot>
+      </field>
+    </record> -->
+    
+
+    <record model="ir.ui.view" id="view_sales_visit_pivottt">
+      <field name="name">Sales Visits Plan</field>
+      <field name="model">sale_visit_report</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form edit="false">
+          <field name="name" invisible="1"/>
+          <sheet>
+            <div class="oe_title">
+              <h1>Sales Visits Plan Report</h1>
+            </div>
+            <br/>
+            <group>
+              <group>
+                <field name="date_from" />
+                <field name="date_to" />
+              </group>
+              <group>
+                <field name="rep" />
+                <field name="Status"/>
+              </group>
+            </group>
+
+            <button string="search" type="object" name="search_report"/>
+            <!--<button name="get_sale_report" string="Print" type="object" icon="gtk-print"/>-->
+          </sheet>
+
+
+
+        </form>
+      </field>
+    </record>
+
+
+    <!--
+		<record id="sale_visit_search_view" model="ir.ui.view">
+			<field name="name">sale_visit_search_view</field>
+			<field name="model">sale.visit</field>
+			<field name="arch" type="xml">
+				<search string="Student Information">
+					<filter name="Day" string="Date From" domain="[('Day','>=',(context_today().strftime('%Y-%m-%d')))]" />
+					 
+					<filter name="Customer"/>
+					 
+				</search>
+			</field>
+		</record>
+-->
+
+    <!-- <record id="objective_sale_visit" model="ir.ui.view">
+			<field name="name">objective_sale_visit</field>
+			<field name="model">objective.visit</field>
+			<field name="type">tree</field>
+            <field name="arch" type="xml">
+			    <tree editable="top">
+				 <field name="name" required="1"/>
+				 
+
+				</tree>
+			</field>
+	</record> -->
+  </data>
+</odoo>

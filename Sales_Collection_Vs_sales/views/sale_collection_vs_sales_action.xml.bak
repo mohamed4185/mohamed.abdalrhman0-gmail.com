@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<odoo>
+
+
+
+<!--Action to open Sales regions List -->
+  
+ 
+   <record model="ir.ui.view" id="view_sales_coolection_vs_sales_form">
+            <field name="name">view_sales_coolection_vs_sales_form</field>
+            <field name="model">sale.collection.vs.sales</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+              <form>
+			       <sheet>
+				   <field name="name" invisible="1"/>
+			       <group>
+                               <group>
+								<field name="Date_from"/>
+							 
+								 <field name="customer" options="{'no_create': True, 'no_create_edit':True}"/>
+								</group>
+								<group>
+								<field name="Date_to"/>
+								<!--<field name="user_id" options="{'no_create': True, 'no_create_edit':True}"/>-->
+								
+
+								</group>
+								<button string="search" type="object" name="search_report"/>
+								 
+			        </group>   
+					</sheet>
+								
+              </form>
+            </field>
+   </record>
+   <record model="ir.ui.view" id="view_customer_move_tree">
+            <field name="name">view_customer_move_tree</field>
+            <field name="model">customer.account.move</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+              <tree create="0">
+			    
+			     <field name="customer"/>
+				  
+				 <!--<field name="sale_rep"/>-->
+				 <field name="begin_balance"/>
+				 <field name="total_sale"/>
+				 <field name="total_return"/>
+				 <field name="net_sale"/>
+				 <field name="cash"/>
+				 <field name="cheque"/>
+				 <field name="collection"/>
+				 <field name="collection_net"/>
+				 <field name="addition"/>
+				 <field name="discount"/>
+				 <field name="current_balance"/>
+				  
+				  
+
+
+
+
+			  </tree>
+            </field>
+   </record>
+    
+<report
+    id="sale_collection_rep"
+    model="customer.account.move"
+    string="Print report"
+    report_type="qweb-pdf"
+    name="Sales_Collection_Vs_sales.report_sale_collection_document"
+    file="Sales_Collection_Vs_sales.report_sale_collection_document"
+     
+/>
+ 
+</odoo>

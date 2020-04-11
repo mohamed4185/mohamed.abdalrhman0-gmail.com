@@ -1,0 +1,55 @@
+from odoo import api, fields, models, _
+import odoo.addons.decimal_precision as dp
+from odoo.exceptions import ValidationError,UserError
+import logging
+import datetime as dt
+from datetime import datetime, timedelta
+import calendar
+from dateutil import relativedelta
+_logger = logging.getLogger(__name__)
+class budget_custom(models.Model):
+    _inherit="crossovered.budget"
+    xx=fields.Char('xx')
+    @api.onchange('date_from','date_to')
+    def get_date_from(self):
+
+        
+        if self.date_from and self.date_to:
+            date1=self.date_from
+            date2=self.date_to
+            list=[]
+            if int(date1.strftime('%d'))>1:
+                year=int(date1.strftime('%Y'))
+                month=int(date1.strftime('%m'))
+                day=calendar.monthrange(year,month)[1]
+                date1 = date1 + timedelta(days=day-int(date1.strftime('%d'))+1)
+                list.append((0,0,  {'date_from':self.date_from,'date_to':(date1-timedelta(days=2)).strftime('%Y-%m-%d')}))
+
+
+
+
+            while date1 < date2:
+                date_from=date1.strftime('%Y-%m-%d')
+                year=int(date1.strftime('%Y'))
+                month=int(date1.strftime('%m'))
+                day=calendar.monthrange(year,month)[1]
+                date1 = date1 + timedelta(days=day)
+                if date1>date2:
+                     date1=date2
+                     list.append((0,0,  {'date_from':date_from,'date_to':(date1).strftime('%Y-%m-%d')}))
+                else:
+                     list.append((0,0,  {'date_from':date_from,'date_to':(date1-timedelta(days=1)).strftime('%Y-%m-%d')}))
+            self.crossovered_budget_line=list
+            _logger.info(list)
+            _logger.info('dddd')
+            _logger.info(self.crossovered_budget_line)
+           
+
+ 
+
+    """@api.onchange('date_from')
+    def get_date_from(self):
+
+        crossovered_budget_line.create()
+        #for rec in self:
+           #_logger.info(rec.crossovered_budget_line) """

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+ 
+     <record model='ir.ui.menu' id='sale.sales_team_config'>
+				 <field name="groups_id" eval="[(4,ref('sales_team.group_sale_salesman_all_leads'))]"/>
+    </record>
+	 <record model='ir.ui.menu' id='sale.menu_sale_config'>
+				 <field name="groups_id" eval="[(4,ref('sales_team.group_sale_salesman_all_leads'))]"/>
+    </record>
+	<record model='ir.ui.menu' id='sale.menu_sale_report'>
+				 <field name="groups_id" eval="[(4,ref('sales_team.group_sale_salesman_all_leads'))]"/>
+    </record>
+	<record model='ir.ui.menu' id='sale.menu_sale_order_upselling'>
+				 <field name="groups_id" eval="[(4,ref('sales_team.group_sale_manager'))]"/>
+    </record>
+	<record model='ir.ui.menu' id='sale.prod_config_main'>
+				 <field name="groups_id" eval="[(4,ref('sales_team.group_sale_manager'))]"/>
+    </record>
+	 
+	 
+	<record model='ir.ui.menu' id='sale.menu_products'>
+				 <field name="groups_id" eval="[(4,ref('sales_team.group_sale_manager'))]"/>
+    </record>
+	<record model='ir.ui.menu' id='sale.menu_product_pricelist_main'>
+				 <field name="groups_id" eval="[(4,ref('sales_team.group_sale_manager'))]"/>
+    </record>
+
+
+	<record model='ir.ui.menu' id='hr.menu_hr_root'>
+				 <field name="groups_id" eval="[(3,ref('base.group_user'))]"/>
+    </record>
+	 
+	
+<record model='ir.ui.menu' id='hr_expense.menu_hr_expense_root'>
+				 <field name="groups_id" eval="[(3,ref('base.group_user'))]"/>
+    </record>
+    
+	<record model='ir.ui.menu' id='hr_expense.menu_hr_expense_my_expenses'>
+				 <field name="groups_id" eval="[(3,ref('base.group_user'))]"/>
+    </record>
+	
+	
+ 
+</odoo>
+ 

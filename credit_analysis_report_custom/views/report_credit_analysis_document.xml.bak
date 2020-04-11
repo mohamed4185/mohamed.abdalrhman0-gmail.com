@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<template id="report_credit_analysis_print_data">
+   
+                      
+						  <tr style="border: 1px solid #ddd;">
+						    <td style="border: 1px solid #ddd;">asdas
+						   <span t-field="o.customer" style="padding:5px; text-overflow: ellipsis;"/>
+						   </td >
+						   <td>
+						   <span t-field="o.begin_balance" style="padding:5px; text-overflow: ellipsis;"/>
+						   </td>
+						  
+                           <td style="border: 1px solid #ddd;">
+						   <span t-field="o.total_sale" style="padding:5px; text-overflow: ellipsis;"/>
+						   </td>
+                            
+							<td style="border: 1px solid #ddd;">
+						   <span t-field="o.total_return" style="padding:5px; text-overflow: ellipsis;"/>
+						   </td>
+						   <td style="border: 1px solid #ddd;">
+						   <span t-field="o.net_sale" style="padding:5px; text-overflow: ellipsis;"/>
+						   </td>
+						   <td style="border: 1px solid #ddd;">
+						   <span t-field="o.cash" style="padding:5px; text-overflow: ellipsis;"/>
+						   </td>
+						   <td style="border: 1px solid #ddd;">
+						   <span t-field="o.cheque" style="padding:5px; text-overflow: ellipsis;"/>
+						   </td>
+						   <td style="border: 1px solid #ddd;">
+						   <span t-field="o.today_aging" style="padding:5px; text-overflow: ellipsis;"/>
+						   </td>
+						   <td style="border: 1px solid #ddd;">
+						   <span t-field="o.second_date" style="padding:5px; text-overflow: ellipsis;"/>
+						   </td>
+						   <td style="border: 1px solid #ddd;">
+						   <span t-field="o.third_duration_invoice" style="padding:5px; text-overflow: ellipsis;"/>
+						   </td>
+
+						    <td style="border: 1px solid #ddd;">
+						    
+						   </td >
+						   <td style="border: 1px solid #ddd;">
+						     <span t-field="o.addition" style="padding:5px; text-overflow: ellipsis;"/>
+						   </td >
+						    <td style="border: 1px solid #ddd;">
+						   <span t-field="o.current_balance" style="padding:5px; text-overflow: ellipsis;"/>
+						   </td>
+
+						  </tr>
+					  
+					 
+  
+                 
+         
+    
+</template>
+
+<!-- Translatable template -->
+ 
+
+<template id="report_credit_analysis_document">
+        
+          <t t-call="web.html_container">
+		 <t t-call="web.external_layout">
+		       		     
+
+                <div class="page">
+
+				    <!--<h2 style="text-align:center;color:grey">Sales and Collection Report</h2>-->
+					  <t t-set= "i" t-value="context_timestamp(datetime.datetime.now()).strftime('%d')" />
+                      <t t-set= "next_date" t-value="int(i)+1" />
+					<table class="table table-sm" style="width:100%;text-align:center;padding-left:20px;padding-right:20px;border-collapse: collapse;border: 1px solid #ddd;">
+					<tr style="color:blue;border: 1px solid #ddd;">
+					        <th style="border: 1px solid #ddd;width:12%">Customer Name</th>
+							<th style="border: 1px solid #ddd;;width:8%">Begining Balance</th>
+							<th style="border: 1px solid #ddd;width:8%">Total Sales</th>
+							<th style="border: 1px solid #ddd;width:8%">Total Return</th> 
+							<th style="border: 1px solid #ddd;width:8%">Net Sales</th> 
+							<th style="border: 1px solid #ddd;width:8%">Cash</th> 
+							<th style="border: 1px solid #ddd;width:8%">cheques</th> 
+							<th style="border: 1px solid #ddd;width:8%"><span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d-%m')"/>  </th> 
+							<th style="border: 1px solid #ddd;width:8%"><span t-esc="next_date"/>-90</th> 
+							<th style="border: 1px solid #ddd;width:8%">>90</th> 
+							<th style="border: 1px solid #ddd;width:8%">Discount</th> 
+							<th style="border: 1px solid #ddd;width:8%">Addition</th> 
+							<th style="border: 1px solid #ddd;width:8%">Current Balance</th>
+							 
+						  </tr>
+						 
+						
+                    <t t-foreach="docs" t-as="o">
+					         
+							<t t-call="credit_analysis_report_custom.report_credit_analysis_print_data">
+									<t t-set="docs" t-value="o"/>
+									 
+									 
+						    </t>
+								 
+				    </t>
+							 
+					</table>
+					 
+                </div>
+				 
+            </t>
+			</t>
+    </template>
+	<record id="paperformat_llance_sacpe_agromed" model="report.paperformat">
+		<field name="name">landscap report paper express</field>
+		<field name="default" eval="True" />
+		<field name="format">A4</field>
+		<field name="page_height">0</field>
+		<field name="page_width">0</field>
+		<field name="orientation">Landscape</field>
+		<field name="margin_top">40.00</field>
+		<field name="margin_bottom">28.00</field>
+		<field name="margin_left">7.00</field>
+		<field name="margin_right">7.00</field>
+		<field name="header_line" eval="False" />
+		<field name="header_spacing">45</field>
+		<field name="dpi">90</field>
+
+	</record>
+
+	<record id="move_product_in_to_out.action_report_move_in_out_product" model="ir.actions.report">
+		<field name="paperformat_id" ref="move_product_in_to_out.paperformat_llance_sacpe_agromed" />
+	</record>
+        
+</odoo>

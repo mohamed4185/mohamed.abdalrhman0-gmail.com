@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<odoo>
+
+
+
+<!--Action to open Sales regions List -->
+ Sale order Line
+<record id="action_sales_consolidate_report_order_line" model="ir.actions.act_window">
+<field name="type">ir.actions.act_window</field>
+<field name="name">Consolidated Sales Report</field>
+<field name="res_model">sale.order.line</field>
+<field name="view_mode">pivot</field>
+ <field name="domain">[('state','=','sale')]</field>
+
+</record>
+<record id="action_sales_vs_forecast_report_order_line" model="ir.actions.act_window">
+<field name="type">ir.actions.act_window</field>
+<field name="name">sale Vs Forecast Order Line</field>
+<field name="res_model">sale.order.line</field>
+<field name="view_mode">tree,pivot</field>
+ <field name="domain">[('state','=','sale')]</field>
+ 
+
+</record>
+<record id="action_sales_consolidate_report" model="ir.actions.act_window">
+<field name="type">ir.actions.act_window</field>
+<field name="name">Consolidated Sales Report</field>
+<field name="res_model">consildate.sale.report</field>
+<field name="view_mode">form</field>
+<field name="context">{'default_name':'dddddd'}</field>
+
+</record>
+ <menuitem id="menu_sales_consolidate_report"
+ name="Consolidated Sales Report"
+ parent="sale.menu_sale_report"
+ action="action_sales_consolidate_report"
+ />
+
+
+</odoo>

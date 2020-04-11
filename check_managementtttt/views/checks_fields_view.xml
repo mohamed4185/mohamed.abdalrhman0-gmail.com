@@ -1,0 +1,227 @@
+<openerp>
+    <data>
+
+        <record id='checks_object_search' model='ir.ui.view'>
+            <field name='name'>checks.management.search</field>
+            <field name='model'>check.management</field>
+            <field name='arch' type='xml'>
+                <search>
+                    <field name="check_number" string="Check Number"/>
+                    <field name="investor_id" string="Customer"/>
+                    <field name="amount" string="Check Amount"/>
+
+
+                    <filter string="Deposited Checks" name="deposite_checks" domain="[('state','=', 'depoisted')]"/>
+
+                    <!--<filter string="Collecte Today" domain="[('check_date', '&gt;=', datetime.datetime.now().strftime('%Y-%m-%d 00:00:00')),('check_date', '&lt;=', datetime.datetime.now().strftime('%Y-%m-%d 23:23:59'))]"/>-->
+                    <!--<filter string="Collecte Future >= today" domain="[('check_date', '&gt;=', datetime.datetime.now())]"/>-->
+                    <!--<filter string="Overdue Collection" domain="[('check_date', '&lt;=', time.strftime('%%Y-%%m-%%d'))]"/>-->
+                    <!--<filter string="Overdue Collection" domain="[('check_date', '&lt;=', datetime.datetime.now())]"/>-->
+                    <!--<separator/>-->
+                    <!--<filter name="check_date" string="Check Date" context="{'group_by': 'check_date'}"/>-->
+                    <!--<filter name="state" string="Check State" context="{'group_by': 'state'}"/>-->
+                    <!--<filter name="investor_id" string="Customer" context="{'group_by': 'partner_id'}"/>-->
+                    <!--<filter name="deposite_bank" string="Deposite Bank" context="{'group_by': 'dep_bank'}"/>-->
+
+
+                </search>
+            </field>
+        </record>
+
+
+        <record id="checks_object_form" model="ir.ui.view">
+            <field name="name">checks.object.form</field>
+            <field name="model">check.management</field>
+            <field name="view_type">form</field>
+            <field name="arch" type="xml">
+                <form string="" create="false">
+                    <header>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group string="Check Info">
+                                <field name="type" readonly="1" invisible="1"/>
+                                <field name="check_number" readonly="1"/>
+                                <field name="check_bank"/>
+                                <field name="check_date" readonly="1"/>
+                                <field name="dep_bank"/>
+                                <field name="amount" readonly="1"/>
+                                <field name="open_amount" readonly="1"/>
+                                <!--<field name="will_collection" />-->
+                                <field name="will_collection_user" />
+
+                            </group>
+
+                            <group string="Customer Info">
+
+                                <field name="investor_id" readonly="1" invisible="0"/>
+                            </group >
+
+                        </group>
+
+                        <notebook>
+
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="checks_object_tree" model="ir.ui.view">
+            <field name="name">checks.object.tree</field>
+            <field name="model">check.management</field>
+            <field name="view_type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="" create="false" edit="false" delete="false">
+                    <field name="check_number"/>
+                    <field name="check_date"/>
+					<field name="check_payment"/>
+                    <field name="investor_id" />
+                    <field name="check_bank"/>
+                    <field name="dep_bank"/>
+                    <field name="amount" sum="Total Amount"/>
+                    <field name="open_amount" sum="Total Open Amount"/>
+                    <field name="type" invisible="1"/>
+                    <field name="state"/>
+					 
+                </tree>
+            </field>
+        </record>
+
+        <record id="native_check_holding_action" model="ir.actions.act_window">
+            <field name="name">Holding Checks</field>
+            <field name="res_model">check.management</field>
+            <field name="view_mode">tree,form,pivot,graph</field>
+            <field name="view_type">form</field>
+            <field name="domain">[('state','=','holding')]</field>
+            <field name="context">{'menu_sent':'holding'}</field>
+        </record>
+
+        <record id="native_check_depoisted_action" model="ir.actions.act_window">
+            <field name="name">Depoisted Checks</field>
+            <field name="res_model">check.management</field>
+            <field name="view_mode">tree,form,pivot,graph</field>
+            <field name="view_type">form</field>
+            <field name="domain">[('state','=','depoisted')]</field>
+            <field name="context">{'menu_sent':'depoist'}</field>
+        </record>
+
+        <record id="native_check_approved_action" model="ir.actions.act_window">
+            <field name="name">Approved Checks</field>
+            <field name="res_model">check.management</field>
+            <field name="view_mode">tree,form,pivot,graph</field>
+            <field name="view_type">form</field>
+            <field name="domain">[('state','=','approved')]</field>
+            <field name="context">{'menu_sent':'approved'}</field>
+        </record>
+
+        <record id="native_check_rejected_action" model="ir.actions.act_window">
+            <field name="name">Rejected Checks</field>
+            <field name="res_model">check.management</field>
+            <field name="view_mode">tree,form,pivot,graph</field>
+            <field name="view_type">form</field>
+            <field name="domain">[('state','=','rejected')]</field>
+            <field name="context">{'menu_sent':'rejected'}</field>
+        </record>
+
+        <record id="native_check_returned_action" model="ir.actions.act_window">
+            <field name="name">Returned Checks</field>
+            <field name="res_model">check.management</field>
+            <field name="view_mode">tree,form,pivot,graph</field>
+            <field name="view_type">form</field>
+            <field name="domain">[('state','=','returned')]</field>
+            <field name="context">{'menu_sent':'returned'}</field>
+        </record>
+
+        <record id="native_check_handed_action" model="ir.actions.act_window">
+            <field name="name">Handed Checks</field>
+            <field name="res_model">check.management</field>
+            <field name="view_mode">tree,form,pivot,graph</field>
+            <field name="view_type">form</field>
+            <field name="domain">[('state','=','handed')]</field>
+            <field name="context">{'menu_sent':'handed'}</field>
+        </record>
+
+        <record id="native_check_debited_action" model="ir.actions.act_window">
+            <field name="name">Debited Checks</field>
+            <field name="res_model">check.management</field>
+            <field name="view_mode">tree,form,pivot,graph</field>
+            <field name="view_type">form</field>
+            <field name="domain">[('state','=','debited')]</field>
+            <field name="context">{'menu_sent':'debited'}</field>
+        </record>
+
+
+        <record id="native_check_canceled_action" model="ir.actions.act_window">
+            <field name="name">Cancel Checks</field>
+            <field name="res_model">check.management</field>
+            <field name="view_mode">tree,form,pivot,graph</field>
+            <field name="view_type">form</field>
+            <field name="domain">[('state','=','canceled')]</field>
+            <field name="context">{'menu_sent':'canceled'}</field>
+        </record>
+
+        <record id="native_check_csreturned_action" model="ir.actions.act_window">
+            <field name="name">Customer Returned Checks</field>
+            <field name="res_model">check.management</field>
+            <field name="view_mode">tree,form,pivot,graph</field>
+            <field name="view_type">form</field>
+            <field name="domain">[('state','=','cs_return')]</field>
+            <field name="context">{'menu_sent':'cs_return'}</field>
+        </record>
+
+        <record id="native_check_rece_action" model="ir.actions.act_window">
+            <field name="name">Receivable Checks</field>
+            <field name="res_model">check.management</field>
+            <field name="view_mode">tree,form,pivot,graph</field>
+            <field name="view_type">form</field>
+            <field name="domain">[('check_type','=','rece')]</field>
+            <field name="context">{'menu_sent':'canceled'}</field>
+        </record>
+
+        <record id="native_check_pay_action" model="ir.actions.act_window">
+            <field name="name">Payable Checks</field>
+            <field name="res_model">check.management</field>
+            <field name="view_mode">tree,form,pivot,graph</field>
+            <field name="view_type">form</field>
+            <field name="domain">[('check_type','=','pay')]</field>
+            <field name="context">{'menu_sent':'canceled'}</field>
+        </record>
+     
+
+        <record id="ttttt_check_pivot_view" model="ir.ui.view">
+            <field name="name">check.management.pivot.check</field>
+            <field name="model">check.management</field>
+            <field name="arch" type="xml">
+                <pivot string="Check" display_quantity="true">
+                    <field name="check_date" interval="month" type="row"/>
+                    <field name="dep_bank" type="col"/>
+                    <field name="open_amount" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+
+        <record id="tttt_check_graph_view" model="ir.ui.view">
+            <field name="name">check.management.graph</field>
+            <field name="model">check.management</field>
+            <field name="arch" type="xml">
+                <graph string="Check" >
+                    <field name="dep_bank" type="col"/>
+                    <field name="check_date" type="row"/>
+                    <field name="open_amount" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
+
+
+
+    </data>
+</openerp>

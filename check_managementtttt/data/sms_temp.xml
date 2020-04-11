@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        <record id="issue_check_journal" model="account.journal">
+            <field name="name">Issue Checks</field>
+            <field name="type">bank</field>
+            <field name="payment_subtype">issue_check</field>
+        </record>
+
+        <record id="rece_check_journal" model="account.journal">
+            <field name="name">Received Checks</field>
+            <field name="type">bank</field>
+            <field name="payment_subtype">rece_check</field>
+        </record>
+
+
+    </data>
+</openerp>

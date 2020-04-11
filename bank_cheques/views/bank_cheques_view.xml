@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report 
+            id="action_report_bank_cheques"
+            model="bank.cheques"
+            string="بيـــان بشيكات بنـــــك"
+            report_type="qweb-pdf"
+            name="bank_cheques.bank_cheques_report"
+            file="bank_cheques.bank_cheques_report"
+            />
+    </data>
+</odoo>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<odoo>
+
+ 
+<record id="action_sales_report_annual_report" model="ir.actions.act_window">
+<field name="type">ir.actions.act_window</field>
+<field name="name">Sales Rep Annual Sales Report</field>
+<field name="res_model">sales.rep.annual</field>
+<field name="view_mode">form</field>
+</record>
+ <menuitem id="menu_sales_report_annual_report"
+ name="Sales Rep Annual Sales Report"
+ parent="sale.menu_sale_report"
+ action="action_sales_report_annual_report"
+ />
+
+
+</odoo>

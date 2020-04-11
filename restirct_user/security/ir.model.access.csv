@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_user_demo_group,access_user_demo_group,base.model_res_users,restirct_user.group_user,1,1,1,0
+access_partner_demo_group,access_partner_demo_group,base.model_res_partner,restirct_user.group_user,1,1,1,0
+access_app_demo_group,access_app_demo_group,base.model_ir_module_category,restirct_user.group_user,1,1,1,0
+access_view_demo_group,access_view_demo_group,base.model_ir_ui_view,restirct_user.group_user,1,1,1,0
+access_groups_demo_group,access_groups_demo_group,base.model_res_groups,restirct_user.group_user,1,1,1,0
+
